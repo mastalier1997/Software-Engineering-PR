@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        String test = "Hi";
         //Plus Button Weiterleitung
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.plus);
         fab.setOnClickListener(new View.OnClickListener() {
