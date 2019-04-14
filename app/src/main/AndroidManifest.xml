@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.finanzmanager">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Reisen"></activity>
+        <activity android:name=".Hotel" />
+        <activity android:name=".Fitnessstudio" />
+        <activity android:name=".Lebensmittel" />
+        <activity android:name=".FastFood" />
+        <activity android:name=".Sprit" />
+        <activity android:name=".Kino" />
+        <activity android:name=".Abhebung" />
+        <activity android:name=".Bar" />
+        <activity android:name=".Dividenden" />
+        <activity android:name=".Gluecksspiel" />
+        <activity android:name=".Gehalt" />
+        <activity android:name=".Investition" />
+        <activity android:name=".Rueckerstattung" />
+        <activity android:name=".Praemie" />
+        <activity android:name=".Ausgaben" />
+        <activity android:name=".einnahmeAusgabe" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
