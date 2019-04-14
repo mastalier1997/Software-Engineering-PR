@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_income"
+            android:icon="@mipmap/investment_income"
+            android:title="Einnahmen" />
+        <item
+            android:id="@+id/nav_expense"
+            android:icon="@mipmap/dividens"
+            android:title="Ausgaben" />
+        <item
+            android:id="@+id/nav_graph"
+            android:icon="@mipmap/lottery"
+            android:title="Grafik" />
+        <item
+            android:id="@+id/nav_filter"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Export" />
+        <item
+            android:id="@+id/nav_import"
+            android:icon="@drawable/bar"
+            android:title="Import" />
+    </group>
+
+</menu>

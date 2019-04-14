@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECF0F2"
+    tools:context=".Sprit">
+
+    <TextView
+        android:id="@+id/dateView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="413dp"
+        android:background="#FFFFFF	"
+        android:textAlignment="center"
+        android:textColor="#000000	"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/checkButton9"
+        android:layout_width="75dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="265dp"
+        android:layout_marginBottom="11dp"
+        android:background="#ECF0F2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/check_icon_web" />
+
+    <ImageButton
+        android:id="@+id/cancelButton9"
+        android:layout_width="43dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="280dp"
+        android:layout_marginBottom="32dp"
+        android:background="#ECF0F2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cancel_icon_web" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="172dp"
+        android:text="Sprit"
+        android:textColor="@android:color/background_dark"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText17"
+        android:layout_width="276dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="332dp"
+        android:background="#FFFFFF	"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="#F0000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText18"
+        android:layout_width="276dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="244dp"
+        android:background="#FFFFFF	"
+        android:ems="10"
+        android:hint="Beschreibung (optinal)"
+        android:inputType="textPersonName"
+        android:textColor="#F0000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/gas_icon_round" />
+
+    <CheckBox
+        android:id="@+id/checkBox9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="476dp"
+        android:text="Wiederkehrend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/dateButton9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="52dp"
+        android:background="#ECF0F2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/calender_icon_round" />
+</android.support.constraint.ConstraintLayout>
