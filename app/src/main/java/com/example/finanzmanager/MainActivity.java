@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //DropDown für Monate
         Spinner dropdown = findViewById(R.id.dropDown);
-        String[] items = new String[]{"Jänner", "Februar", "März", "April", "Mai"};
+        String[] items = new String[]{"Jänner", "Februar", "März2"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
     }
