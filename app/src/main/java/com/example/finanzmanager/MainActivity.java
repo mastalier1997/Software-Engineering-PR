@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        //Test kommentar
+        //Test kommentar test test
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
