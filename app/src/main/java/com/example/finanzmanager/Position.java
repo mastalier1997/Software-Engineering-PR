@@ -35,4 +35,6 @@ public class Position {
     public String getcategory() {
         return category;
     }
+
+    public String getDescription() { return description; }
 }

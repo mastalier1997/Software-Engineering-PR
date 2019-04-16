@@ -17,4 +17,10 @@ public class Einnahme extends Position {
         super.printPosition();
     }
 
+    public String getInfo() {
+        String info = Double.toString(super.getValue());
+        info = info + "\t\t\t\t\t" + super.getDescription();
+        return info;
+    }
+
 }
