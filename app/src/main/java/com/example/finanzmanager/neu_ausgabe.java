@@ -23,6 +23,7 @@ public class neu_ausgabe extends AppCompatActivity {
     ImageView imgView;
     TextView txtView;
     CheckBox repeat;
+    TextView textView;
 
 
     @Override
@@ -30,14 +31,16 @@ public class neu_ausgabe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neu_ausgabe);
 
-        final TextView textView=(TextView) findViewById(R.id.date_ausgabe);
+        textView=(TextView) findViewById(R.id.date_ausgabe);
         ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton_ausgabe);
 
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
 
         repeat = (CheckBox) findViewById(R.id.checkBox_wieder_ausgabe);
+        calendar= Calendar.getInstance();
 
+        //Anzeige des richtigen Bildes und Textes
         switch (category) {
             case 1:
                 imgView = (ImageView) findViewById(R.id.image_bar);
@@ -98,7 +101,6 @@ public class neu_ausgabe extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar= Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
@@ -147,6 +149,7 @@ public class neu_ausgabe extends AppCompatActivity {
                 Boolean repeats = false;
                 if(repeat.isChecked()) repeats = true;
 
+                //alles in einem Bundle gespeichert
                 Bundle extras = new Bundle();
                 extras.putInt("value", addNumber);
                 extras.putInt("day", day);

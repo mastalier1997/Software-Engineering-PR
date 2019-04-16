@@ -52,6 +52,7 @@ public class Ausgaben_menue extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Es wird ein integer mitgegeben, mit dem das richtige Bild und Text ausgewählt wird
         ImageButton imageButton = (ImageButton) findViewById(R.id.barButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override

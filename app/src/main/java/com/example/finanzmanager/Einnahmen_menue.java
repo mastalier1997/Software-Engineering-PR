@@ -51,6 +51,7 @@ public class Einnahmen_menue extends AppCompatActivity {
             }
         });
 
+        // Es wird ein integer mitgegeben, mit dem das richtige Bild und Text ausgewählt wird
         ImageButton imageButton = (ImageButton) findViewById(R.id.awardButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override

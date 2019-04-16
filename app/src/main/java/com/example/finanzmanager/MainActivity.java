@@ -14,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -33,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView sumIncome;
     TextView sumExpense;
 
+    private ListView listview_income;
+    private ArrayAdapter<String> stringArrayAdapter;
+    private ArrayList<String> stringArrayList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +48,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // sumIncome und sumExpense für die Ausgabe
         sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
         sumExpense = (TextView) findViewById(R.id.textView_sumExpense);
+        listview_income = (ListView) findViewById(R.id.listView_income);
 
+        //Aktualisierung der Zahlen und Positionsliste
         String Income = Integer.toString(incomeSum);
         String Expense = Integer.toString(expenseSum);
 
+        // je nachdem von welcher klasse man kommt wird unterschiedliches erstellt
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            if(bundle.getString("type").equals("income")) {
-                incomeSum = incomeSum + bundle.getInt("value");
+            if(bundle.getString("type").equals("income")) { // neue Einnahme
+                incomeSum = incomeSum + bundle.getInt("value"); //Summe
+                value = bundle.getInt("value");
                 description = bundle.getString("description");
                 category = bundle.getString("category");
                 repeat = bundle.getBoolean("repeats");
@@ -59,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Date date = new Date(day, month, year);
                 account.addIncome(date, value, repeat, category, description);
                 Income = Integer.toString(incomeSum);
-            } else if (bundle.getString("type").equals("expense")){
-                expenseSum = expenseSum + bundle.getInt("value");
+            } else if (bundle.getString("type").equals("expense")){ //neue Ausgabe
+                expenseSum = expenseSum + bundle.getInt("value"); //Summe
+                value = bundle.getInt("value");
                 description = bundle.getString("description");
                 category = bundle.getString("category");
                 repeat = bundle.getBoolean("repeats");
@@ -74,6 +88,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         sumIncome.setText(Income);
         sumExpense.setText(Expense);
+
+        //ListView
+        //Befüllung aus account
+        stringArrayList = new ArrayList<String>();
+        for(int i = 0; i<account.incomeLength(); i++) {
+            stringArrayList.add(account.getIncome(i));
+        }
+
+        //Ausgabe
+        stringArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList);
+        listview_income.setAdapter(stringArrayAdapter);
 
         //Plus Button Weiterleitung
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.plus);

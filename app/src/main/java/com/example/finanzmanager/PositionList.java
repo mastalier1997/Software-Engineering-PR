@@ -24,6 +24,17 @@ public class PositionList {
         expenseList.add(e);
     }
 
+    public String getIncome(int i) {
+        return incomeList.get(i).getInfo();
+    }
+
+    public int incomeLength() {
+        return incomeList.size();
+    }
+
+    public int expenseLength() {
+        return expenseList.size();
+    }
 
     public void printIncome() {
         System.out.println("Einnahmen: ");
