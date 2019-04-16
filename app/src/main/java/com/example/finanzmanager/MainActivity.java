@@ -15,9 +15,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    static PositionList account = new PositionList();
+    static int incomeSum = 0;
+    int value = 0;
+    String description = "";
+    String category = "";
+    int day, month, year = 0;
+    Boolean repeat = false;
+
+    static int expenseSum = 0;
+    TextView sumIncome;
+    TextView sumExpense;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +40,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
+        sumExpense = (TextView) findViewById(R.id.textView_sumExpense);
+
+        String Income = Integer.toString(incomeSum);
+        String Expense = Integer.toString(expenseSum);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            if(bundle.getString("type").equals("income")) {
+                incomeSum = incomeSum + bundle.getInt("value");
+                description = bundle.getString("description");
+                category = bundle.getString("category");
+                repeat = bundle.getBoolean("repeats");
+                day = bundle.getInt("day");
+                month = bundle.getInt("month");
+                year = bundle.getInt("year");
+                Date date = new Date(day, month, year);
+                account.addIncome(date, value, repeat, category, description);
+                Income = Integer.toString(incomeSum);
+            } else if (bundle.getString("type").equals("expense")){
+                expenseSum = expenseSum + bundle.getInt("value");
+                description = bundle.getString("description");
+                category = bundle.getString("category");
+                repeat = bundle.getBoolean("repeats");
+                day = bundle.getInt("day");
+                month = bundle.getInt("month");
+                year = bundle.getInt("year");
+                Date date = new Date(day, month, year);
+                account.addExpense(date, value, repeat, category, description);
+                Expense = Integer.toString(expenseSum);
+            }
+        }
+        sumIncome.setText(Income);
+        sumExpense.setText(Expense);
+
         //Plus Button Weiterleitung
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.plus);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Einnahmen.class));
+                startActivity(new Intent(MainActivity.this, Einnahmen_menue.class));
             }
         });
-
-        //Test kommentar test test
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

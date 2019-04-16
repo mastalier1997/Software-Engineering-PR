@@ -1,4 +1,4 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,9 +10,12 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Kino extends AppCompatActivity {
+public class Praemie extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -20,10 +23,10 @@ public class Kino extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kino);
+        setContentView(R.layout.activity_praemie);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView10);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton10);
+        final TextView textView=(TextView) findViewById(R.id.dateView);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +36,7 @@ public class Kino extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Kino.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(Praemie.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -46,24 +49,28 @@ public class Kino extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton10);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Kino.this, MainActivity.class);
+                Intent intent= new Intent(Praemie.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton10);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Kino.this, Ausgaben.class);
+                Intent intent= new Intent(Praemie.this, einnahmeAusgabe.class);
                 startActivity(intent);
             }
         });
+
+
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -1,17 +1,22 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.Ausgaben_menue;
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Investition extends AppCompatActivity {
+public class Sprit extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -19,10 +24,10 @@ public class Investition extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_investition);
+        setContentView(R.layout.activity_sprit);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView4);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton4);
+        final TextView textView=(TextView) findViewById(R.id.dateView9);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton9);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +37,7 @@ public class Investition extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Investition.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(Sprit.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -45,22 +50,33 @@ public class Investition extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton2);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton9);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Investition.this, MainActivity.class);
+                Intent intent= new Intent(Sprit.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton2);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton9);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Investition.this, einnahmeAusgabe.class);
+                Intent intent= new Intent(Sprit.this, Ausgaben_menue.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home){
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

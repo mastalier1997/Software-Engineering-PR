@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ausgaben extends AppCompatActivity {
+public class Ausgaben_menue extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class Ausgaben extends AppCompatActivity {
                     String item= adapterView.getItemAtPosition(position).toString();
 
                     if (adapterView.getItemAtPosition(position).equals("Einahmen")){
-                        Intent intent = new Intent(Ausgaben.this, einnahmeAusgabe.class);
+                        Intent intent = new Intent(Ausgaben_menue.this, Einnahmen_menue.class);
                         startActivity(intent);
                     }
                 }
@@ -56,7 +56,9 @@ public class Ausgaben extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Bar.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                // der name ist der Schlüssel, mit dem dieser Wert in der Zielklasse wieder gefunden wird
+                intent.putExtra("kategorie", 1);
                 startActivity(intent);
             }
         });
@@ -65,7 +67,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Abhebung.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 2);
                 startActivity(intent);
             }
         });
@@ -74,7 +77,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Kino.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 3);
                 startActivity(intent);
             }
         });
@@ -83,7 +87,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Sprit.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 4);
                 startActivity(intent);
             }
         });
@@ -92,7 +97,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, FastFood.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 5);
                 startActivity(intent);
             }
         });
@@ -101,7 +107,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Lebensmittel.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 6);
                 startActivity(intent);
             }
         });
@@ -110,7 +117,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Fitnessstudio.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 7);
                 startActivity(intent);
             }
         });
@@ -119,7 +127,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Hotel.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 8);
                 startActivity(intent);
             }
         });
@@ -128,7 +137,8 @@ public class Ausgaben extends AppCompatActivity {
         imageButton9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Ausgaben.this, Reisen.class);
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 9);
                 startActivity(intent);
             }
         });

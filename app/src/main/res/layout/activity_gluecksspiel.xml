@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".Gluecksspiel">
+    tools:context=".kategorie_alt.Gluecksspiel">
 
     <ImageButton
         android:id="@+id/checkButton5"

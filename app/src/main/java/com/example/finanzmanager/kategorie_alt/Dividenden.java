@@ -1,4 +1,4 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,9 +10,12 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Lebensmittel extends AppCompatActivity {
+public class Dividenden extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -20,10 +23,10 @@ public class Lebensmittel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lebensmittel);
+        setContentView(R.layout.activity_dividenden);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView12);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton12);
+        final TextView textView=(TextView) findViewById(R.id.dateView3);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton3);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +36,7 @@ public class Lebensmittel extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Lebensmittel.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(Dividenden.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -46,20 +49,20 @@ public class Lebensmittel extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton12);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton4);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Lebensmittel.this, MainActivity.class);
+                Intent intent= new Intent(Dividenden.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton12);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton4);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Lebensmittel.this, Ausgaben.class);
+                Intent intent= new Intent(Dividenden.this, einnahmeAusgabe.class);
                 startActivity(intent);
             }
         });

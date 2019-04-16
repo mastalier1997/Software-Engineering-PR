@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".new_income">
+    tools:context=".neu_einkommen">
 
     <ImageView
         android:id="@+id/image_rueckerstattung"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2_income"
+        android:id="@+id/editText_beschreibung_einnahme"
         android:layout_width="276dp"
         android:layout_height="63dp"
         android:layout_marginStart="64dp"

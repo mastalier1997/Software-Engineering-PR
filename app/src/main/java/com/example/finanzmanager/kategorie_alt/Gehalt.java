@@ -1,4 +1,4 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,20 +10,24 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Bar extends AppCompatActivity {
+public class Gehalt extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bar);
+        setContentView(R.layout.activity_gehalt);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView8);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton8);
+        final TextView textView=(TextView) findViewById(R.id.dateView5);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton5);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +37,7 @@ public class Bar extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Bar.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(Gehalt.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -46,20 +50,20 @@ public class Bar extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton8);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton3);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Bar.this, MainActivity.class);
+                Intent intent= new Intent(Gehalt.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton8);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton3);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Bar.this, Ausgaben.class);
+                Intent intent= new Intent(Gehalt.this, einnahmeAusgabe.class);
                 startActivity(intent);
             }
         });
