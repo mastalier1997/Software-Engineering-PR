@@ -1,18 +1,20 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Rueckerstattung extends AppCompatActivity {
+public class Investition extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -20,10 +22,10 @@ public class Rueckerstattung extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rueckerstattung);
+        setContentView(R.layout.activity_investition);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView6);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton6);
+        final TextView textView=(TextView) findViewById(R.id.dateView4);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton4);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +35,7 @@ public class Rueckerstattung extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Rueckerstattung.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(Investition.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -46,33 +48,22 @@ public class Rueckerstattung extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton6);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton2);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Rueckerstattung.this, MainActivity.class);
+                Intent intent= new Intent(Investition.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton6);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton2);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Rueckerstattung.this, einnahmeAusgabe.class);
+                Intent intent= new Intent(Investition.this, einnahmeAusgabe.class);
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == android.R.id.home){
-            this.finish();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

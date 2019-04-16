@@ -1,4 +1,4 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.example.finanzmanager.Ausgaben_menue;
+import com.example.finanzmanager.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Einnahmen extends AppCompatActivity {
+public class einnahmeAusgabe extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_einnahme);
+        setContentView(R.layout.activity_einnahme_ausgabe);
 
         Spinner dropdown2 = findViewById(R.id.dropDownEinAus);
         List<String> items2= new ArrayList<>();
@@ -39,7 +42,7 @@ public class Einnahmen extends AppCompatActivity {
                     String item= adapterView.getItemAtPosition(position).toString();
 
                     if (adapterView.getItemAtPosition(position).equals("Ausgaben")){
-                        Intent intent = new Intent(Einnahmen.this, Ausgaben.class);
+                        Intent intent = new Intent(einnahmeAusgabe.this, Ausgaben_menue.class);
                         startActivity(intent);
                     }
                 }
@@ -55,38 +58,7 @@ public class Einnahmen extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie",1);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton3 = (ImageButton) findViewById(R.id.investmentButton);
-        imageButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie", 2);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton6 = (ImageButton) findViewById(R.id.salaryButton);
-        imageButton6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie", 3);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton4 = (ImageButton) findViewById(R.id.dividensButton);
-        imageButton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie", 4);
+                Intent intent= new Intent(einnahmeAusgabe.this, Praemie.class);
                 startActivity(intent);
             }
         });
@@ -95,8 +67,25 @@ public class Einnahmen extends AppCompatActivity {
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie", 5);
+                Intent intent= new Intent(einnahmeAusgabe.this, Gluecksspiel.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton3 = (ImageButton) findViewById(R.id.investmentButton);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(einnahmeAusgabe.this, Investition.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton4 = (ImageButton) findViewById(R.id.dividensButton);
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(einnahmeAusgabe.this, Dividenden.class);
                 startActivity(intent);
             }
         });
@@ -105,13 +94,19 @@ public class Einnahmen extends AppCompatActivity {
         imageButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Einnahmen.this, new_income.class);
-                intent.putExtra("kategorie", 6);
+                Intent intent= new Intent(einnahmeAusgabe.this, Rueckerstattung.class);
                 startActivity(intent);
             }
         });
 
-
+        ImageButton imageButton6 = (ImageButton) findViewById(R.id.salaryButton);
+        imageButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(einnahmeAusgabe.this, Gehalt.class);
+                startActivity(intent);
+            }
+        });
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

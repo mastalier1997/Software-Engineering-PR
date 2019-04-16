@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView_sumExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="183dp"
@@ -104,7 +104,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView_sumIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"

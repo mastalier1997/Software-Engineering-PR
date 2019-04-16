@@ -13,13 +13,13 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class einnahmeAusgabe extends AppCompatActivity {
+public class Einnahmen_menue extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_einnahme_ausgabe);
+        setContentView(R.layout.activity_einnahme);
 
         Spinner dropdown2 = findViewById(R.id.dropDownEinAus);
         List<String> items2= new ArrayList<>();
@@ -39,7 +39,7 @@ public class einnahmeAusgabe extends AppCompatActivity {
                     String item= adapterView.getItemAtPosition(position).toString();
 
                     if (adapterView.getItemAtPosition(position).equals("Ausgaben")){
-                        Intent intent = new Intent(einnahmeAusgabe.this, Ausgaben.class);
+                        Intent intent = new Intent(Einnahmen_menue.this, Ausgaben_menue.class);
                         startActivity(intent);
                     }
                 }
@@ -55,16 +55,8 @@ public class einnahmeAusgabe extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Praemie.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton2 = (ImageButton) findViewById(R.id.gamblingButton);
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Gluecksspiel.class);
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie",1);
                 startActivity(intent);
             }
         });
@@ -73,25 +65,8 @@ public class einnahmeAusgabe extends AppCompatActivity {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Investition.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton4 = (ImageButton) findViewById(R.id.dividensButton);
-        imageButton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Dividenden.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton5 = (ImageButton) findViewById(R.id.refundButton);
-        imageButton5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Rueckerstattung.class);
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 2);
                 startActivity(intent);
             }
         });
@@ -100,10 +75,43 @@ public class einnahmeAusgabe extends AppCompatActivity {
         imageButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(einnahmeAusgabe.this, Gehalt.class);
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 3);
                 startActivity(intent);
             }
         });
+
+        ImageButton imageButton4 = (ImageButton) findViewById(R.id.dividensButton);
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 4);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton2 = (ImageButton) findViewById(R.id.gamblingButton);
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 5);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton5 = (ImageButton) findViewById(R.id.refundButton);
+        imageButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 6);
+                startActivity(intent);
+            }
+        });
+
+
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

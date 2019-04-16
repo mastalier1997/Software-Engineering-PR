@@ -6,22 +6,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Calendar;
 
-public class new_income extends AppCompatActivity {
+public class neu_einkommen extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
+    ImageView imgView;
+    TextView txtView;
+    CheckBox repeat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_income);
+        setContentView(R.layout.activity_neu_einkommen);
 
         final TextView textView=(TextView) findViewById(R.id.date_income);
         ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton_income);
@@ -29,8 +34,7 @@ public class new_income extends AppCompatActivity {
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
 
-        ImageView imgView;
-        TextView txtView;
+        repeat = (CheckBox) findViewById(R.id.checkBox_income);
 
         switch(category) {
             case 1:
@@ -79,7 +83,7 @@ public class new_income extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(new_income.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(neu_einkommen.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -96,7 +100,43 @@ public class new_income extends AppCompatActivity {
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(new_income.this, MainActivity.class);
+                //Betrag abspeichern
+                EditText add = (EditText) findViewById(R.id.editText_income);
+                int addNumber = Integer.parseInt(add.getText().toString());
+
+                //Datum abspeichern
+                Integer day = 0;
+                Integer month = 0;
+                Integer year = 0;
+                if (calendar != null) {
+                    day = calendar.get(Calendar.DAY_OF_MONTH);
+                    month = calendar.get(Calendar.MONTH);
+                    year = calendar.get(Calendar.YEAR);
+                }
+
+                //kategorie speichern
+                String category = txtView.getText().toString();
+
+                //Beschreibung speichern
+                EditText descriptionText = (EditText) findViewById(R.id.editText_beschreibung_einnahme);
+                String description = descriptionText.getText().toString();
+
+                //wiederkehrend
+                Boolean repeats = false;
+                if(repeat.isChecked()) repeats = true;
+
+                Bundle extras = new Bundle();
+                extras.putInt("value", addNumber);
+                extras.putInt("day", day);
+                extras.putInt("month", month);
+                extras.putInt("year", year);
+                extras.putString("category", category);
+                extras.putString("description", description);
+                extras.putBoolean("repeats", repeats);
+                extras.putString("type", "income");
+
+                Intent intent= new Intent(neu_einkommen.this, MainActivity.class);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -105,7 +145,7 @@ public class new_income extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(new_income.this, Ausgaben.class);
+                Intent intent= new Intent(neu_einkommen.this, Einnahmen_menue.class);
                 startActivity(intent);
             }
         });

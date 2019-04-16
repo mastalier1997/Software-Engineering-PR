@@ -1,4 +1,4 @@
-package com.example.finanzmanager;
+package com.example.finanzmanager.kategorie_alt;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,9 +10,13 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.finanzmanager.Ausgaben_menue;
+import com.example.finanzmanager.MainActivity;
+import com.example.finanzmanager.R;
+
 import java.util.Calendar;
 
-public class Fitnessstudio extends AppCompatActivity {
+public class FastFood extends AppCompatActivity {
 
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -20,10 +24,10 @@ public class Fitnessstudio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fitnessstudio);
+        setContentView(R.layout.activity_fast_food);
 
-        final TextView textView=(TextView) findViewById(R.id.dateView13);
-        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton13);
+        final TextView textView=(TextView) findViewById(R.id.dateView11);
+        ImageButton imageButton=(ImageButton) findViewById(R.id.dateButton11);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +37,7 @@ public class Fitnessstudio extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(Fitnessstudio.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(FastFood.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
                         textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
@@ -46,20 +50,20 @@ public class Fitnessstudio extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton13);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton11);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Fitnessstudio.this, MainActivity.class);
+                Intent intent= new Intent(FastFood.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton13);
+        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelButton11);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Fitnessstudio.this, Ausgaben.class);
+                Intent intent= new Intent(FastFood.this, Ausgaben_menue.class);
                 startActivity(intent);
             }
         });

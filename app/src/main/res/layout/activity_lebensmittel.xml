@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".Lebensmittel">
+    tools:context=".kategorie_alt.Lebensmittel">
 
     <ImageButton
         android:id="@+id/dateButton12"
