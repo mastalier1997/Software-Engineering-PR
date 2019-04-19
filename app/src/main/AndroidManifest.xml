@@ -9,7 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".einnahmeAusgabe"></activity>
+        <activity android:name=".kategorie_alt.Reisen"></activity>
+        <activity android:name=".kategorie_alt.Hotel" />
+        <activity android:name=".kategorie_alt.Fitnessstudio" />
+        <activity android:name=".kategorie_alt.Lebensmittel" />
+        <activity android:name=".kategorie_alt.FastFood" />
+        <activity android:name=".kategorie_alt.Sprit" />
+        <activity android:name=".kategorie_alt.Kino" />
+        <activity android:name=".kategorie_alt.Abhebung" />
+        <activity android:name=".kategorie_alt.Bar" />
+        <activity android:name=".kategorie_alt.Dividenden" />
+        <activity android:name=".kategorie_alt.Gluecksspiel" />
+        <activity android:name=".kategorie_alt.Gehalt" />
+        <activity android:name=".kategorie_alt.Investition" />
+        <activity android:name=".kategorie_alt.Rueckerstattung" />
+        <activity android:name=".kategorie_alt.Praemie" />
+        <activity android:name=".Ausgaben_menue" />
+        <activity android:name=".kategorie_alt.einnahmeAusgabe" />
+        <activity android:name=".Einnahmen_menue"/>
+        <activity android:name=".neu_einkommen"/>
+        <activity android:name=".neu_ausgabe"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
