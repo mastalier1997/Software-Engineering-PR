@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".kategorie_alt.Reisen"></activity>
+        <activity android:name=".EinnahmenUebersicht"></activity>
+        <activity android:name=".AusgabenUebersicht" />
+        <activity android:name=".Import" />
+        <activity android:name=".Export" />
+        <activity android:name=".Graph" />
+        <activity android:name=".kategorie_alt.Reisen" />
         <activity android:name=".kategorie_alt.Hotel" />
         <activity android:name=".kategorie_alt.Fitnessstudio" />
         <activity android:name=".kategorie_alt.Lebensmittel" />
@@ -26,9 +31,9 @@
         <activity android:name=".kategorie_alt.Praemie" />
         <activity android:name=".Ausgaben_menue" />
         <activity android:name=".kategorie_alt.einnahmeAusgabe" />
-        <activity android:name=".Einnahmen_menue"/>
-        <activity android:name=".neu_einkommen"/>
-        <activity android:name=".neu_ausgabe"/>
+        <activity android:name=".Einnahmen_menue" />
+        <activity android:name=".neu_einkommen" />
+        <activity android:name=".neu_ausgabe" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
