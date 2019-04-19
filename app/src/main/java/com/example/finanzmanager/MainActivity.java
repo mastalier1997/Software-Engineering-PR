@@ -3,7 +3,6 @@ package com.example.finanzmanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,8 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListView listview_income;
     private ArrayAdapter<String> stringArrayAdapter;
     private ArrayList<String> stringArrayList;
+
+    public String Income;
+
 
 
     @Override
@@ -164,15 +164,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_income) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, EinnahmenUebersicht.class);
+            startActivity(intent);
         } else if (id == R.id.nav_expense) {
-
+            Intent intent = new Intent(MainActivity.this, AusgabenUebersicht.class);
+            startActivity(intent);
         } else if (id == R.id.nav_graph) {
-
-        } else if (id == R.id.nav_filter) {
-
+            Intent intent= new Intent(MainActivity.this, Graph.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_export) {
+            Intent intent = new Intent(MainActivity.this, Export.class);
+            startActivity(intent);
         } else if (id == R.id.nav_import) {
-
+            Intent intent = new Intent(MainActivity.this, Import.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
