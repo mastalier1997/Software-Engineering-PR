@@ -34,6 +34,7 @@ public class neu_einkommen extends AppCompatActivity {
 
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
+        String extraName3 = intent.getStringExtra("Test2");
 
         repeat = (CheckBox) findViewById(R.id.checkBox_income);
         calendar= Calendar.getInstance();
@@ -77,9 +78,10 @@ public class neu_einkommen extends AppCompatActivity {
                 txtView.setVisibility(View.VISIBLE);
                 break;
             case 7:
-                imgView = (ImageView) findViewById(R.id.image_rueckerstattung);
+                imgView = (ImageView) findViewById(R.id.image_extraCatEin);
                 imgView.setVisibility(View.VISIBLE);
-                txtView = (TextView) findViewById(R.id.text_rueckerstattung);
+                txtView = (TextView) findViewById(R.id.text_extraCatEin);
+                txtView.setText(extraName3);
                 txtView.setVisibility(View.VISIBLE);
                 break;
         }

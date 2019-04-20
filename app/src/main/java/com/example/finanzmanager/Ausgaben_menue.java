@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class Ausgaben_menue extends AppCompatActivity {
             }
         });
 
-        Button createCategorie = (Button) findViewById(R.id.createButton);
+        Button createCategorie = (Button) findViewById(R.id.createBtn);
         createCategorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,7 +157,8 @@ public class Ausgaben_menue extends AppCompatActivity {
 
         Intent extraIntent = getIntent();
         final String extraName = extraIntent.getStringExtra("Test");
-
+        TextView imageText = findViewById(R.id.extraCatAusText);
+        imageText.setText(extraName);
         ImageButton imageButton10 = (ImageButton) findViewById(R.id.extraCatAus);
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override

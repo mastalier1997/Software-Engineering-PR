@@ -178,8 +178,8 @@ public class neu_ausgabe extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(neu_ausgabe.this, Ausgaben_menue.class);
-                startActivity(intent);
+                //Statt neuem Intent wird der alte Intent beendet
+                finish();
             }
         });
     }

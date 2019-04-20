@@ -49,7 +49,6 @@ public class CreateCategorieActivity extends AppCompatActivity {
                 EditText content = findViewById(R.id.newCatName);
                 name = content.getText().toString();
                 Intent intent= new Intent(CreateCategorieActivity.this, Ausgaben_menue.class);
-                // der name ist der Schlüssel, mit dem dieser Wert in der Zielklasse wieder gefunden wird
                 intent.putExtra("Test", name);
                 startActivity(intent);
 
