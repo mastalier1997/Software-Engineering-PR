@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
@@ -50,7 +51,14 @@ public class Einnahmen_menue extends AppCompatActivity {
 
             }
         });
-
+        Button createCategorie2 = (Button) findViewById(R.id.createButton2);
+        createCategorie2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Einnahmen_menue.this, CreateCategorieActivity.class);
+                startActivity(intent);
+            }
+        });
         // Es wird ein integer mitgegeben, mit dem das richtige Bild und Text ausgewählt wird
         ImageButton imageButton = (ImageButton) findViewById(R.id.awardButton);
         imageButton.setOnClickListener(new View.OnClickListener() {

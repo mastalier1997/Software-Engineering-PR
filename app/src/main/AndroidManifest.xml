@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EinnahmenUebersicht"></activity>
+        <activity android:name=".CreateCategorieActivity"></activity>
+        <activity android:name=".EinnahmenUebersicht" />
         <activity android:name=".AusgabenUebersicht" />
         <activity android:name=".Import" />
         <activity android:name=".Export" />
