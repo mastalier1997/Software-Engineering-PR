@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static int expenseSum = 0;
     TextView sumIncome;
     TextView sumExpense;
+    TextView balance;
 
     private ListView listview_income;
     private ArrayAdapter<String> stringArrayAdapter;
@@ -51,11 +52,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // sumIncome und sumExpense für die Ausgabe
         sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
         sumExpense = (TextView) findViewById(R.id.textView_sumExpense);
+        balance = (TextView) findViewById(R.id.textView_balance);
         listview_income = (ListView) findViewById(R.id.listView_income);
 
         //Aktualisierung der Zahlen und Positionsliste
         String Income = Integer.toString(incomeSum);
         String Expense = Integer.toString(expenseSum);
+        String Balance = Integer.toString(incomeSum-expenseSum);
 
         // je nachdem von welcher klasse man kommt wird unterschiedliches erstellt
         Bundle bundle = getIntent().getExtras();
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         sumIncome.setText(Income);
         sumExpense.setText(Expense);
+        balance.setText(Balance);
 
         //ListView
         //Befüllung aus account

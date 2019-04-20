@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ECF0F2"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="56dp"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textView_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="317dp"
