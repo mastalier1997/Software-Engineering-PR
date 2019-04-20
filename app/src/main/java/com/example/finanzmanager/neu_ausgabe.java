@@ -36,6 +36,7 @@ public class neu_ausgabe extends AppCompatActivity {
 
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
+        String extraName2 = intent.getStringExtra("Test");
 
         repeat = (CheckBox) findViewById(R.id.checkBox_wieder_ausgabe);
         calendar= Calendar.getInstance();
@@ -94,6 +95,13 @@ public class neu_ausgabe extends AppCompatActivity {
                 imgView = (ImageView) findViewById(R.id.image_reisen);
                 imgView.setVisibility(View.VISIBLE);
                 txtView = (TextView) findViewById(R.id.text_reisen);
+                txtView.setVisibility(View.VISIBLE);
+                break;
+            case 10:
+                imgView = (ImageView) findViewById(R.id.image_extraCatAus);
+                imgView.setVisibility(View.VISIBLE);
+                txtView = (TextView) findViewById(R.id.text_extraCatAus);
+                txtView.setText(extraName2);
                 txtView.setVisibility(View.VISIBLE);
                 break;
         }

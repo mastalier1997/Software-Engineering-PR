@@ -154,6 +154,20 @@ public class Ausgaben_menue extends AppCompatActivity {
             }
         });
 
+        Intent extraIntent = getIntent();
+        final String extraName = extraIntent.getStringExtra("Test");
+
+        ImageButton imageButton10 = (ImageButton) findViewById(R.id.extraCatAus);
+        imageButton10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Ausgaben_menue.this, neu_ausgabe.class);
+                intent.putExtra("kategorie", 10);
+                intent.putExtra("Test", extraName);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
