@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +52,11 @@ public class Einnahmen_menue extends AppCompatActivity {
 
             }
         });
-        Button createCategorie2 = (Button) findViewById(R.id.createButton2);
-        createCategorie2.setOnClickListener(new View.OnClickListener() {
+        Button createCategorie = (Button) findViewById(R.id.createBtn2);
+        createCategorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Einnahmen_menue.this, CreateCategorieActivity.class);
+                Intent intent = new Intent(Einnahmen_menue.this, CreateCategorieEinnahme.class);
                 startActivity(intent);
             }
         });
@@ -116,6 +117,20 @@ public class Einnahmen_menue extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
                 intent.putExtra("kategorie", 6);
+                startActivity(intent);
+            }
+        });
+        Intent extraIntent = getIntent();
+        final String extraName2 = extraIntent.getStringExtra("Test");
+        TextView imageText = findViewById(R.id.extraCatEinText);
+        imageText.setText(extraName2);
+        ImageButton imageButton7 = (ImageButton) findViewById(R.id.extraCatEin);
+        imageButton7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Einnahmen_menue.this, neu_einkommen.class);
+                intent.putExtra("kategorie", 7);
+                intent.putExtra("Test2", extraName2);
                 startActivity(intent);
             }
         });

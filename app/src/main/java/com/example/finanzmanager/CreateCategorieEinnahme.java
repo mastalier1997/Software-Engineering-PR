@@ -3,28 +3,28 @@ package com.example.finanzmanager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import java.io.IOException;
 
-public class CreateCategorieActivity extends AppCompatActivity {
+public class CreateCategorieEinnahme extends AppCompatActivity {
 
     ImageButton selectImage;
     ImageButton check;
     private int PICK_IMAGE_REQUEST = 1;
     static int id = 10;
-    String name;
+    String name2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_categorie);
+        setContentView(R.layout.activity_create_categorie_einnahme);
 
-        selectImage = (ImageButton) findViewById(R.id.selectImage);
+        selectImage = (ImageButton) findViewById(R.id.selectImage2);
 
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,14 +42,14 @@ public class CreateCategorieActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        check = (ImageButton) findViewById(R.id.createButton);
+        check = (ImageButton) findViewById(R.id.createButton2);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText content = findViewById(R.id.newCatName);
-                name = content.getText().toString();
-                Intent intent= new Intent(CreateCategorieActivity.this, Ausgaben_menue.class);
-                intent.putExtra("Test", name);
+                EditText content2 = findViewById(R.id.newCatName2);
+                name2 = content2.getText().toString();
+                Intent intent= new Intent(CreateCategorieEinnahme.this, Einnahmen_menue.class);
+                intent.putExtra("Test2", name2);
                 startActivity(intent);
 
             }

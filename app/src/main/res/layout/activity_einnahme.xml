@@ -14,7 +14,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="412dp"
         android:background="#ECF0F2"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/dividens_icon_round" />
@@ -187,7 +187,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/createButton2"
+        android:id="@+id/createBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CreateCategorieActivity"></activity>
+        <activity android:name=".CreateCategorieEinnahme"></activity>
         <activity android:name=".EinnahmenUebersicht" />
         <activity android:name=".AusgabenUebersicht" />
         <activity android:name=".Import" />
