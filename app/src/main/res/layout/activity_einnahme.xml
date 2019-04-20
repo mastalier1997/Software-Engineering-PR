@@ -7,6 +7,18 @@
     android:background="#ECF0F2"
     tools:context=".Einnahmen">
 
+    <ImageButton
+        android:id="@+id/extraCatEin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="412dp"
+        android:background="#ECF0F2"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/dividens_icon_round" />
+
     <Spinner
         android:id="@+id/dropDownEinAus"
         android:layout_width="203dp"
@@ -149,6 +161,17 @@
         android:textColor="#000000	"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/extraCatEinText"
+        android:layout_width="98dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="500dp"
+        android:textColor="#000000	"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

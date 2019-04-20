@@ -76,6 +76,12 @@ public class neu_einkommen extends AppCompatActivity {
                 txtView = (TextView) findViewById(R.id.text_rueckerstattung);
                 txtView.setVisibility(View.VISIBLE);
                 break;
+            case 7:
+                imgView = (ImageView) findViewById(R.id.image_rueckerstattung);
+                imgView.setVisibility(View.VISIBLE);
+                txtView = (TextView) findViewById(R.id.text_rueckerstattung);
+                txtView.setVisibility(View.VISIBLE);
+                break;
         }
 
         imageButton.setOnClickListener(new View.OnClickListener() {

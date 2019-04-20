@@ -49,7 +49,7 @@ public class Praemie extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageButton checkButton = (ImageButton) findViewById(R.id.checkButton);
+        ImageButton checkButton = (ImageButton) findViewById(R.id.createButton);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
