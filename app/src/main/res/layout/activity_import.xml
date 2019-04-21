@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".Import">
+    tools:context=".activity_classes.Import">
 
 </android.support.constraint.ConstraintLayout>

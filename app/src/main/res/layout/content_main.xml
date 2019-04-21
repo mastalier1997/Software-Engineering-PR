@@ -6,17 +6,62 @@
     android:layout_height="match_parent"
     android:background="#ECF0F2"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    tools:context=".activity_classes.MainActivity"
     tools:layout_editor_absoluteY="56dp"
     tools:showIn="@layout/app_bar_main">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_current_Income2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        android:text="Aktuelle Einnahmen:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_current_Expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="364dp"
+        android:text="Aktuelle Ausgaben:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listView_expense"
+        android:layout_width="375dp"
+        android:layout_height="133dp"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="183dp"
-        android:text="Zuletzt hinzugefügt"
+        android:layout_marginTop="390dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_Year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Jahr:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_Month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="16dp"
+        android:text="Monat:"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +70,7 @@
     <ListView
         android:id="@+id/listView_income"
         android:layout_width="375dp"
-        android:layout_height="383dp"
+        android:layout_height="133dp"
         android:layout_marginStart="19dp"
         android:layout_marginTop="210dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +80,7 @@
         android:layout_width="375dp"
         android:layout_height="85dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="17dp"
         android:background="#D3D1D1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +113,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView_balanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -80,7 +125,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView_expenseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="157dp"
@@ -92,7 +137,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView_incomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -101,7 +146,7 @@
             android:text="Einnahmen"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/textView_expenseText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,14 +164,27 @@
     </android.support.constraint.ConstraintLayout>
 
     <Spinner
-        android:id="@+id/dropDown"
+        android:id="@+id/dropDown_month"
         android:layout_width="135dp"
         android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/dropDown_year"
+        android:layout_width="130dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
