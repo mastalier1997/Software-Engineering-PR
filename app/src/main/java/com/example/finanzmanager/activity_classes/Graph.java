@@ -13,15 +13,20 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
 
 public class Graph extends AppCompatActivity {
     Month output = MainActivity.months.getMonth(MainActivity.currentYear, MainActivity.currentMonth);
-    int income = output.getSumIncome();
-    int expense= output.getSumExpense();
+    int income = 0;
+    int expense = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        drawPie();
+        if (output != null) {
+            income = output.getSumIncome();
+            expense= output.getSumExpense();
+            drawPie();
+        }
 
         //Back Button aktivieren
         getSupportActionBar().setDisplayShowHomeEnabled(true);
