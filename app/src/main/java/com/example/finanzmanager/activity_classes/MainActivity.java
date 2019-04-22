@@ -1,7 +1,9 @@
 package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
@@ -24,14 +26,33 @@ import com.example.finanzmanager.Objects.Month;
 import com.example.finanzmanager.Objects.Month_overview;
 import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.lang.Double;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    static PositionList account = new PositionList();
-    static Month_overview months = new Month_overview();
+    //zwei objekte für die Speicherung am Smartphone
+    private SharedPreferences savePreference;
+    private SharedPreferences.Editor saveEditor;
+
+    //alle Variablen, welche am Smartphone gespeicher werden
+    static PositionList account;
+    static Month_overview months;
+    static private List<Integer> years;
+    static Integer currentYear;
+    static Integer currentMonth;
+
+    //sonstige Variablen
     int value = 0;
     String description = "";
     String category = "";
@@ -49,11 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public String Income, Expense;
     private int backwards;
 
-    static private ArrayList<Integer> years = new ArrayList<Integer>();
-
-    static Integer currentYear = 2019;
-    static Integer currentMonth = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,18 +84,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listview_income = (ListView) findViewById(R.id.listView_income);
         listView_expense = (ListView) findViewById(R.id.listView_expense);
 
+        //Datenspeicherung
+
+        savePreference = PreferenceManager.getDefaultSharedPreferences(this);
+        saveEditor = savePreference.edit();
+
+        // WICHTIG !!!!!!!!!!!
+        // Wenn ihr die Daten löschen wollts und die App auf null setzten wollts einfach die zwei Zeilen
+        // Code darunter entkommentieren - die App ausführen - und die Zeilen wieder als Kommentar markieren
+
+        //saveEditor.clear();
+        //saveEditor.commit();
+
+        //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
+        checkSharedPreferences();
+
         //DropDown für Jahre
         Spinner dropdown_year = findViewById(R.id.dropDown_year);
         if (years.isEmpty()) years.add(2019);
-        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        final ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
         dropdown_year.setAdapter(adapter_year);
+
 
         //Aktualisierung wenn neues Jahr ausgewählt wird
         dropdown_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.e("Jahr Current", Integer.toString(currentYear));
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
+                    saveEditor.putInt("currentYear", currentYear);
+                    saveEditor.commit();
                     updateListView();
                 }
             }
@@ -96,11 +131,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_month.setAdapter(adapter_month);
         dropdown_month.setSelection(currentMonth-1);
 
+
         //Aktualisierung wenn neues Monat ausgewählt wird
         dropdown_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                if (((adapterView.getSelectedItem().toString().equals("Jannuar")))) {
+                if (((adapterView.getSelectedItem().toString().equals("")))) {
                     //do nothing
                 } else {
                     String index = (String) adapterView.getSelectedItem();
@@ -145,14 +181,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             currentMonth = 0;
                     }
                     updateListView();
+                    saveEditor.putInt("currentMonth", currentMonth);
+                    saveEditor.commit();
                 }
                 return;
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
-
-
 
         // je nachdem von welcher klasse man kommt wird unterschiedliches erstellt
         Bundle bundle = getIntent().getExtras();
@@ -196,8 +232,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (!years.contains(year)) { years.add(year); }
             }
+            Gson gson = new Gson();
+
+            String account_json = gson.toJson(account);
+            String months_json = gson.toJson(months);
+            String years_json = gson.toJson(years);
+            saveEditor.putString("months", months_json);
+            saveEditor.putString("years", years_json);
+            saveEditor.putString("account", account_json);
+            saveEditor.commit();
         }
         Collections.sort(years, Collections.<Integer>reverseOrder());
+
 
         //Plus Button Weiterleitung
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.plus);
@@ -314,6 +360,60 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 sumExpense.setText("0");
                 balance.setText("0");
             }
+        }
+    }
+
+    private void checkSharedPreferences() {
+        Gson gson = new Gson();
+
+        String account_json = savePreference.getString("account", "");
+        if (!account_json.equals("")) {
+            PositionList account_saved = gson.fromJson(account_json, PositionList.class);
+            account = account_saved;
+        } else {
+            account = new PositionList();
+        }
+
+
+        String months_json = savePreference.getString("months", "");
+        if (!months_json.equals("")) {
+            Month_overview months_saved = gson.fromJson(months_json, Month_overview.class);
+            months = months_saved;
+        } else {
+            months = new Month_overview();
+        }
+
+
+        //ArrayList benötigt einen eigenen Json, da
+        String years_json = savePreference.getString("years", "");
+        Log.e("years_json:", years_json);
+        if (!years_json.equals("")) {
+            List<Double> years_saved_double = gson.fromJson(years_json, ArrayList.class);
+            List<Integer> years_saved_int = new ArrayList<>();
+            for (int i = 0; i<years_saved_double.size();i++) {
+                Double output = years_saved_double.get(i);
+                Integer input = output.intValue();
+                years_saved_int.add(input);
+            }
+            years = years_saved_int;
+        } else {
+            years = new ArrayList<Integer>();
+        }
+
+        int year = savePreference.getInt("currentYear", -1);
+        Log.e("Jahr:", Integer.toString(year));
+        if (year != -1) {
+            currentYear = year;
+        } else {
+            currentYear = 2019;
+        }
+
+
+        int month = savePreference.getInt("currentMonth", -1);
+        if (month != -1) {
+            currentMonth = month;
+        } else {
+            currentMonth = 0;
         }
     }
 }
