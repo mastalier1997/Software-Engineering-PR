@@ -33,6 +33,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -125,6 +126,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //DropDown für Monate
         Spinner dropdown_month = findViewById(R.id.dropDown_month);
+        try{
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(dropdown_month);
+
+            // Set popupWindow height to 800px
+            popupWindow.setHeight(600);
+        }catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e){
+            //no action
+        }
         String[] items = new String[]{"Jannuar", "Februar", "Maerz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"};
         ArrayAdapter<String> adapter_month = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -147,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         case "Februar":
                             currentMonth = 2;
                             break;
-                        case "Maerz":
+                        case "März":
                             currentMonth = 3;
                             break;
                         case "April":
