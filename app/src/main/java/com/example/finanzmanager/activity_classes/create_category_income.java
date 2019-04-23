@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.finanzmanager.R;
 
@@ -18,6 +19,7 @@ public class create_category_income extends AppCompatActivity {
 
     ImageButton selectImage;
     ImageButton check;
+    ImageButton cancel;
     private int PICK_IMAGE_REQUEST = 1;
     static int id = 10;
     String name2;
@@ -54,6 +56,15 @@ public class create_category_income extends AppCompatActivity {
                 intent.putExtra("Test2", name2);
                 startActivity(intent);
 
+            }
+        });
+
+        cancel = (ImageButton) findViewById(R.id.Button_cancel_category_income);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(create_category_income.this, income_menu.class);
+                startActivity(intent);
             }
         });
 

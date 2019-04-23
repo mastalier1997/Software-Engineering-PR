@@ -18,6 +18,7 @@ public class create_category_expense extends AppCompatActivity {
 
     ImageButton selectImage;
     ImageButton check;
+    ImageButton cancel;
     private int PICK_IMAGE_REQUEST = 1;
     static int id = 10;
     String name;
@@ -54,6 +55,15 @@ public class create_category_expense extends AppCompatActivity {
                 intent.putExtra("Test", name);
                 startActivity(intent);
 
+            }
+        });
+
+        cancel = (ImageButton) findViewById(R.id.Button_cancel_category_expense);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(create_category_expense.this, expense_menu.class);
+                startActivity(intent);
             }
         });
 
