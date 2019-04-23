@@ -109,7 +109,7 @@ public class PositionList {
         Income print;
         int i = 0;
         while(itr.hasNext()) {
-            if (incomeList.get(i).getcategory().equals(name)) {
+            if (incomeList.get(i).getCategory().equals(name)) {
                 print = incomeList.get(i);
                 print.printIncome();
             }
@@ -124,7 +124,7 @@ public class PositionList {
         Expense print;
         int i = 0;
         while(itr.hasNext()) {
-            if (expenseList.get(i).getcategory().equals(name)) {
+            if (expenseList.get(i).getCategory().equals(name)) {
                 print = expenseList.get(i);
                 print.printExpense();
             }
