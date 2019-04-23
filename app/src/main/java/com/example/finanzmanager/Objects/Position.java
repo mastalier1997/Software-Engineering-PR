@@ -32,7 +32,7 @@ public class Position {
         return recurring;
     }
 
-    String getcategory() {
+    String getCategory() {
         return category;
     }
 
