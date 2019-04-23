@@ -87,15 +87,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Datenspeicherung
 
-        savePreference = PreferenceManager.getDefaultSharedPreferences(this);
-        saveEditor = savePreference.edit();
+        //savePreference = PreferenceManager.getDefaultSharedPreferences(this);
+        //saveEditor = savePreference.edit();
 
         // WICHTIG !!!!!!!!!!!
         // Wenn ihr die Daten löschen wollts und die App auf null setzten wollts einfach die zwei Zeilen
         // Code darunter entkommentieren - die App ausführen - und die Zeilen wieder als Kommentar markieren
 
-        //saveEditor.clear();
-        //saveEditor.commit();
+        saveEditor.clear();
+        saveEditor.commit();
 
         //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
         checkSharedPreferences();
