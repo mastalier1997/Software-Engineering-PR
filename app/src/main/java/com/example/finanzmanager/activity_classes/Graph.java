@@ -13,8 +13,8 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
 
 public class Graph extends AppCompatActivity {
     Month output = MainActivity.months.getMonth(MainActivity.currentYear, MainActivity.currentMonth);
-    int income = 0;
-    int expense = 0;
+    double income = 0;
+    double expense = 0;
 
 
     @Override

@@ -20,11 +20,11 @@ public class Position {
         System.out.println(", Betrag: " + value + ", Kategorie: " + category);
     }
 
-    Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    double getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -32,9 +32,9 @@ public class Position {
         return recurring;
     }
 
-    String getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    String getDescription() { return description; }
+    public String getDescription() { return description; }
 }

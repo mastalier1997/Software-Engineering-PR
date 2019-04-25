@@ -1,6 +1,6 @@
 package com.example.finanzmanager.Objects;
 
-class Expense extends Position{
+public class Expense extends Position{
 
     private int id;
     static private int idCounter = 0;
