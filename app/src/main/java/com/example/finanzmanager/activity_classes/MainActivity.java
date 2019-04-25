@@ -24,8 +24,11 @@ import android.widget.TextView;
 import com.example.finanzmanager.Objects.Date;
 import com.example.finanzmanager.Objects.Month;
 import com.example.finanzmanager.Objects.Month_overview;
+import com.example.finanzmanager.Objects.Position;
 import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
+import com.example.finanzmanager.Objects.Income;
+import com.example.finanzmanager.Objects.Expense;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -36,6 +39,7 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.lang.Double;
 import java.util.List;
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static PositionList account;
     static Month_overview months;
     static private List<Integer> years;
-    static Integer currentYear;
+    public static Integer currentYear;
     static Integer currentMonth;
 
     //sonstige Variablen
@@ -87,22 +91,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Datenspeicherung
 
-        //savePreference = PreferenceManager.getDefaultSharedPreferences(this);
-        //saveEditor = savePreference.edit();
-
-        // WICHTIG !!!!!!!!!!!
-        // Wenn ihr die Daten löschen wollts und die App auf null setzten wollts einfach die zwei Zeilen
-        // Code darunter entkommentieren - die App ausführen - und die Zeilen wieder als Kommentar markieren
-
-        saveEditor.clear();
-        saveEditor.commit();
+        savePreference = PreferenceManager.getDefaultSharedPreferences(this);
+        saveEditor = savePreference.edit();
 
         //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
         checkSharedPreferences();
 
         //DropDown für Jahre
         Spinner dropdown_year = findViewById(R.id.dropDown_year);
-        if (years.isEmpty()) years.add(2019);
+        if (years.isEmpty()) years.add(Calendar.getInstance().get(Calendar.YEAR));
         final ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
         dropdown_year.setAdapter(adapter_year);
 
@@ -111,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.e("Jahr Current", Integer.toString(currentYear));
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);
@@ -138,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e){
             //no action
         }
-        String[] items = new String[]{"Jannuar", "Februar", "Maerz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"};
+        String[] items = new String[]{"Jannuar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"};
         ArrayAdapter<String> adapter_month = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_month.setAdapter(adapter_month);
@@ -207,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             if(bundle.getString("type").equals("income")) { // neue Einnahme
+
                 value = bundle.getInt("value");
                 description = bundle.getString("description");
                 category = bundle.getString("category");
@@ -215,16 +212,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 month = bundle.getInt("month");
                 year = bundle.getInt("year");
                 Date date = new Date(day, month, year);
-                account.addIncome(date, value, repeat, category, description);
 
-                if(months.getMonth(year, month) == null) {
-                    months.newMonth(year, month);
+                if(months.yearExists(year) == false) {
+                    months.newYear(year);
+                    updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
+                }
+
+                if(repeat == false) {
+                    account.addIncome(date, value, repeat, category, description);
                     months.updateMonthIncome(year, month, value);
                 } else {
-                    months.updateMonthIncome(year, month, value);
+                    addIncomeFromCurrentMonth(date, value, category, description);
+                    account.addRepeatingIncome(date, value, true, category, description);
+                    Log.e("Anzahl der Incomes:", Integer.toString(account.repeatingIncomeList.size()));
                 }
 
                 if (!years.contains(year)) { years.add(year); }
+
             } else if (bundle.getString("type").equals("expense")){ //neue Ausgabe
                 value = bundle.getInt("value");
                 description = bundle.getString("description");
@@ -234,13 +238,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 month = bundle.getInt("month");
                 year = bundle.getInt("year");
                 Date date = new Date(day, month, year);
-                account.addExpense(date, value, repeat, category, description);
 
-                if(months.getMonth(year, month) == null) {
-                    months.newMonth(year, month);
+
+                if(months.yearExists(year) == false) {
+                    months.newYear(year);
+                    updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
+                }
+
+                if(repeat == false) {
+                    account.addExpense(date, value, repeat, category, description);
                     months.updateMonthExpense(year, month, value);
                 } else {
-                    months.updateMonthExpense(year, month, value);
+                    addExpenseFromCurrentMonth(date, value, category, description);
+                    account.addRepeatingExpense(date, value, true, category, description);
+
                 }
 
                 if (!years.contains(year)) { years.add(year); }
@@ -276,6 +287,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    private void updateRepeating(int year) {
+        ArrayList<Income> incomes = account.updateRepeatingIncome(year);
+        ArrayList<Expense> expenses = account.updateRepeatingExpense(year);
+        Date date = new Date(1, 1, year);
+        int counter = 1;
+        for (Income i : incomes) {
+            addIncomeFromCurrentMonth(date, i.getValue(), i.getCategory(), i.getDescription());
+            counter++;
+        }
+        for (Expense e : expenses) {
+            addExpenseFromCurrentMonth(date, e.getValue(), e.getCategory(), e.getDescription());
+        }
+    }
+
+    //bei wiederkehrendem Einkommen wird die erfasste Einnahme in alle bisher erstellten zukünftigen Monate eingefügt
+    public void addIncomeFromCurrentMonth(Date date, double value, String category, String description) {
+        int month = date.getMonth();
+        int year = date.getYear();
+        ArrayList<Month> from = months.fromMonth(year, month);
+        Log.e("Anzahl Monate: ", Integer.toString(from.size()));
+        for (Month i : from) {
+            Date currentDate = new Date(15, i.getMonth(), i.getYear());
+            account.addIncome(currentDate, value, true, category, description);
+            months.updateMonthIncome(i.getYear(), i.getMonth(), value);
+        }
+    }
+    //bei wiederkehrendem Ausgaben wird die erfasste Ausgabe in alle bisher erstellten zukünftigen Monate eingefügt
+    public void addExpenseFromCurrentMonth(Date date, double value, String category, String description) {
+        int month = date.getMonth();
+        int year = date.getYear();
+        ArrayList<Month> from = months.fromMonth(year, month);
+        for (Month i : from) {
+            Date currentDate = new Date(15, i.getMonth(), i.getYear());
+            account.addExpense(currentDate, value, true, category, description);
+            months.updateMonthExpense(i.getYear(), i.getMonth(), value);
+        }
     }
 
     @Override
@@ -331,6 +380,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_import) {
             Intent intent = new Intent(MainActivity.this, Import.class);
             startActivity(intent);
+        } else if (id == R.id.nav_deleteData) {
+            saveEditor.clear();
+            saveEditor.commit();
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -361,9 +415,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (months.size() != 0) {
             Month output = months.getMonth(currentYear, currentMonth);
             if (output != null) {
-                String Income = Integer.toString(output.getSumIncome());
-                String Expense = Integer.toString(output.getSumExpense());
-                String Balance = Integer.toString(output.getBalance());
+                String Income = Double.toString(output.getSumIncome());
+                String Expense = Double.toString(output.getSumExpense());
+                String Balance = Double.toString(output.getBalance());
 
                 sumIncome.setText(Income);
                 sumExpense.setText(Expense);
@@ -403,8 +457,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!years_json.equals("")) {
             List<Double> years_saved_double = gson.fromJson(years_json, ArrayList.class);
             List<Integer> years_saved_int = new ArrayList<>();
-            for (int i = 0; i<years_saved_double.size();i++) {
-                Double output = years_saved_double.get(i);
+            for (Double i : years_saved_double) {
+                Double output = i;
                 Integer input = output.intValue();
                 years_saved_int.add(input);
             }

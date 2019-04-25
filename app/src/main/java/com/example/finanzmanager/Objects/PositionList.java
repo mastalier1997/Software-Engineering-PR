@@ -1,5 +1,7 @@
 package com.example.finanzmanager.Objects;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -9,10 +11,14 @@ public class PositionList {
 
     private List<Income> incomeList;
     private List<Expense> expenseList;
+    public List<Income> repeatingIncomeList;
+    private List<Expense> repeatingExpenseList;
 
     public PositionList() {
         incomeList = new ArrayList<>();
         expenseList = new ArrayList<>();
+        repeatingExpenseList = new ArrayList<>();
+        repeatingIncomeList = new ArrayList<>();
     }
 
     public ArrayList<String> getIncomeFromDate(int month, int year) {
@@ -38,13 +44,23 @@ public class PositionList {
     }
 
     public void addIncome(Date date, double d, boolean recurring, String category, String description) {
-        Income e = new Income(date, d, recurring, category, description);
-        incomeList.add(e);
+        Income i = new Income(date, d, recurring, category, description);
+        incomeList.add(i);
     }
 
     public void addExpense(Date date, double d, boolean recurring, String category, String description) {
         Expense e = new Expense(date, d, recurring, category, description);
         expenseList.add(e);
+    }
+
+    public void addRepeatingIncome(Date date, double d, boolean recurring, String category, String description) {
+        Income i = new Income(date, d, recurring, category, description);
+        this.repeatingIncomeList.add(i);
+    }
+
+    public void addRepeatingExpense(Date date, double d, boolean recurring, String category, String description) {
+        Expense e = new Expense(date, d, recurring, category, description);
+        this.repeatingExpenseList.add(e);
     }
 
     public String getIncome(int i) {
@@ -59,8 +75,8 @@ public class PositionList {
 
     public int incomeLengthInMonth (int month, int year) {
         int size = 0;
-        for(int i = 0; i<incomeList.size()-1;i++) {
-            if (incomeList.get(i).getDate().getMonth() == month && incomeList.get(i).getDate().getYear() == year) size++;
+        for(Income i : incomeList) {
+            if (i.getDate().getMonth() == month && i.getDate().getYear() == year) size++;
         }
         return size;
     }
@@ -70,8 +86,8 @@ public class PositionList {
     }
     public int expenseLengthInMonth (int month, int year) {
         int size = 0;
-        for(int i = 0; i<expenseList.size()-1;i++) {
-            if (expenseList.get(i).getDate().getMonth() == month && expenseList.get(i).getDate().getYear() == year) size++;
+        for(Expense i : expenseList) {
+            if (i.getDate().getMonth() == month && i.getDate().getYear() == year) size++;
         }
         return size;
     }
@@ -82,7 +98,7 @@ public class PositionList {
         Iterator<Income> itr = incomeList.iterator();
         Income print;
         int i = 0;
-        while(itr.hasNext()) {
+        while (itr.hasNext()) {
             print = incomeList.get(i);
             print.printIncome();
             itr.next();
@@ -90,49 +106,22 @@ public class PositionList {
         }
     }
 
-    public void printExpense() {
-        System.out.println("Expensen: ");
-        Iterator<Expense> itr = expenseList.iterator();
-        Expense print;
-        int i = 0;
-        while(itr.hasNext()) {
-            print = expenseList.get(i);
-            print.printExpense();
-            itr.next();
-            i++;
+    public ArrayList<Income> updateRepeatingIncome(int year) {
+        ArrayList<Income> affectedIncomes = new ArrayList<>();
+        Log.e("New Year:", Integer.toString(repeatingIncomeList.size()));
+
+        Log.e("New Year2:", Integer.toString(year));
+        for (Income i : repeatingIncomeList) {
+            if (i.getDate().getYear()<year) affectedIncomes.add(i);
         }
+        return affectedIncomes;
     }
 
-    public void printIncomeCondition(String name) {
-        System.out.println("Incomen: ");
-        Iterator<Income> itr = incomeList.iterator();
-        Income print;
-        int i = 0;
-        while(itr.hasNext()) {
-            if (incomeList.get(i).getCategory().equals(name)) {
-                print = incomeList.get(i);
-                print.printIncome();
-            }
-            itr.next();
-            i++;
+    public ArrayList<Expense> updateRepeatingExpense(int year) {
+        ArrayList<Expense> affectedExpenses = new ArrayList<>();
+        for (Expense e : repeatingExpenseList) {
+            if (e.getDate().getYear()<year) affectedExpenses.add(e);
         }
+        return affectedExpenses;
     }
-
-    public void printExpenseCondition(String name) {
-        System.out.println("Expensen: ");
-        Iterator<Expense> itr = expenseList.iterator();
-        Expense print;
-        int i = 0;
-        while(itr.hasNext()) {
-            if (expenseList.get(i).getCategory().equals(name)) {
-                print = expenseList.get(i);
-                print.printExpense();
-            }
-            itr.next();
-            i++;
-        }
-    }
-
-
-
 }

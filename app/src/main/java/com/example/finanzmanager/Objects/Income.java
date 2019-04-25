@@ -1,6 +1,6 @@
 package com.example.finanzmanager.Objects;
 
-class Income extends Position {
+public class Income extends Position {
 
     // der Counter ist static sodass jedes mal wenn ein Objekt der Klasse erstellt wird der counter nicht wieder bei null beginnt
     private int id;
