@@ -1,8 +1,10 @@
 package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +23,20 @@ public class create_category_expense extends AppCompatActivity {
     ImageButton cancel;
     private int PICK_IMAGE_REQUEST = 1;
     static int id = 10;
-    String name;
+    //gespeicherte Variablen
+    static String name;
+    static String savedName;
+    private SharedPreferences savePreference2;
+    private SharedPreferences.Editor saveEditor2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_category_expense);
+
+        // Speicherung der eigenen Kategorie
+        savePreference2 = PreferenceManager.getDefaultSharedPreferences(this);
+        saveEditor2 = savePreference2.edit();
 
         selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
 
@@ -33,10 +44,9 @@ public class create_category_expense extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                // Show only images, no videos or anything else
+                // Bild änderbar, bringt aber noch nichts
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                // Always show the chooser (if there are multiple options available)
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });
@@ -51,8 +61,11 @@ public class create_category_expense extends AppCompatActivity {
             public void onClick(View v) {
                 EditText content = findViewById(R.id.textView_newCatName_expense);
                 name = content.getText().toString();
+                saveEditor2.putString("name", name);
+                saveEditor2.commit();
+                savedName = savePreference2.getString("name", "default");
                 Intent intent= new Intent(create_category_expense.this, expense_menu.class);
-                intent.putExtra("Test", name);
+                intent.putExtra("Test", savedName);
                 startActivity(intent);
 
             }
