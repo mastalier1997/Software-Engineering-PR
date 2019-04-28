@@ -62,6 +62,8 @@ public class income_menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Es wird ein integer mitgegeben, mit dem das richtige Bild und Text ausgewählt wird
         ImageButton imageButton = (ImageButton) findViewById(R.id.Button_award);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -123,9 +125,9 @@ public class income_menu extends AppCompatActivity {
             }
         });
         Intent extraIntent = getIntent();
-        final String extraName2 = extraIntent.getStringExtra("Test");
-        TextView imageText = findViewById(R.id.textView_extraCat_income);
-        imageText.setText(extraName2);
+        final String extraName2 = extraIntent.getStringExtra("Test2");
+        TextView imageText2 = findViewById(R.id.textView_extraCat_income);
+        imageText2.setText(extraName2);
         ImageButton imageButton7 = (ImageButton) findViewById(R.id.Button_extraCatInc);
         imageButton7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,8 +141,7 @@ public class income_menu extends AppCompatActivity {
 
 
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 

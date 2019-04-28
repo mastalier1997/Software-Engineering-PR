@@ -2,7 +2,9 @@ package com.example.finanzmanager.activity_classes;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,11 +33,19 @@ public class new_expense extends AppCompatActivity {
     int month = calendar.get(Calendar.MONTH);
     int year = calendar.get(Calendar.YEAR);
 
+    // Speicherung der eigenen Kategorie
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    static String lastSavedName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_expense);
+
+        // Speicherung der eigenen Kategorie
+        pref =  PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
 
         textView=(TextView) findViewById(R.id.textView_date_expense);
         ImageButton imageButton=(ImageButton) findViewById(R.id.Button_date_expense);
@@ -46,6 +56,9 @@ public class new_expense extends AppCompatActivity {
 
         repeat = (CheckBox) findViewById(R.id.checkBox_repeat_expense);
 
+        editor.putString("lastSavedName", extraName2);
+        editor.commit();
+        lastSavedName = pref.getString("lastSavedName", "default");
 
         //Anzeige des richtigen Bildes und Textes
         switch (category) {
@@ -107,7 +120,7 @@ public class new_expense extends AppCompatActivity {
                 imgView = (ImageView) findViewById(R.id.imageView_extraCat_expense);
                 imgView.setVisibility(View.VISIBLE);
                 txtView = (TextView) findViewById(R.id.textView_extraCat_expense);
-                txtView.setText(extraName2);
+                txtView.setText(lastSavedName);
                 txtView.setVisibility(View.VISIBLE);
                 break;
         }

@@ -1,8 +1,11 @@
 package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,18 +15,28 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.finanzmanager.Objects.Month_overview;
+import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class expense_menu extends AppCompatActivity {
-
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    static String savedName;
+    static String extraName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
         Spinner spinner = (Spinner) findViewById(R.id.dropDown_In_Out);
+        // Speicherung der eigenen Kategorie
+        pref =  PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
+        checkSharedPreferences();
 
         List<String> categories= new ArrayList<>();
         categories.add(0,"Ausgaben");
@@ -158,16 +171,19 @@ public class expense_menu extends AppCompatActivity {
         });
 
         Intent extraIntent = getIntent();
-        final String extraName = extraIntent.getStringExtra("Test");
+        extraName = extraIntent.getStringExtra("Test");
         TextView imageText = findViewById(R.id.textView_extraCat_expense);
         imageText.setText(extraName);
         ImageButton imageButton10 = (ImageButton) findViewById(R.id.Button_extraCatExp);
+        editor.putString("savedName", extraName);
+        editor.commit();
+        savedName = pref.getString("savedName", "default");
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(expense_menu.this, new_expense.class);
                 intent.putExtra("kategorie", 10);
-                intent.putExtra("Test", extraName);
+                intent.putExtra("Test", savedName);
                 startActivity(intent);
             }
         });
@@ -183,5 +199,16 @@ public class expense_menu extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void checkSharedPreferences() {
+
+        String newSavedName = pref.getString("savedName", "default");
+        if (newSavedName != "default") {
+            savedName = newSavedName;
+        } else {
+            savedName = null;
+        }
+
     }
 }
