@@ -25,10 +25,6 @@
             android:id="@+id/nav_import"
             android:icon="@drawable/bar"
             android:title="Import" />
-        <item
-            android:id="@+id/nav_deleteData"
-            android:icon="@drawable/cancel_icon_web"
-            android:title="Daten löschen" />
     </group>
 
 </menu>

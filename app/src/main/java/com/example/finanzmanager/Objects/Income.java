@@ -17,7 +17,7 @@ public class Income extends Position {
         super.printPosition();
     }
 
-    String getInfo() {
+    public String getInfo() {
         String info = Double.toString(super.getValue());
         info = info + "\t\t\t\t\t" + super.getDescription();
         return info;

@@ -24,20 +24,13 @@ import android.widget.TextView;
 import com.example.finanzmanager.Objects.Date;
 import com.example.finanzmanager.Objects.Month;
 import com.example.finanzmanager.Objects.Month_overview;
-import com.example.finanzmanager.Objects.Position;
 import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.Objects.Income;
 import com.example.finanzmanager.Objects.Expense;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -47,12 +40,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //zwei objekte für die Speicherung am Smartphone
-    private SharedPreferences savePreference;
-    private SharedPreferences.Editor saveEditor;
+    private static SharedPreferences savePreference;
+    private static SharedPreferences.Editor saveEditor;
 
     //alle Variablen, welche am Smartphone gespeicher werden
-    static PositionList account;
-    static Month_overview months;
+    public static PositionList account;
+    public static Month_overview months;
     static private List<Integer> years;
     public static Integer currentYear;
     static Integer currentMonth;
@@ -289,6 +282,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public static void saveToAccount() {
+        Gson gson = new Gson();
+        String account_json = gson.toJson(account);
+        String months_json = gson.toJson(months);
+        saveEditor.putString("account", account_json);
+        saveEditor.putString("months", months_json);
+        saveEditor.commit();
+    }
+
     private void updateRepeating(int year) {
         ArrayList<Income> incomes = account.updateRepeatingIncome(year);
         ArrayList<Expense> expenses = account.updateRepeatingExpense(year);
@@ -353,7 +355,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Log.e("Test", "der Settings Listener wurde aufgerufen");
+            Intent intent = new Intent(MainActivity.this, settings.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -379,11 +383,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         } else if (id == R.id.nav_import) {
             Intent intent = new Intent(MainActivity.this, Import.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_deleteData) {
-            saveEditor.clear();
-            saveEditor.commit();
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
@@ -428,6 +427,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 balance.setText("0");
             }
         }
+    }
+
+    public static void deleteData() {
+        saveEditor.clear();
+        saveEditor.commit();
     }
 
     private void checkSharedPreferences() {
