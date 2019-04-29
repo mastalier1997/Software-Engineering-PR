@@ -24,6 +24,11 @@
         <activity android:name=".activity_classes.income_menu" />
         <activity android:name=".activity_classes.new_income" />
         <activity android:name=".activity_classes.new_expense" />
+        <activity android:name=".activity_classes.settings" />
+        <activity android:name=".activity_classes.repeat_settings_income" />
+        <activity android:name=".activity_classes.repeat_settings_expense" />
+        <activity android:name=".activity_classes.info_repeating_income" />
+        <activity android:name=".activity_classes.info_repeating_expense" />
 
         <activity
             android:name=".activity_classes.MainActivity"

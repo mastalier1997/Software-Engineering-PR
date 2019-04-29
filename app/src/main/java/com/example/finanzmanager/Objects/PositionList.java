@@ -2,6 +2,8 @@ package com.example.finanzmanager.Objects;
 
 import android.util.Log;
 
+import com.example.finanzmanager.activity_classes.MainActivity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -11,14 +13,66 @@ public class PositionList {
 
     private List<Income> incomeList;
     private List<Expense> expenseList;
-    public List<Income> repeatingIncomeList;
-    private List<Expense> repeatingExpenseList;
+    public ArrayList<Income> repeatingIncomeList;
+    private ArrayList<Expense> repeatingExpenseList;
 
     public PositionList() {
         incomeList = new ArrayList<>();
         expenseList = new ArrayList<>();
         repeatingExpenseList = new ArrayList<>();
         repeatingIncomeList = new ArrayList<>();
+    }
+
+    public void changeRepeatingIncomeList(String old_desc, double old_value, String new_desc, double new_value) {
+        double difference = new_value-old_value;
+        //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
+        for(int i = 0; i < repeatingIncomeList.size(); i++) {
+            Income test = repeatingIncomeList.get(i);
+            if (test.getDescription().equals(old_desc) && test.getValue() == old_value) {
+                Income replace = new Income(test.getDate(), new_value, test.getRecurring(), test.getCategory(), new_desc);
+                repeatingIncomeList.set(i, replace);
+                break;
+            }
+        }
+
+        for(int i = 0; i<incomeList.size(); i++) {
+            Income test = incomeList.get(i);
+            if (test.getDescription().equals(old_desc) && test.getValue() == old_value) {
+                Income replace = new Income(test.getDate(), new_value, test.getRecurring(), test.getCategory(), new_desc);
+                incomeList.set(i, replace);
+                MainActivity.months.updateMonthIncome(test.getDate().getYear(), test.getDate().getMonth(), difference);
+            }
+        }
+    }
+
+    public void changeRepeatingExpenseList(String old_desc, double old_value, String new_desc, double new_value) {
+        double difference = new_value-old_value;
+        //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
+        for(int i = 0; i < repeatingExpenseList.size(); i++) {
+            Expense test = repeatingExpenseList.get(i);
+            if (test.getDescription().equals(old_desc) && test.getValue() == old_value) {
+                Expense replace = new Expense(test.getDate(), new_value, test.getRecurring(), test.getCategory(), new_desc);
+                repeatingExpenseList.set(i, replace);
+                break;
+            }
+        }
+
+        for(int i = 0; i<expenseList.size(); i++) {
+            Expense test = expenseList.get(i);
+            if (test.getDescription().equals(old_desc) && test.getValue() == old_value) {
+                Expense replace = new Expense(test.getDate(), new_value, test.getRecurring(), test.getCategory(), new_desc);
+                expenseList.set(i, replace);
+                MainActivity.months.updateMonthExpense(test.getDate().getYear(), test.getDate().getMonth(), difference);
+            }
+        }
+    }
+
+    public ArrayList<Income> get_repeatingIncomeList() {
+        return repeatingIncomeList;
+    }
+
+    public ArrayList<Expense> get_repeatingExpenseList() {
+        return repeatingExpenseList;
     }
 
     public ArrayList<String> getIncomeFromDate(int month, int year) {
@@ -108,9 +162,6 @@ public class PositionList {
 
     public ArrayList<Income> updateRepeatingIncome(int year) {
         ArrayList<Income> affectedIncomes = new ArrayList<>();
-        Log.e("New Year:", Integer.toString(repeatingIncomeList.size()));
-
-        Log.e("New Year2:", Integer.toString(year));
         for (Income i : repeatingIncomeList) {
             if (i.getDate().getYear()<year) affectedIncomes.add(i);
         }
