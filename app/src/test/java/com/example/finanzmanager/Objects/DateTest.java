@@ -47,6 +47,7 @@ public class DateTest {
         date = new Date(10, 10, -2010);
     }
 
+    /*
     @Test
     public void printDate() {
         String expected = day + "." + month + "." + year;
@@ -55,6 +56,7 @@ public class DateTest {
         date.printDate();
         assertEquals(expected, outContent.toString());
     }
+    */
 
     @Test
     public void getDay() {
