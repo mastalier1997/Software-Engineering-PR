@@ -10,9 +10,11 @@ public class MonthTest {
     private Month month;
     private int intMonth = 10;
     private int year = 2010;
-    private int sum_income = 1000;
-    private int sum_expense = 1000;
-    private int balance = 0;
+    private double sum_income = 1000;
+    private double sum_expense = 1000;
+    private double balance = 0;
+    // Delta fuer Double-Werte
+    private double delta = 0.01;
 
     @Before
     public void setUp() {
@@ -26,23 +28,23 @@ public class MonthTest {
 
     @Test
     public void getSumIncome() {
-        int actual = month.getSumIncome();
-        int expected = 0;
-        assertEquals(expected, actual);
+        double actual = month.getSumIncome();
+        double expected = 0;
+        assertEquals(expected, actual, delta);
     }
 
     @Test
     public void getSumExpense() {
-        int actual = month.getSumExpense();
-        int expected = 0;
-        assertEquals(expected, actual);
+        double actual = month.getSumExpense();
+        double expected = 0;
+        assertEquals(expected, actual, delta);
     }
 
     @Test
     public void getBalance() {
-        int actual = month.getBalance();
-        int expected = 0;
-        assertEquals(expected, actual);
+        double actual = month.getBalance();
+        double expected = 0;
+        assertEquals(expected, actual, delta);
     }
 
     @Test
@@ -61,24 +63,24 @@ public class MonthTest {
 
     @Test
     public void setIncome() {
-        int expected = 1000;
+        double expected = 1000;
         month.setIncome(expected);
-        int actual = month.getSumIncome();
-        assertEquals(expected, actual);
+        double actual = month.getSumIncome();
+        assertEquals(expected, actual, delta);
     }
 
     @Test
     public void setExpense() {
-        int expected = 1000;
+        double expected = 1000;
         month.setExpense(expected);
-        int actual = month.getSumExpense();
-        assertEquals(expected, actual);
+        double actual = month.getSumExpense();
+        assertEquals(expected, actual, delta);
     }
 
     @Test
     public void ChangeExpenseAndIncomeTest(){
         // Variablen fuer Test
-        int one = 1000, two = -2000, three = 1050, four = 1000;
+        double one = 1000, two = -2000, three = 1050, four = 1000;
 
         month.setIncome(one);
         month.setIncome(two);
@@ -89,10 +91,10 @@ public class MonthTest {
         month.setExpense(four);
 
         // sum_income
-        assertEquals((one+two+three), month.getSumIncome());
+        assertEquals((one+two+three), month.getSumIncome(), delta);
         // sum_expense
-        assertEquals((one+two+four), month.getSumExpense());
+        assertEquals((one+two+four), month.getSumExpense(), delta);
         // balance
-        assertEquals((three-four), month.getBalance());
+        assertEquals((three-four), month.getBalance(), delta);
     }
 }

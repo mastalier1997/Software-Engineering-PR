@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
@@ -13,6 +15,8 @@ public class Month_overviewTest {
     private int month = 10;
     // Wert fuer updateMonthExpense & updateMonthIncome
     private int value = 100;
+    // Delta fuer Double-Werte
+    private double delta = 0.01;
 
     @Before
     public void setUp() {
@@ -33,9 +37,10 @@ public class Month_overviewTest {
 
     @Test
     public void size() {
-        assertEquals(0, m_o.size());
+        // Immer 12 Monate bei Instanzierung
+        assertEquals(12, m_o.size());
         m_o.newMonth(year, month);
-        assertEquals(1, m_o.size());
+        assertEquals(13, m_o.size());
     }
 
     @Test
@@ -60,10 +65,10 @@ public class Month_overviewTest {
         if(month>=12) month2 = month-1;
         else month2 = month+1;
         m_o.updateMonthIncome(year, month2, value);
-        assertEquals( 0, m_o.getMonth(year, month).getSumIncome());
+        assertEquals( 0, m_o.getMonth(year, month).getSumIncome(), delta);
         // gesuchter Monat enthalten
         m_o.updateMonthIncome(year, month, value);
-        assertEquals(value, m_o.getMonth(year, month).getSumIncome());
+        assertEquals(value, m_o.getMonth(year, month).getSumIncome(), delta);
     }
 
     @Test
@@ -74,9 +79,32 @@ public class Month_overviewTest {
         if(month>=12) month2 = month-1;
         else month2 = month+1;
         m_o.updateMonthExpense(year, month2, value);
-        assertEquals( 0, m_o.getMonth(year, month).getSumExpense());
+        assertEquals( 0, m_o.getMonth(year, month).getSumExpense(), delta);
         // gesuchter Monat enthalten
         m_o.updateMonthExpense(year, month, value);
-        assertEquals(value, m_o.getMonth(year, month).getSumExpense());
+        assertEquals(value, m_o.getMonth(year, month).getSumExpense(), delta);
+    }
+
+    @Test
+    public void newYear(){
+        int size = m_o.size();
+        m_o.newYear(year);
+        assertEquals(size+12, m_o.size());
+    }
+
+    @Test
+    public void fromMonth(){
+        ArrayList<Month> arrayList =  m_o.fromMonth(year, month);
+        assertEquals(m_o.size(), arrayList.size());
+        m_o.newYear(year);
+        arrayList =  m_o.fromMonth(year, month);
+        assertEquals(m_o.size()-(month-1), arrayList.size());
+    }
+
+    @Test
+    public void yearExists(){
+        assertFalse(m_o.yearExists(year));
+        m_o.newYear(year);
+        assertTrue(m_o.yearExists(year));
     }
 }

@@ -123,6 +123,29 @@ public class PositionList {
 
     public String getExpense(int i) { return expenseList.get(i).getInfo(); }
 
+    public ArrayList<Income> updateRepeatingIncome(int year) {
+        ArrayList<Income> affectedIncomes = new ArrayList<>();
+        for (Income i : repeatingIncomeList) {
+            if (i.getDate().getYear()<year) affectedIncomes.add(i);
+        }
+        return affectedIncomes;
+    }
+
+    public ArrayList<Expense> updateRepeatingExpense(int year) {
+        ArrayList<Expense> affectedExpenses = new ArrayList<>();
+        for (Expense e : repeatingExpenseList) {
+            if (e.getDate().getYear()<year) affectedExpenses.add(e);
+        }
+        return affectedExpenses;
+    }
+
+
+    /*
+    *******************************************************************
+    **   ALTER CODE!                                                 **
+    **   DIESE METHODEN SIND VERALTET UND NICHT MEHR IN VERWENDUNG.  **
+    *******************************************************************
+
     public int incomeLength() {
         return incomeList.size();
     }
@@ -159,20 +182,6 @@ public class PositionList {
             i++;
         }
     }
+    */
 
-    public ArrayList<Income> updateRepeatingIncome(int year) {
-        ArrayList<Income> affectedIncomes = new ArrayList<>();
-        for (Income i : repeatingIncomeList) {
-            if (i.getDate().getYear()<year) affectedIncomes.add(i);
-        }
-        return affectedIncomes;
-    }
-
-    public ArrayList<Expense> updateRepeatingExpense(int year) {
-        ArrayList<Expense> affectedExpenses = new ArrayList<>();
-        for (Expense e : repeatingExpenseList) {
-            if (e.getDate().getYear()<year) affectedExpenses.add(e);
-        }
-        return affectedExpenses;
-    }
 }
