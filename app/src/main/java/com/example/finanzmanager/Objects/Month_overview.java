@@ -20,14 +20,30 @@ public class Month_overview {
         }
     }
 
+    /**
+     * adds a new month to the list of months
+     * @param year value of the new year
+     * @param month value of the new month
+     */
     public void newMonth(int year, int month) {
         overview.add(new Month(year, month));
     }
 
+    /**
+     * returns the number of saved months
+     * @return size
+     */
     public int size() {
         return overview.size();
     }
 
+
+    /**
+     * returns a list of all the months starting from an initial Month
+     * @param year value of the needed year
+     * @param month value of the needed month
+     * @return list of months
+     */
     public ArrayList<Month> fromMonth(int year, int month) {
         ArrayList<Month> from = new ArrayList<>();
         for (Month i : overview) {
@@ -44,6 +60,12 @@ public class Month_overview {
         return from;
     }
 
+
+    /**
+     * checks if a year is already included in the list
+     * @param year
+     * @return if the year exists
+     */
     public boolean yearExists(int year) {
         for (Month i : overview) {
             if (i.getYear() == year) {
@@ -53,6 +75,12 @@ public class Month_overview {
         return false;
     }
 
+    /**
+     * returns the Month according the the parameters
+     * @param year
+     * @param month
+     * @return month
+     */
     public Month getMonth(int year, int month) {
         for (Month i : overview) {
             if ((i.getMonth() == month) && (i.getYear() == year)) {
@@ -62,6 +90,13 @@ public class Month_overview {
         return null;
     }
 
+
+    /**
+     * updates the sum of all incomes from a month and also its balance
+     * @param year
+     * @param month
+     * @param value
+     */
     public void updateMonthIncome(int year, int month, double value) {
         for (int i = 0; i<overview.size();i++) {
             if ((overview.get(i).getMonth() == month) && (overview.get(i).getYear() == year)) {
@@ -72,6 +107,12 @@ public class Month_overview {
         }
     }
 
+    /**
+     * updates the sum of all expenses from a month and also its balance
+     * @param year
+     * @param month
+     * @param value
+     */
     public void updateMonthExpense(int year, int month, double value) {
         for (int i = 0; i<overview.size();i++) {
             if ((overview.get(i).getMonth() == month) && (overview.get(i).getYear() == year)) {
@@ -82,6 +123,10 @@ public class Month_overview {
         }
     }
 
+    /**
+     * adds a new year with all its 12 months to the list
+     * @param year
+     */
     public void newYear(int year) {
         for (int i = 1; i <= 12; i++) {
            Month insert = new Month (year, i);
