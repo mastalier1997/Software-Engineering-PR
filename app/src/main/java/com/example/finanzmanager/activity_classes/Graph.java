@@ -33,6 +33,9 @@ public class Graph extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * draw the Pie chart
+     */
     public void drawPie(){
 
 
