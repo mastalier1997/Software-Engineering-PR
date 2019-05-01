@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
                     addIncomeFromCurrentMonth(date, value, category, description);
                     account.addRepeatingIncome(date, value, true, category, description);
-                    Log.e("Anzahl der Incomes:", Integer.toString(account.repeatingIncomeList.size()));
                 }
 
                 if (!years.contains(year)) { years.add(year); }
@@ -279,9 +278,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
+    /**
+     * safes the current state of the account and months variable to the shared preferences
+     */
     public static void saveToAccount() {
         Gson gson = new Gson();
         String account_json = gson.toJson(account);
@@ -291,6 +292,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         saveEditor.commit();
     }
 
+    /**
+     * when a new year is added, all repeating positions are updated
+     * @param year
+     */
     private void updateRepeating(int year) {
         ArrayList<Income> incomes = account.updateRepeatingIncome(year);
         ArrayList<Expense> expenses = account.updateRepeatingExpense(year);
@@ -305,18 +310,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * A new repeating Income gets added to all following months
+     * @param date
+     * @param value
+     * @param category
+     * @param description
+     */
     //bei wiederkehrendem Einkommen wird die erfasste Einnahme in alle bisher erstellten zukünftigen Monate eingefügt
     public void addIncomeFromCurrentMonth(Date date, double value, String category, String description) {
         int month = date.getMonth();
         int year = date.getYear();
         ArrayList<Month> from = months.fromMonth(year, month);
-        Log.e("Anzahl Monate: ", Integer.toString(from.size()));
         for (Month i : from) {
             Date currentDate = new Date(15, i.getMonth(), i.getYear());
             account.addIncome(currentDate, value, true, category, description);
             months.updateMonthIncome(i.getYear(), i.getMonth(), value);
         }
     }
+
+    /**
+     * A new repeating Expense gets added to all following months
+     * @param date
+     * @param value
+     * @param category
+     * @param description
+     */
     //bei wiederkehrendem Ausgaben wird die erfasste Ausgabe in alle bisher erstellten zukünftigen Monate eingefügt
     public void addExpenseFromCurrentMonth(Date date, double value, String category, String description) {
         int month = date.getMonth();
@@ -391,6 +410,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * update the list views for incomes and expenses
+     */
     private void updateListView() {
         //ListView
         //Einkommen
@@ -429,11 +451,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * clears the shared preference file
+     */
     public static void deleteData() {
         saveEditor.clear();
         saveEditor.commit();
     }
 
+    /**
+     * reads the shared preference file and declares the variables
+     */
     private void checkSharedPreferences() {
         Gson gson = new Gson();
 
@@ -457,7 +485,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //ArrayList benötigt einen eigenen Json, da
         String years_json = savePreference.getString("years", "");
-        Log.e("years_json:", years_json);
         if (!years_json.equals("")) {
             List<Double> years_saved_double = gson.fromJson(years_json, ArrayList.class);
             List<Integer> years_saved_int = new ArrayList<>();
