@@ -30,6 +30,7 @@ public class IncomeTest {
         income = null;
     }
 
+    /*
     @Test
     public void printIncome() {
         String expected = ", Datum: , Betrag: " + value + ", Kategorie: " + category + "\r\n";
@@ -38,6 +39,7 @@ public class IncomeTest {
         income.printIncome();
         assertTrue(outContent.toString().endsWith(expected));
     }
+    */
 
     @Test
     public void getInfo() {
