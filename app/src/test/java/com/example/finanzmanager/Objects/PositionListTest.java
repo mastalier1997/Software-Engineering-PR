@@ -4,8 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
+// TODO: Testklasse auf 100% Code coverage bringen!
 public class PositionListTest {
     private PositionList pl;
     private int year = 2010;
@@ -85,6 +88,44 @@ public class PositionListTest {
         pl.addExpense(date, d+2, recurring, category, description);
         assertNotNull(pl.getExpense(2));
         // assertNull(pl.getExpense(4));
+    }
+
+    @Test
+    public void addRepeatingIncome(){
+        ArrayList<Income> list = new ArrayList<>();
+        int size = list.size();
+        pl.addRepeatingIncome(date, d, true, category, description);
+        assertEquals(size+1, pl.get_repeatingIncomeList().size());
+    }
+
+    @Test
+    public void addRepeatingExpense(){
+        ArrayList<Expense> list = new ArrayList<>();
+        int size = list.size();
+        pl.addRepeatingExpense(date, d, true, category, description);
+        assertEquals(size+1, pl.get_repeatingExpenseList().size());
+    }
+
+    @Test
+    public void updateRepeatingIncome(){
+        assertEquals(0, pl.updateRepeatingIncome(year).size());
+    }
+
+    @Test
+    public void updateRepeatingExpense(){
+        assertEquals(0, pl.updateRepeatingExpense(year).size());
+    }
+
+    @Test
+    public void changeRepeatingIncomeList(){
+        pl.changeRepeatingIncomeList(description, d, "newString", 9.10);
+        assertEquals(0, pl.get_repeatingIncomeList().size());
+    }
+
+    @Test
+    public void changeRepeatingExpenseList(){
+        pl.changeRepeatingExpenseList(description, d, "newString", 9.10);
+        assertEquals(0, pl.get_repeatingExpenseList().size());
     }
 
     /* Unbenutzte Methoden
