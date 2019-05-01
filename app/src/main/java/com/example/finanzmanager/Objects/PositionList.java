@@ -13,7 +13,7 @@ public class PositionList {
 
     private List<Income> incomeList;
     private List<Expense> expenseList;
-    public ArrayList<Income> repeatingIncomeList;
+    private ArrayList<Income> repeatingIncomeList;
     private ArrayList<Expense> repeatingExpenseList;
 
     public PositionList() {
@@ -23,6 +23,15 @@ public class PositionList {
         repeatingIncomeList = new ArrayList<>();
     }
 
+    /**
+     * changes the value and the description from a repeating Income
+     * -> in the list where all repeating incomes are saved
+     * -> in the list where all incomes are saved and the targeted repeating income occurs multiple times
+     * @param old_desc
+     * @param old_value
+     * @param new_desc
+     * @param new_value
+     */
     public void changeRepeatingIncomeList(String old_desc, double old_value, String new_desc, double new_value) {
         double difference = new_value-old_value;
         //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
@@ -45,6 +54,15 @@ public class PositionList {
         }
     }
 
+    /**
+     * changes the value and the description from a repeating Expense
+     * -> in the list where all repeating expenses are saved
+     * -> in the list where all expenses are saved and the targeted repeating expense occurs multiple times
+     * @param old_desc
+     * @param old_value
+     * @param new_desc
+     * @param new_value
+     */
     public void changeRepeatingExpenseList(String old_desc, double old_value, String new_desc, double new_value) {
         double difference = new_value-old_value;
         //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
@@ -67,14 +85,26 @@ public class PositionList {
         }
     }
 
+    /**
+     * @return repeatingIncomeList
+     */
     public ArrayList<Income> get_repeatingIncomeList() {
         return repeatingIncomeList;
     }
 
+    /**
+     * @return repeatingExpenseList
+     */
     public ArrayList<Expense> get_repeatingExpenseList() {
         return repeatingExpenseList;
     }
 
+    /**
+     * returns all Incomes from a month
+     * @param month
+     * @param year
+     * @return income list
+     */
     public ArrayList<String> getIncomeFromDate(int month, int year) {
         ArrayList<String> found = new ArrayList<>();
         for (int i = 0; i<incomeList.size(); i++) {
@@ -86,6 +116,12 @@ public class PositionList {
         return found;
     }
 
+    /**
+     * returns all Expenses from a month
+     * @param month
+     * @param year
+     * @return expense list
+     */
     public ArrayList<String> getExpenseFromDate(int month, int year) {
         ArrayList<String> found = new ArrayList<>();
         for (int i = 0; i<expenseList.size(); i++) {
@@ -97,36 +133,87 @@ public class PositionList {
         return found;
     }
 
-    public void addIncome(Date date, double d, boolean recurring, String category, String description) {
-        Income i = new Income(date, d, recurring, category, description);
+    /**
+     * adds a new Income to the list
+     * @param date
+     * @param value
+     * @param recurring
+     * @param category
+     * @param description
+     */
+    public void addIncome(Date date, double value, boolean recurring, String category, String description) {
+        Income i = new Income(date, value, recurring, category, description);
         incomeList.add(i);
     }
 
-    public void addExpense(Date date, double d, boolean recurring, String category, String description) {
-        Expense e = new Expense(date, d, recurring, category, description);
+    /**
+     * adds a new Expense to the list
+     * @param date
+     * @param value
+     * @param recurring
+     * @param category
+     * @param description
+     */
+    public void addExpense(Date date, double value, boolean recurring, String category, String description) {
+        Expense e = new Expense(date, value, recurring, category, description);
         expenseList.add(e);
     }
 
-    public void addRepeatingIncome(Date date, double d, boolean recurring, String category, String description) {
-        Income i = new Income(date, d, recurring, category, description);
+    /**
+     * adds a new repeating Income to the list
+     * @param date
+     * @param value
+     * @param recurring
+     * @param category
+     * @param description
+     */
+    public void addRepeatingIncome(Date date, double value, boolean recurring, String category, String description) {
+        Income i = new Income(date, value, recurring, category, description);
         this.repeatingIncomeList.add(i);
     }
 
-    public void addRepeatingExpense(Date date, double d, boolean recurring, String category, String description) {
-        Expense e = new Expense(date, d, recurring, category, description);
+    /**
+     * adds a new repeating Expense to the list
+     * @param date
+     * @param value
+     * @param recurring
+     * @param category
+     * @param description
+     */
+    public void addRepeatingExpense(Date date, double value, boolean recurring, String category, String description) {
+        Expense e = new Expense(date, value, recurring, category, description);
         this.repeatingExpenseList.add(e);
     }
 
+    /**
+     * returns the income at an index
+     * @param i
+     * @return income
+     */
     public String getIncome(int i) {
         return incomeList.get(i).getInfo();
     }
 
+    /**
+     * returns the expense at an index
+     * @param i
+     * @return expense
+     */
     public String getExpense(int i) { return expenseList.get(i).getInfo(); }
 
+    /**
+     * returns the number of incomes in total
+     */
     public int incomeLength() {
         return incomeList.size();
     }
 
+    /**
+     * returns the number of incomes in a month
+     * @param month
+     * @param year
+     * @return number
+     */
     public int incomeLengthInMonth (int month, int year) {
         int size = 0;
         for(Income i : incomeList) {
@@ -135,9 +222,18 @@ public class PositionList {
         return size;
     }
 
+    /**
+     * returns the number of expenses in total
+     */
     public int expenseLength() {
         return expenseList.size();
     }
+
+    /**
+     * returns the number of expense in a month
+     * @param month
+     * @param year
+     */
     public int expenseLengthInMonth (int month, int year) {
         int size = 0;
         for(Expense i : expenseList) {
@@ -146,20 +242,11 @@ public class PositionList {
         return size;
     }
 
-
-    public void printIncome() {
-        System.out.println("Incomen: ");
-        Iterator<Income> itr = incomeList.iterator();
-        Income print;
-        int i = 0;
-        while (itr.hasNext()) {
-            print = incomeList.get(i);
-            print.printIncome();
-            itr.next();
-            i++;
-        }
-    }
-
+    /**
+     * returns all repeating incomes where the year of the starting date is smaller then the
+     * @param year
+     * @return income list
+     */
     public ArrayList<Income> updateRepeatingIncome(int year) {
         ArrayList<Income> affectedIncomes = new ArrayList<>();
         for (Income i : repeatingIncomeList) {
@@ -168,6 +255,11 @@ public class PositionList {
         return affectedIncomes;
     }
 
+    /**
+     * returns all repeating expenses where the year of the starting date is smaller then the
+     * @param year
+     * @return expense list
+     */
     public ArrayList<Expense> updateRepeatingExpense(int year) {
         ArrayList<Expense> affectedExpenses = new ArrayList<>();
         for (Expense e : repeatingExpenseList) {

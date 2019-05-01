@@ -12,11 +12,11 @@ public class Expense extends Position{
         idCounter++;
     }
 
-    void printExpense() {
-        System.out.print("Id: " + id + ", Datum: ");
-        super.printPosition();
-    }
 
+    /**
+     * creates a String out of the value and the description from a Position
+     * @return String info
+     */
     public String getInfo() {
         String info = Double.toString(super.getValue());
         info = info + "\t\t\t\t\t" + super.getDescription();

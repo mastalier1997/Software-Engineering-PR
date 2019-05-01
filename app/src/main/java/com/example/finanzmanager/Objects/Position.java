@@ -15,26 +15,37 @@ public class Position {
         this.description = description;
     }
 
-    void printPosition() {
-        date.printDate();
-        System.out.println(", Betrag: " + value + ", Kategorie: " + category);
-    }
 
+    /**
+     * @return date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * @return value
+     */
     public double getValue() {
         return value;
     }
 
+    /**
+     * @return recurring
+     */
     public boolean getRecurring() {
         return recurring;
     }
 
+    /**
+     * @return category
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * @return description
+     */
     public String getDescription() { return description; }
 }

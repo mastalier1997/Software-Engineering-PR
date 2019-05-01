@@ -1,7 +1,5 @@
 package com.example.finanzmanager.Objects;
 
-// Die Date Klasse hab ich nur deswegen weil ich mich mit dem java.util.date nicht auskenne
-
 public class Date {
 
     private int day;
@@ -18,18 +16,23 @@ public class Date {
         this.year = year;
     }
 
-    public void printDate() {
-        System.out.print(day + "." + month + "." + year);
-    }
-
+    /**
+     * @return day
+     */
     public int getDay() {
         return day;
     }
 
+    /**
+     * @return month
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     * @return year
+     */
     public int getYear() {
         return year;
     }
