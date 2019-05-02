@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.robolectric.*;
 
 import static org.junit.Assert.*;
@@ -37,7 +38,7 @@ public class MainActivityTest {
     @Test
     public void saveToAccount() {
         MainActivity.saveToAccount();
-        //TODO: Test überlegen
+        //TODO: neuen Test schreiben
     }
 
     @Test
@@ -67,23 +68,25 @@ public class MainActivityTest {
     @Test
     public void onBackPressed() {
         activity.onBackPressed();
-        // TODO: Test überlegen
+        // TODO: neuen Test schreiben
     }
 
     @Test
     public void onCreateOptionsMenu() {
-        boolean t = true;
-        Menu m = mock(Menu.class);
+        boolean t = Mockito.anyBoolean();
+        //Menu m = mock(Menu.class);
         // TODO: Test ändern
-        assertTrue(t);
+        assertNotNull(t);
+        assertNotNull(activity);
     }
 
     @Test
     public void onOptionsItemSelected() {
-        boolean t = true;
-        MenuItem m = mock(MenuItem.class);
+        boolean t = Mockito.anyBoolean();
+        //Menu m = mock(Menu.class);
         // TODO: Test ändern
-        assertTrue(t);
+        assertNotNull(t);
+        assertNotNull(activity);
     }
 
     @Test

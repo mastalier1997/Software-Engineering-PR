@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-// TODO: Testklasse auf 100% Code coverage bringen!
+// TODO: In PositionList neu hinzugefügte Methoden testen unnd
+//  Testklasse auf 100% Code coverage bringen!
 public class PositionListTest {
     private PositionList pl;
     private int year = 2010;
