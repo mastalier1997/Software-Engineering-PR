@@ -35,8 +35,8 @@ import static org.hamcrest.Matchers.is;
 
 /**
  * Bei diesem Test wird eine monatliche Einnahme hinzugefügt.
- * Beschriftung der Ausgabe: keine
- * Ausgaben pro Monat: 5000
+ * Beschriftung der Einnahme: keine
+ * Einnahme pro Monat: 5000
  * Wiederkehrend: ja
  */
 @LargeTest
@@ -47,7 +47,7 @@ public class AddIncomeMonthlyTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addIncomeTest() {
+    public void addIncomeMonthlyTest() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(

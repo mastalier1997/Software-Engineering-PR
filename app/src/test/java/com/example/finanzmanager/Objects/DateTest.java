@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-
 public class DateTest {
     private Date date;
     private int day = 10;

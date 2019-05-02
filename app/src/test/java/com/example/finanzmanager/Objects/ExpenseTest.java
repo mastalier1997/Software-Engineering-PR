@@ -17,8 +17,6 @@ public class ExpenseTest {
     private boolean recurring = false;
     private String category = "cat";
     private String description = "this is a cat";
-    // id of expense
-    private int id = 0;
 
     @Before
     public void setUp() {
@@ -30,6 +28,7 @@ public class ExpenseTest {
         expense = null;
     }
 
+    // TODO: printExpense entfernen
     /*
     @Test
     public void printExpense() {

@@ -34,6 +34,7 @@ public class PositionTest {
         assertNotNull(position);
     }
 
+    // TODO: printPosition entfernen
     /*
     @Test
     public void printPosition() {

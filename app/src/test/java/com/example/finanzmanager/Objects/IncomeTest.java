@@ -3,6 +3,7 @@ package com.example.finanzmanager.Objects;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -17,8 +18,6 @@ public class IncomeTest {
     private boolean recurring = false;
     private String category = "cat";
     private String description = "this is a cat";
-    // id of income
-    private int id = 0;
 
     @Before
     public void setUp() {
@@ -30,6 +29,7 @@ public class IncomeTest {
         income = null;
     }
 
+    // TODO: printIncome() entfernen
     /*
     @Test
     public void printIncome() {

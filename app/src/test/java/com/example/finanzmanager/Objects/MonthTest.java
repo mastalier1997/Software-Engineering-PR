@@ -10,9 +10,6 @@ public class MonthTest {
     private Month month;
     private int intMonth = 10;
     private int year = 2010;
-    private double sum_income = 1000;
-    private double sum_expense = 1000;
-    private double balance = 0;
     // Delta fuer Double-Werte
     private double delta = 0.01;
 

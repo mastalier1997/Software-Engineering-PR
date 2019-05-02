@@ -32,8 +32,8 @@ import static org.hamcrest.Matchers.allOf;
 
 /**
  * Bei diesem Test wird eine einmalige Einnahme hinzugefügt.
- * Beschriftung der Ausgabe: von Arbeit
- * Ausgaben pro Monat: 2000
+ * Beschriftung der Einnahme: von Arbeit
+ * Einnahmen pro Monat: 2000
  * Wiederkehrend: nein
  */
 @LargeTest
@@ -44,7 +44,7 @@ public class AddIncomeTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addIncomeTest2() {
+    public void addIncomeTest() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(
