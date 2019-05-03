@@ -12,7 +12,7 @@ import java.util.List;
 public class PositionList {
 
     private List<Income> incomeList;
-    private List<Expense> expenseList;
+    public List<Expense> expenseList;
     private ArrayList<Income> repeatingIncomeList;
     private ArrayList<Expense> repeatingExpenseList;
 

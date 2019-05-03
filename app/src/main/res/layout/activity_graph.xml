@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".activity_classes.Graph">
+    tools:context=".activity_classes.graph">
 
     <TextView
         android:id="@+id/textView_description"
@@ -26,6 +26,24 @@
         android:layout_height="320sp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="172dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerMonthGraph"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="101dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerYearGraph"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="101dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

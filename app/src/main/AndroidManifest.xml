@@ -19,7 +19,7 @@
         <activity android:name=".activity_classes.expense_overview" />
         <activity android:name=".activity_classes.Import" />
         <activity android:name=".activity_classes.Export" />
-        <activity android:name=".activity_classes.Graph" />
+        <activity android:name=".activity_classes.graph" />
         <activity android:name=".activity_classes.expense_menu" />
         <activity android:name=".activity_classes.income_menu" />
         <activity android:name=".activity_classes.new_income" />
