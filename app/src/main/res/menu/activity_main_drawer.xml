@@ -18,7 +18,7 @@
             android:icon="@mipmap/lottery"
             android:title="Grafik" />
         <item
-            android:id="@+id/nav_filter"
+            android:id="@+id/nav_export"
             android:icon="@drawable/ic_menu_send"
             android:title="Export" />
         <item
