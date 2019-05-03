@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Month_overview months;
     static private List<Integer> years;
     public static Integer currentYear;
-    static Integer currentMonth;
+    public static Integer currentMonth;
 
     //sonstige Variablen
     int value = 0;
@@ -280,6 +280,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public static void setCurrentMonth(Integer currentMonth) {
+        MainActivity.currentMonth = currentMonth;
+    }
+
     /**
      * safes the current state of the account and months variable to the shared preferences
      */
@@ -395,7 +399,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, expense_overview.class);
             startActivity(intent);
         } else if (id == R.id.nav_graph) {
-            Intent intent= new Intent(MainActivity.this, Graph.class);
+            Intent intent= new Intent(MainActivity.this, graph.class);
             startActivity(intent);
         } else if (id == R.id.nav_export) {
             Intent intent = new Intent(MainActivity.this, Export.class);
