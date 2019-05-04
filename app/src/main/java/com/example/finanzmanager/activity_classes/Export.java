@@ -1,7 +1,10 @@
 package com.example.finanzmanager.activity_classes;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 
 import com.example.finanzmanager.R;
@@ -15,6 +18,11 @@ public class Export extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Export </font>"));
+
+
+
 
     }
 
