@@ -2,9 +2,11 @@ package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Finanzmanger </font>"));
 
         // sumIncome und sumExpense für die Ausgabe
         sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
@@ -93,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //DropDown für Jahre
         Spinner dropdown_year = findViewById(R.id.dropDown_year);
         if (years.isEmpty()) years.add(Calendar.getInstance().get(Calendar.YEAR));
-        final ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        adapter_year.setDropDownViewResource(R.layout.spinner);
         dropdown_year.setAdapter(adapter_year);
 
 
@@ -101,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);
@@ -122,14 +128,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(dropdown_month);
 
-            // Set popupWindow height to 800px
+            // Set popupWindow height to 600px
             popupWindow.setHeight(600);
         }catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e){
             //no action
         }
         String[] items = new String[]{"Jannuar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"};
         ArrayAdapter<String> adapter_month = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_month.setDropDownViewResource(R.layout.spinner);
         dropdown_month.setAdapter(adapter_month);
         dropdown_month.setSelection(currentMonth-1);
 
@@ -138,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
                 if (((adapterView.getSelectedItem().toString().equals("")))) {
                     //do nothing
                 } else {
@@ -410,6 +418,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -423,9 +432,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Befüllung aus account
         stringArrayList_income = account.getIncomeFromDate(currentMonth, currentYear);
 
-        //Ausgabe in ListView
-        stringArrayAdapter_income = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList_income);
-        listview_income.setAdapter(stringArrayAdapter_income);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, stringArrayList_income){
+
+            //Farbe der Elemente in der Liste ändern
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view =super.getView(position, convertView, parent);
+                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.WHITE);
+                return view;
+            }
+        };
+        /*SET THE ADAPTER TO LISTVIEW*/
+        listview_income.setAdapter(adapter);
 
         //Ausgaben
         //Befüllung aus account
@@ -433,8 +453,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //Ausgabe in ListView
-        stringArrayAdapter_expense = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList_expense);
-        listView_expense.setAdapter(stringArrayAdapter_expense);
+        ArrayAdapter<String> adapter1=new ArrayAdapter<String>(
+                getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList_expense){
+
+            //Farbe der Elemente in der Liste ändern
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view =super.getView(position, convertView, parent);
+                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.WHITE);
+                return view;
+            }
+        };
+        listView_expense.setAdapter(adapter1);
 
         //Aktualisierung der Zahlen und Positionsliste
         if (months.size() != 0) {
