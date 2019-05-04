@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF0F2"
+    android:background="#282828"
     tools:context=".activity_classes.Export">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginStart="162dp"
         android:layout_marginTop="28dp"
         android:text="Export"
-        android:textColor="#0A0A0A"
+        android:textColor="#F66213"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,59 +23,69 @@
         android:id="@+id/startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="292dp"
         android:text="TextView"
         android:textColor="#0A0A0A"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="217dp" />
+    tools:layout_editor_absoluteX="99dp"
+    tools:layout_editor_absoluteY="217dp" />
 
     <TextView
         android:id="@+id/formatView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="440dp"
         android:text="Format"
         android:textColor="#0A0A0A"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="314dp" />
+    tools:layout_editor_absoluteX="100dp"
+    tools:layout_editor_absoluteY="314dp" />
 
     <TextView
         android:id="@+id/endView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="296dp"
         android:text="Ende"
-        android:textColor="#0A0A0A"
-        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="251dp" />
+    tools:layout_editor_absoluteX="100dp"
+    tools:layout_editor_absoluteY="251dp" />
 
     <TextView
         android:id="@+id/startView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="228dp"
         android:text="Start"
-        android:textColor="#0A0A0A"
-        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="184dp" />
+    tools:layout_editor_absoluteX="99dp"
+    tools:layout_editor_absoluteY="184dp" />
 
     <TextView
         android:id="@+id/endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="152dp"
         android:text="TextView"
-        android:textColor="#0A0A0A"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="283dp" />
+    tools:layout_editor_absoluteX="99dp"
+    tools:layout_editor_absoluteY="283dp" />
 </android.support.constraint.ConstraintLayout>
