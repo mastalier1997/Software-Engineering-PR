@@ -15,6 +15,7 @@
         android:text="Einstellungen"
         android:textColor="#050505"
         android:textSize="30sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +27,7 @@
         android:layout_marginTop="104dp"
         android:textSize="17sp"
         android:text="Löschen von sich wiederholenden Positionen"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +40,7 @@
         android:layout_marginTop="176dp"
         android:text="Daten löschen"
         android:textSize="17sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

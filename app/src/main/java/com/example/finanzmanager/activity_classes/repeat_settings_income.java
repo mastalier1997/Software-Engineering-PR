@@ -41,7 +41,7 @@ public class repeat_settings_income extends AppCompatActivity {
         }
 
         //Ausgabe in ListView
-        stringArrayAdapter_income_repeat = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList_income_repeat);
+        stringArrayAdapter_income_repeat = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview, R.id.textView_list_black, stringArrayList_income_repeat);
         listview_income_repeat.setAdapter(stringArrayAdapter_income_repeat);
 
 
