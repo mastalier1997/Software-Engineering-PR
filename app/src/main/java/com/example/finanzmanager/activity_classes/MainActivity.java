@@ -3,9 +3,11 @@ package com.example.finanzmanager.activity_classes;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +34,8 @@ import com.example.finanzmanager.R;
 import com.example.finanzmanager.Objects.Income;
 import com.example.finanzmanager.Objects.Expense;
 import com.google.gson.Gson;
+
+import org.apache.poi.ss.usermodel.FontFamily;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);
@@ -146,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
+                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
                 if (((adapterView.getSelectedItem().toString().equals("")))) {
                     //do nothing
                 } else {
@@ -433,14 +440,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         stringArrayList_income = account.getIncomeFromDate(currentMonth, currentYear);
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, stringArrayList_income){
+                this, R.layout.listview, R.id.textView_list_white, stringArrayList_income){
 
             //Farbe der Elemente in der Liste ändern
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.WHITE);
+                View view = super.getView(position, convertView, parent);
                 return view;
             }
         };
@@ -454,14 +459,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Ausgabe in ListView
         ArrayAdapter<String> adapter1=new ArrayAdapter<String>(
-                getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList_expense){
+                getApplicationContext(), R.layout.listview, R.id.textView_list_white, stringArrayList_expense){
 
             //Farbe der Elemente in der Liste ändern
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view =super.getView(position, convertView, parent);
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.WHITE);
                 return view;
             }
         };

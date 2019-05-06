@@ -28,6 +28,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#F66213"
         android:textSize="20sp"
+        android:fontFamily="@font/droid"
         tools:text="Finanzmanager" />
 
 </LinearLayout>

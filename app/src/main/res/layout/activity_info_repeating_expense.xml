@@ -15,6 +15,7 @@
         android:text="Beschreibung"
         android:textColor="#050505"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +28,7 @@
         android:text="Ausgabenverwaltung"
         android:textColor="#050505"
         android:textSize="30sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,6 +41,7 @@
         android:text="Betrag"
         android:textColor="#050505"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +58,7 @@
         android:textColor="#F0000000"
         android:textSize="18sp"
         android:gravity="right"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,6 +75,7 @@
         android:textColor="#F0000000"
         android:textSize="18sp"
         android:gravity="right"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,6 +86,7 @@
         android:layout_marginTop="228dp"
         android:layout_marginEnd="140dp"
         android:text="Speichern"
+        android:fontFamily="@font/droid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,6 +97,7 @@
         android:layout_marginTop="228dp"
         android:layout_marginEnd="36dp"
         android:text="Löschen"
+        android:fontFamily="@font/droid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

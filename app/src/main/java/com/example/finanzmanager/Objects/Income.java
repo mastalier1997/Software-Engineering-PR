@@ -17,9 +17,21 @@ public class Income extends Position {
      * @return String info
      */
     public String getInfo() {
-        String info = Double.toString(super.getValue());
-        info = info + "\t\t\t\t\t" + super.getDescription();
-        return info;
+        StringBuffer info = new StringBuffer();
+        int value_size = 9;
+        int description_size = 13;
+        int category_size = 13;
+        info.append(String.format("%1$-" + value_size + "s", Double.toString(super.getValue())).replace(' ', '\t'));
+        info.append(String.format("%1$-" + description_size + "s", super.getDescription()).replace(' ', '\t'));
+        info.append(String.format("%1$-" + category_size + "s", super.getCategory()).replace(' ', '\t'));
+        String repeat = "";
+        if (super.getRecurring()) {
+            repeat = "ja";
+        } else {
+            repeat = "nein";
+        }
+        info.append(repeat);
+        return info.toString();
     }
 
 }

@@ -109,6 +109,7 @@ public class PositionList {
         ArrayList<String> found = new ArrayList<>();
         for (int i = 0; i<incomeList.size(); i++) {
             if (incomeList.get(i).getDate().getMonth() == month && incomeList.get(i).getDate().getYear() == year) {
+
                 found.add(this.getIncome(i));
             }
         }

@@ -39,7 +39,7 @@ public class repeat_settings_expense extends AppCompatActivity {
         }
 
         //Ausgabe in ListView
-        stringArrayAdapter_expense_repeat = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,stringArrayList_expense_repeat);
+        stringArrayAdapter_expense_repeat = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview, R.id.textView_list_black, stringArrayList_expense_repeat);
         listView_expense_repeat.setAdapter(stringArrayAdapter_expense_repeat);
 
         Spinner dropdown = findViewById(R.id.dropDown_OutIn_repeat);

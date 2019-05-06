@@ -19,6 +19,7 @@
         android:text="Aktuelle Einnahmen:"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,6 +32,7 @@
         android:text="Aktuelle Ausgaben:"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,6 +54,7 @@
         android:text="Jahr:"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,6 +67,7 @@
         android:text="Monat:"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,6 +101,7 @@
             android:text="0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,6 +114,7 @@
             android:text="0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,6 +127,7 @@
             android:text="Saldo"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,6 +140,7 @@
             android:text="Ausgaben"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,6 +154,7 @@
             android:text="Einnahmen"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintEnd_toStartOf="@+id/textView_expenseText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -159,6 +168,7 @@
             android:text="0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
+            android:fontFamily="@font/droid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>

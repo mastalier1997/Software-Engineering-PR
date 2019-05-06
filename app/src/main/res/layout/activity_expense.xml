@@ -16,6 +16,7 @@
         android:text="Kino"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,7 @@
         android:text="Sprit"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +42,7 @@
         android:text="FastFood"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,6 +55,7 @@
         android:text="Lebensmittel"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,6 +68,7 @@
         android:text="Fitnessstudio"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,6 +83,7 @@
         android:textColor="#000000	"
         android:textSize="18sp"
         android:visibility="visible"
+        android:fontFamily="@font/droid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +98,7 @@
         android:text="Hotel"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,6 +111,7 @@
         android:text="Reisen"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,6 +124,7 @@
         android:text="Abhebung"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,6 +137,7 @@
         android:text="Bar"
         android:textColor="#000000	"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -266,6 +276,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="erstellen"
+        android:fontFamily="@font/droid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.67"

@@ -16,6 +16,7 @@
         android:text="Export"
         android:textColor="#F66213"
         android:textSize="30sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,10 +29,9 @@
         android:text="TextView"
         android:textColor="#0A0A0A"
         android:textSize="20sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    tools:layout_editor_absoluteX="99dp"
-    tools:layout_editor_absoluteY="217dp" />
 
     <TextView
         android:id="@+id/formatView"
@@ -42,10 +42,9 @@
         android:text="Format"
         android:textColor="#0A0A0A"
         android:textSize="18sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    tools:layout_editor_absoluteX="100dp"
-    tools:layout_editor_absoluteY="314dp" />
 
     <TextView
         android:id="@+id/endView"
@@ -56,10 +55,10 @@
         android:text="Ende"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    tools:layout_editor_absoluteX="100dp"
-    tools:layout_editor_absoluteY="251dp" />
+
 
     <TextView
         android:id="@+id/startView"
@@ -70,10 +69,9 @@
         android:text="Start"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    tools:layout_editor_absoluteX="99dp"
-    tools:layout_editor_absoluteY="184dp" />
 
     <TextView
         android:id="@+id/endDate"
@@ -84,8 +82,8 @@
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    tools:layout_editor_absoluteX="99dp"
-    tools:layout_editor_absoluteY="283dp" />
+
 </android.support.constraint.ConstraintLayout>
