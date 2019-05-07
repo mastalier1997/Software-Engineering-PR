@@ -17,12 +17,124 @@ public class PositionList {
     public List<Expense> expenseList;
     private ArrayList<Income> repeatingIncomeList;
     private ArrayList<Expense> repeatingExpenseList;
+    public ArrayList<String> categoriesIncome;
+    public ArrayList<String> categoriesExpense;
 
     public PositionList() {
         incomeList = new ArrayList<>();
         expenseList = new ArrayList<>();
         repeatingExpenseList = new ArrayList<>();
         repeatingIncomeList = new ArrayList<>();
+        categoriesIncome = new ArrayList<>();
+        categoriesIncome.add("Prämie");
+        categoriesIncome.add("Investition");
+        categoriesIncome.add("Gehalt");
+        categoriesIncome.add("Dividenden");
+        categoriesIncome.add("Glücksspiel");
+        categoriesIncome.add("Rückerstattung");
+
+        categoriesExpense = new ArrayList<>();
+        categoriesExpense.add("Bar");
+        categoriesExpense.add("Abhebung");
+        categoriesExpense.add("Kino");
+        categoriesExpense.add("Sprit");
+        categoriesExpense.add("FastFood");
+        categoriesExpense.add("Lebensmittel");
+        categoriesExpense.add("Fitnessstudio");
+        categoriesExpense.add("Hotel");
+        categoriesExpense.add("Reisen");
+    }
+
+    public ArrayList<String> getIncomeFromQuarter(int quarter, int year) {
+        int [] months = new int[3];
+        switch(quarter) {
+            case (1):
+                months[0] = 1; months[1] = 2; months[2] = 3;
+                break;
+            case (2):
+                months[0] = 4; months[1] = 5; months[2] = 6;
+                break;
+            case (3):
+                months[0] = 7; months[1] = 8; months[2] = 9;
+                break;
+            case (4):
+                months[0] = 10; months[1] = 11; months[2] = 12;
+                break;
+        }
+        ArrayList<String> found = new ArrayList<>();
+        for(int i = 0; i <=2; i++) {
+            found.addAll(this.getIncomeFromDate(months[i], year));
+        }
+        return found;
+    }
+
+    public ArrayList<String> getExpenseFromQuarter(int quarter, int year) {
+        int [] months = new int[3];
+        switch(quarter) {
+            case (1):
+                months[0] = 1; months[1] = 2; months[2] = 3;
+                break;
+            case (2):
+                months[0] = 4; months[1] = 5; months[2] = 6;
+                break;
+            case (3):
+                months[0] = 7; months[1] = 8; months[2] = 9;
+                break;
+            case (4):
+                months[0] = 10; months[1] = 11; months[2] = 12;
+                break;
+        }
+        ArrayList<String> found = new ArrayList<>();
+        for(int i = 0; i <=2; i++) {
+            found.addAll(this.getExpenseFromDate(months[i], year));
+        }
+        return found;
+    }
+
+    public ArrayList<String> getIncomeFromYear(int year) {
+        ArrayList<String> found = new ArrayList<>();
+        for(int i = 0; i <=12; i++) {
+            found.addAll(this.getIncomeFromDate(i, year));
+        }
+        return found;
+    }
+
+    public ArrayList<String> getExpenseFromYear(int year) {
+        ArrayList<String> found = new ArrayList<>();
+        for(int i = 0; i <=12; i++) {
+            found.addAll(this.getIncomeFromDate(i, year));
+        }
+        return found;
+    }
+
+    public ArrayList<String> getIncomeFromCategory(String category) {
+        ArrayList<String> found = new ArrayList<>();
+        for (int i = 0; i<incomeList.size(); i++) {
+            if (incomeList.get(i).getCategory().equals(category)) {
+                found.add(this.getIncomeDate(i));
+            }
+        }
+        Collections.reverse(found);
+        return found;
+    }
+
+    public ArrayList<String> getExpenseFromCategory(String category) {
+        ArrayList<String> found = new ArrayList<>();
+        for (int i = 0; i<expenseList.size(); i++) {
+            if (expenseList.get(i).getCategory().equals(category)) {
+                found.add(this.getExpenseDate(i));
+            }
+        }
+        Collections.reverse(found);
+        return found;
+    }
+
+    public ArrayList<String> getIncomeCategories() {
+        return categoriesIncome;
+    }
+
+    public ArrayList<String> getExpenseCategories() {
+        return categoriesExpense;
     }
 
     public void deleteRepeatingIncome(String description, double value) {
@@ -258,11 +370,29 @@ public class PositionList {
     public String getExpense(int i) { return expenseList.get(i).getInfo(); }
 
     /**
+     * returns the income at an index
+     * @param i
+     * @return income
+     */
+    public String getIncomeDate(int i) {
+        return incomeList.get(i).getInfoDate();
+    }
+
+    /**
+     * returns the expense at an index
+     * @param i
+     * @return expense
+     */
+    public String getExpenseDate(int i) { return expenseList.get(i).getInfoDate(); }
+
+    /**
      * returns the number of incomes in total
      */
     public int incomeLength() {
         return incomeList.size();
     }
+
+
 
     /**
      * returns the number of incomes in a month

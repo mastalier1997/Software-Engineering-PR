@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282828"
+    android:background="#353535"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity_classes.MainActivity"
     tools:layout_editor_absoluteY="56dp"
@@ -18,7 +18,7 @@
         android:layout_marginTop="210dp"
         android:fontFamily="@font/droid"
         android:text="Beschreibung"
-        android:textColor="#CDDC39"
+        android:textColor="#4CAF50"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_marginTop="208dp"
         android:fontFamily="@font/droid"
         android:text="Betrag"
-        android:textColor="#CDDC39"
+        android:textColor="#4CAF50"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
         android:layout_marginTop="210dp"
         android:fontFamily="@font/droid"
         android:text="wiederholt"
-        android:textColor="#CDDC39"
+        android:textColor="#4CAF50"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +57,7 @@
         android:layout_marginTop="210dp"
         android:fontFamily="@font/droid"
         android:text="Art"
-        android:textColor="#CDDC39"
+        android:textColor="#4CAF50"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -150,32 +150,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_Year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Jahr:"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_Month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="16dp"
-        android:text="Monat:"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
         android:id="@+id/listView_income"
         android:layout_width="380dp"
@@ -188,31 +162,73 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="383dp"
-        android:layout_height="87dp"
+        android:layout_width="416dp"
+        android:layout_height="168dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="17dp"
-        android:background="#414141"
+        android:background="#282828"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/dropDown_year"
+            android:layout_width="130dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="80dp"
+            android:popupBackground="#282828"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Year" />
+
+        <TextView
+            android:id="@+id/textView_Month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/droid"
+            android:text="Monat:"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_Year"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/droid"
+            android:text="Jahr:"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/dropDown_month"
+            android:layout_width="135dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:popupBackground="#282828"
+            app:layout_constraintStart_toEndOf="@+id/dropDown_year"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Month" />
 
         <TextView
             android:id="@+id/textView_balance"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="128dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/droid"
             android:text="0"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.931"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,8 +236,8 @@
             android:id="@+id/textView_sumExpense"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="131dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="128dp"
             android:fontFamily="@font/droid"
             android:text="1234"
             android:textAlignment="center"
@@ -234,27 +250,29 @@
             android:id="@+id/textView_balanceText"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="13dp"
             android:fontFamily="@font/droid"
             android:text="Saldo"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_expenseText"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_expenseText"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="131dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/droid"
             android:text="Ausgaben"
+            android:textAlignment="center"
             android:textColor="#DC3939"
             android:textSize="18sp"
-            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -263,15 +281,14 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/droid"
             android:text="Einnahmen"
-            android:textColor="#CDDC39"
-            android:textSize="18sp"
             android:textAlignment="center"
+            android:textColor="#4CAF50"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/textView_expenseText"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -279,41 +296,77 @@
             android:id="@+id/textView_sumIncome"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="128dp"
             android:fontFamily="@font/droid"
             android:text="0"
             android:textAlignment="center"
-            android:textColor="#CDDC39"
+            android:textColor="#4CAF50"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="4dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toEndOf="@+id/textView_incomeText"
+            app:layout_constraintTop_toBottomOf="@+id/dropDown_year"
+            app:srcCompat="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="4dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toEndOf="@+id/textView_expenseText"
+            app:layout_constraintTop_toBottomOf="@+id/dropDown_month"
+            app:srcCompat="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/imageView_corner"
+            android:layout_width="53dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="388dp"
+            android:rotation="-45"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/imageView_corner4"
+            android:layout_width="53dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="388dp"
+            android:layout_marginTop="140dp"
+            android:rotation="45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/imageView_corner3"
+            android:layout_width="53dp"
+            android:layout_height="58dp"
+            android:layout_marginEnd="388dp"
+            android:layout_marginBottom="140dp"
+            android:rotation="45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/imageView_corner2"
+            android:layout_width="53dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="388dp"
+            android:layout_marginBottom="140dp"
+            android:rotation="-45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@color/colorAccent" />
     </android.support.constraint.ConstraintLayout>
-
-    <Spinner
-        android:id="@+id/dropDown_month"
-        android:layout_width="135dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:popupBackground="#282828"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.566"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/dropDown_year"
-        android:layout_width="130dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:popupBackground="#282828"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
