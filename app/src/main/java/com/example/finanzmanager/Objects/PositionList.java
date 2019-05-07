@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.example.finanzmanager.activity_classes.MainActivity;
 
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +24,59 @@ public class PositionList {
         repeatingExpenseList = new ArrayList<>();
         repeatingIncomeList = new ArrayList<>();
     }
+
+    public void deleteRepeatingIncome(String description, double value) {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH);
+
+        //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
+        for(int i = 0; i < repeatingIncomeList.size(); i++) {
+            Income test = repeatingIncomeList.get(i);
+            if (test.getDescription().equals(description) && test.getValue() == value) {
+                repeatingIncomeList.remove(i);
+                break;
+            }
+        }
+
+        for(int i = 0; i<incomeList.size(); i++) {
+            Income test = incomeList.get(i);
+            if (test.getDescription().equals(description) && test.getValue() == value && test.getDate().getYear() >= year) {
+                Log.e("Schleifentest:", "Vor der IF");
+                if ((test.getDate().getYear() == year && test.getDate().getMonth() >= month) || test.getDate().getYear() > year) {
+                    Log.e("Schleifentest:", "Nach der IF");
+                    incomeList.remove(i);
+                    i--; //notwendig da das i+1 element auf die Stelle i rückt und somit im nächsten Schleifendurchgang übersprungen wird
+                    MainActivity.months.updateMonthIncome(test.getDate().getYear(), test.getDate().getMonth(), -value);
+                }
+            }
+        }
+    }
+
+    public void deleteRepeatingExpense(String description, double value) {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH);
+
+        //Annahme: ein Paar aus Beschreibung und Betrag kommt nur einmal vor
+        for(int i = 0; i < repeatingExpenseList.size(); i++) {
+            Expense test = repeatingExpenseList.get(i);
+            if (test.getDescription().equals(description) && test.getValue() == value) {
+                repeatingExpenseList.remove(i);
+                break;
+            }
+        }
+
+        for(int i = 0; i<incomeList.size(); i++) {
+            Expense test = expenseList.get(i);
+            if (test.getDescription().equals(description) && test.getValue() == value && test.getDate().getYear() >= year) {
+                if ((test.getDate().getYear() == year && test.getDate().getMonth() >= month) || test.getDate().getYear() > year) {
+                    expenseList.remove(i);
+                    i--; //notwendig da das i+1 element auf die Stelle i rückt und somit im nächsten Schleifendurchgang übersprungen wird
+                    MainActivity.months.updateMonthExpense(test.getDate().getYear(), test.getDate().getMonth(), -value);
+                }
+            }
+        }
+    }
+
 
     /**
      * changes the value and the description from a repeating Income
