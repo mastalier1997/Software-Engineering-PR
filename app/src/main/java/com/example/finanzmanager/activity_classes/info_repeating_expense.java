@@ -51,6 +51,19 @@ public class info_repeating_expense extends AppCompatActivity {
             }
         });
 
+        Button delete = (Button) findViewById(R.id.button_delete_info_expense);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MainActivity.account.deleteRepeatingExpense(old_desc, old_value);
+                MainActivity.saveToAccount();
+
+                Intent intent= new Intent(info_repeating_expense.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }
