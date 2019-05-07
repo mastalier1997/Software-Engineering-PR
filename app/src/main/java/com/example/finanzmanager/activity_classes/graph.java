@@ -156,8 +156,8 @@ public class graph extends AppCompatActivity {
                     .duration(1000).textSize(40);// draw pie animation duration
         }else {
             config.startAngle(-90)//.addDatas(listElement())// Starting angle offset
-                    .addData(new SimplePieInfo(income, Color.parseColor("#FF8000"), "Einnahmen"))
-                    .addData(new SimplePieInfo(expense, Color.parseColor("#F781F3"), "Ausgaben"))
+                    .addData(new SimplePieInfo(income, Color.parseColor("#4CAF50"), "Einnahmen"))
+                    .addData(new SimplePieInfo(expense, Color.parseColor("#DC3939"), "Ausgaben"))
                     .drawText(true).strokeMode(false)
                     .duration(1000).textSize(40);// draw pie animation duration
         }

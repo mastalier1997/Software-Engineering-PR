@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //alle Variablen, welche am Smartphone gespeicher werden
     public static PositionList account;
     public static Month_overview months;
-    static private List<Integer> years;
+    static public List<Integer> years;
     public static Integer currentYear;
     public static Integer currentMonth;
 
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
                 Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
+                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);

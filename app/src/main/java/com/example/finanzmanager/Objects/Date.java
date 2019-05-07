@@ -16,6 +16,16 @@ public class Date {
         this.year = year;
     }
 
+    public String getString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(day);
+        buffer.append(".");
+        buffer.append(month);
+        buffer.append(".");
+        buffer.append(year);
+        return buffer.toString();
+    }
+
     /**
      * @return day
      */
