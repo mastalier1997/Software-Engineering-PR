@@ -1,13 +1,20 @@
 package com.example.finanzmanager.activity_classes;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.finanzmanager.Objects.Month;
 import com.example.finanzmanager.R;
@@ -24,12 +31,20 @@ public class graph extends AppCompatActivity {
     private double income = 0;
     private double expense = 0;
     private int selctedMonth;
+    private  int currentYear;
+    private static SharedPreferences.Editor saveEditor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
+
+        //Back Button aktivieren
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph </font>"));
+
 
         if (output != null) {
             income = output.getSumIncome();
@@ -59,6 +74,7 @@ public class graph extends AppCompatActivity {
         month.add("Juni");month.add("Juli"); month.add("August"); month.add("September"); month.add("October");
         month.add("November"); month.add("Dezember");
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, month);
+        adapter.setDropDownViewResource(R.layout.spinner);
         spinnerMonth.setAdapter(adapter);
 
         ArrayList<String> year = new ArrayList<>();
@@ -67,15 +83,18 @@ public class graph extends AppCompatActivity {
             year.add(Integer.toString(i));
         }
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
+        adapter1.setDropDownViewResource(R.layout.spinner);
         spinnerYear.setAdapter(adapter1);
 
-        //Back Button aktivieren
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
+                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
+
                 if (((adapterView.getSelectedItem().toString().equals("")))) {
                     //do nothing
                 } else {
@@ -135,6 +154,15 @@ public class graph extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
+
+        Button detailViewButton = (Button) findViewById(R.id.detailedView);
+        detailViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(graph.this, graph_detailed.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -169,11 +197,11 @@ public class graph extends AppCompatActivity {
 
 
     public List listElement(){
-        List<Integer> list=new ArrayList<>();
-        list.add(12);
-        list.add(33);
-        list.add(456);
-        list.add(7896);
+        List<SimplePieInfo> list=new ArrayList<>();
+        list.add(new SimplePieInfo(20,Color.parseColor("#78314"),"Test"));
+        list.add(new SimplePieInfo(20,Color.parseColor("#58314"),"Test1"));
+        list.add(new SimplePieInfo(20,Color.parseColor("#48314"),"Test2"));
+        list.add(new SimplePieInfo(20,Color.parseColor("#38314"),"Test3"));
         return list;
     }
 

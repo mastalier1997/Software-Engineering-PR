@@ -4,29 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF0F2"
+    android:background="#282828 "
     tools:context=".activity_classes.graph">
-
-    <TextView
-        android:id="@+id/textView_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="28dp"
-        android:text="Graph"
-        android:textColor="#050505"
-        android:textSize="30sp"
-        android:fontFamily="@font/droid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.razerdp.widget.animatedpieview.AnimatedPieView
         android:id="@+id/animatedPieView_graph"
-        android:layout_width="320sp"
-        android:layout_height="320sp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="172dp"
+        android:layout_width="384dp"
+        android:layout_height="398dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +22,9 @@
         android:layout_width="121dp"
         android:layout_height="29dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/spinner_border"
+        android:popupBackground="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,9 +32,21 @@
         android:id="@+id/spinnerYearGraph"
         android:layout_width="121dp"
         android:layout_height="29dp"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="101dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/spinner_border"
+        android:popupBackground="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/detailedView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="108dp"
+        android:text="Detalierte Übersicht"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
