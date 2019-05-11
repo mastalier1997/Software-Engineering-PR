@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/logo_white_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity_classes.graph_detailed"></activity>
         <activity android:name=".activity_classes.create_category_expense" />
         <activity android:name=".activity_classes.create_category_income" />
         <activity android:name=".activity_classes.income_overview" />
@@ -29,7 +30,6 @@
         <activity android:name=".activity_classes.repeat_settings_expense" />
         <activity android:name=".activity_classes.info_repeating_income" />
         <activity android:name=".activity_classes.info_repeating_expense" />
-
         <activity
             android:name=".activity_classes.MainActivity"
             android:label="@string/app_name"

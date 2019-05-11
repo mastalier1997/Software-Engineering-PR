@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Finanzmanger </font>"));
 
+
         // sumIncome und sumExpense für die Ausgabe
         sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
         sumExpense = (TextView) findViewById(R.id.textView_sumExpense);

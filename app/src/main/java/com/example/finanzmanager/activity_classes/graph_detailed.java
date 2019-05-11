@@ -1,7 +1,5 @@
 package com.example.finanzmanager.activity_classes;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -12,48 +10,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.finanzmanager.Objects.Month;
 import com.example.finanzmanager.R;
-import com.razerdp.widget.animatedpieview.AnimatedPieView;
-import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
-import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
-public class graph extends AppCompatActivity {
-    private Month output = MainActivity.months.getMonth(MainActivity.currentYear, MainActivity.currentMonth);
-    private double income = 0;
-    private double expense = 0;
+public class graph_detailed extends AppCompatActivity {
+
+    PieChart pieChart ;
+    ArrayList<Entry> entries ;
+    ArrayList<String> PieEntryLabels ;
+    PieDataSet pieDataSet ;
+    PieData pieData ;
     private int selctedMonth;
-    private  int currentYear;
-    private static SharedPreferences.Editor saveEditor;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graph);
+        setContentView(R.layout.activity_graph_detailed);
 
-        //Back Button aktivieren
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph </font>"));
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph</font>"));
 
-
-        if (output != null) {
-            income = output.getSumIncome();
-            expense= output.getSumExpense();
-            drawPie();
-        }
-
-        Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph);
-        Spinner spinnerYear = findViewById(R.id.spinnerYearGraph);
+        Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph2);
+        Spinner spinnerYear = findViewById(R.id.spinnerYearGraph2);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
@@ -75,6 +65,7 @@ public class graph extends AppCompatActivity {
         month.add("November"); month.add("Dezember");
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, month);
         adapter.setDropDownViewResource(R.layout.spinner);
+
         spinnerMonth.setAdapter(adapter);
 
         ArrayList<String> year = new ArrayList<>();
@@ -83,11 +74,7 @@ public class graph extends AppCompatActivity {
             year.add(Integer.toString(i));
         }
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
-        adapter1.setDropDownViewResource(R.layout.spinner);
         spinnerYear.setAdapter(adapter1);
-
-
-
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -146,7 +133,7 @@ public class graph extends AppCompatActivity {
                     /*updateListView();
                     saveEditor.putInt("currentMonth", selctedMonth);
                     saveEditor.commit();*/
-                    drawPie();
+                    pieChart.animateY(3000);
 
                 }
                 return;
@@ -155,64 +142,59 @@ public class graph extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
-        Button detailViewButton = (Button) findViewById(R.id.detailedView);
-        detailViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(graph.this, graph_detailed.class);
-                startActivity(intent);
-            }
-        });
-    }
 
-    /**
-     * draw the Pie chart
-     */
-    public void drawPie(){
+        pieChart = (PieChart) findViewById(R.id.chart1);
 
+        entries = new ArrayList<>();
 
-        AnimatedPieView mAnimatedPieView = findViewById(R.id.animatedPieView_graph);
-        AnimatedPieViewConfig config = new AnimatedPieViewConfig();
+        PieEntryLabels = new ArrayList<String>();
 
-        //config.addDatas(addElement());
+        AddValuesToPIEENTRY();
 
-        if (income==0&&expense==0){
-            config.startAngle(90)
-                    .addData(new SimplePieInfo(50, Color.parseColor("#FF800000"), "Einnahmen"))
-                    .addData(new SimplePieInfo(50, Color.parseColor("#FFFF00FF"), "Ausgaben"))
-                    .drawText(true).strokeMode(false)
-                    .duration(1000).textSize(40);// draw pie animation duration
-        }else {
-            config.startAngle(-90)//.addDatas(listElement())// Starting angle offset
-                    .addData(new SimplePieInfo(income, Color.parseColor("#4CAF50"), "Einnahmen"))
-                    .addData(new SimplePieInfo(expense, Color.parseColor("#DC3939"), "Ausgaben"))
-                    .drawText(true).strokeMode(false)
-                    .duration(1000).textSize(40);// draw pie animation duration
-        }
+        AddValuesToPieEntryLabels();
 
-        mAnimatedPieView.applyConfig(config);
-        mAnimatedPieView.start();
+        pieDataSet = new PieDataSet(entries, "");
+
+        pieData = new PieData(PieEntryLabels, pieDataSet);
+
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        pieChart.setData(pieData);
+
+        pieChart.animateY(3000);
+
 
     }
 
+    public void AddValuesToPIEENTRY(){
 
-    public List listElement(){
-        List<SimplePieInfo> list=new ArrayList<>();
-        list.add(new SimplePieInfo(20,Color.parseColor("#78314"),"Test"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#58314"),"Test1"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#48314"),"Test2"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#38314"),"Test3"));
-        return list;
+        entries.add(new BarEntry(2f, 0));
+        entries.add(new BarEntry(4f, 1));
+        entries.add(new BarEntry(6f, 2));
+        entries.add(new BarEntry(8f, 3));
+        entries.add(new BarEntry(7f, 4));
+        entries.add(new BarEntry(3f, 5));
+
+    }
+
+    public void AddValuesToPieEntryLabels(){
+
+        PieEntryLabels.add("January");
+        PieEntryLabels.add("February");
+        PieEntryLabels.add("March");
+        PieEntryLabels.add("April");
+        PieEntryLabels.add("May");
+        PieEntryLabels.add("June");
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == android.R.id.home){
-            this.finish();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
