@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -25,7 +27,7 @@ public class create_category_expense extends AppCompatActivity {
     static int id = 10;
     //gespeicherte Variablen
     static String name;
-    static String savedName;
+   // static String savedName;
     private SharedPreferences savePreference2;
     private SharedPreferences.Editor saveEditor2;
 
@@ -38,6 +40,7 @@ public class create_category_expense extends AppCompatActivity {
         savePreference2 = PreferenceManager.getDefaultSharedPreferences(this);
         saveEditor2 = savePreference2.edit();
 
+        checkSharedPreferences();
         selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
 
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +66,8 @@ public class create_category_expense extends AppCompatActivity {
                 name = content.getText().toString();
                 saveEditor2.putString("name", name);
                 saveEditor2.commit();
-                savedName = savePreference2.getString("name", "default");
                 Intent intent= new Intent(create_category_expense.this, expense_menu.class);
-                intent.putExtra("Test", savedName);
+                intent.putExtra("eins", name);
                 startActivity(intent);
 
             }
@@ -98,5 +100,13 @@ public class create_category_expense extends AppCompatActivity {
             }
         }
     }
+    private void checkSharedPreferences() {
 
+        String name_check = savePreference2.getString("name", "");
+        if (!name_check.equals("")) {
+            name = name_check;
+        } else {
+            name = "A";
+        }
+    }
 }

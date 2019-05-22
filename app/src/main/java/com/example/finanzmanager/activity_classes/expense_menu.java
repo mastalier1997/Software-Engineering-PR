@@ -26,17 +26,17 @@ import java.util.List;
 public class expense_menu extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    static String savedName;
     static String extraName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
         Spinner spinner = (Spinner) findViewById(R.id.dropDown_In_Out);
-        // Speicherung der eigenen Kategorie
+
+        // Speicherung der eigenen Kategorie & Kontrolle bei Neustart
         pref =  PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
-        checkSharedPreferences();
+        //checkSharedPreferences();
 
         List<String> categories= new ArrayList<>();
         categories.add(0,"Ausgaben");
@@ -171,19 +171,20 @@ public class expense_menu extends AppCompatActivity {
         });
 
         Intent extraIntent = getIntent();
-        extraName = extraIntent.getStringExtra("Test");
+        if(extraName == null){
+            extraName = extraIntent.getStringExtra("eins");
+        }
         TextView imageText = findViewById(R.id.textView_extraCat_expense);
         imageText.setText(extraName);
         ImageButton imageButton10 = (ImageButton) findViewById(R.id.Button_extraCatExp);
-        editor.putString("savedName", extraName);
+        editor.putString("extraName", extraName);
         editor.commit();
-        savedName = pref.getString("savedName", "default");
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(expense_menu.this, new_expense.class);
                 intent.putExtra("kategorie", 10);
-                intent.putExtra("Test", savedName);
+                intent.putExtra("zwei", extraName);
                 startActivity(intent);
             }
         });
@@ -203,11 +204,11 @@ public class expense_menu extends AppCompatActivity {
 
     private void checkSharedPreferences() {
 
-        String newSavedName = pref.getString("savedName", "default");
-        if (newSavedName != "default") {
-            savedName = newSavedName;
+        String newSavedName = pref.getString("extraName", "");
+        if (newSavedName != "") {
+            extraName = newSavedName;
         } else {
-            savedName = null;
+            extraName = "B";
         }
 
     }
