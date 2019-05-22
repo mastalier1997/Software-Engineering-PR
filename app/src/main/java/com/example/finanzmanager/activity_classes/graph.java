@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.finanzmanager.Objects.Month;
+import com.example.finanzmanager.Objects.Month_overview;
 import com.example.finanzmanager.R;
 import com.razerdp.widget.animatedpieview.AnimatedPieView;
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
@@ -33,6 +34,8 @@ public class graph extends AppCompatActivity {
     private int selctedMonth;
     private  int currentYear;
     private static SharedPreferences.Editor saveEditor;
+    private MainActivity mainActivity;
+    public static Month_overview months;
 
 
     @Override
@@ -85,6 +88,8 @@ public class graph extends AppCompatActivity {
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
         adapter1.setDropDownViewResource(R.layout.spinner);
         spinnerYear.setAdapter(adapter1);
+
+
 
 
 
@@ -143,9 +148,10 @@ public class graph extends AppCompatActivity {
                         default:
                             selctedMonth =0;
                     }
-                    /*updateListView();
-                    saveEditor.putInt("currentMonth", selctedMonth);
-                    saveEditor.commit();*/
+                    mainActivity.setCurrentMonth(selctedMonth);
+                    //mainActivity.updateListView();
+                    income = output.getSumIncome();
+                    expense= output.getSumExpense();
                     drawPie();
 
                 }
