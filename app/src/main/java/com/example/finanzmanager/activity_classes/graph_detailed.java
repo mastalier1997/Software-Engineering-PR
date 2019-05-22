@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.finanzmanager.Objects.Income;
+import com.example.finanzmanager.Objects.PositionList;
 import com.example.finanzmanager.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarEntry;
@@ -166,20 +168,26 @@ public class graph_detailed extends AppCompatActivity {
 
     }
 
+    public static PositionList positionList;
+
     public void AddValuesToPIEENTRY(){
 
         entries.add(new BarEntry(2f, 0));
-        entries.add(new BarEntry(4f, 1));
+        /*entries.add(new BarEntry(4f, 1));
         entries.add(new BarEntry(6f, 2));
         entries.add(new BarEntry(8f, 3));
         entries.add(new BarEntry(7f, 4));
-        entries.add(new BarEntry(3f, 5));
+        entries.add(new BarEntry(3f, 5));*/
+        /*ArrayList a = positionList.getExpenseValueFromDate(4,2019);
+        for (int i=0; i<a.size();i++){
+            entries.add(new BarEntry(2f,i));
+        }*/
 
     }
 
     public void AddValuesToPieEntryLabels(){
-
-        PieEntryLabels.add("January");
+       // ArrayList a = positionList.getExpenseValueFromDate(4,2019);
+        //PieEntryLabels.add(""+a.get(0)+"");
         PieEntryLabels.add("February");
         PieEntryLabels.add("March");
         PieEntryLabels.add("April");

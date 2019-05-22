@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /**
      * update the list views for incomes and expenses
      */
-    private void updateListView() {
+    public void updateListView() {
         //ListView
         //Einkommen
         //Befüllung aus account

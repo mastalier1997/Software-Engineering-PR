@@ -301,6 +301,17 @@ public class PositionList {
         return found;
     }
 
+    public ArrayList<Double> getExpenseValueFromDate(int month, int year) {
+        ArrayList<Double> found = new ArrayList<>();
+        for (int i = 0; i<expenseList.size(); i++) {
+            if (expenseList.get(i).getDate().getMonth() == month && expenseList.get(i).getDate().getYear() == year) {
+                found.add(this.getValueExpense(i));
+            }
+        }
+        Collections.reverse(found);
+        return found;
+    }
+
     /**
      * adds a new Income to the list
      * @param date
@@ -384,6 +395,8 @@ public class PositionList {
      * @return expense
      */
     public String getExpenseDate(int i) { return expenseList.get(i).getInfoDate(); }
+
+    public double getValueExpense(int i){ return  expenseList.get(i).getValue();}
 
     /**
      * returns the number of incomes in total
