@@ -26,7 +26,9 @@ import java.util.List;
 public class expense_menu extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    static String extraName;
+    public static String extraName;
+    public static String saveName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class expense_menu extends AppCompatActivity {
         // Speicherung der eigenen Kategorie & Kontrolle bei Neustart
         pref =  PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
-        //checkSharedPreferences();
+        saveName = extraName;
+        checkSharedPreferences();
 
         List<String> categories= new ArrayList<>();
         categories.add(0,"Ausgaben");
@@ -173,12 +176,16 @@ public class expense_menu extends AppCompatActivity {
         Intent extraIntent = getIntent();
         if(extraName == null){
             extraName = extraIntent.getStringExtra("eins");
+            editor.putString("extraName", extraName);
+            editor.commit();
         }
+
+
         TextView imageText = findViewById(R.id.textView_extraCat_expense);
         imageText.setText(extraName);
+
         ImageButton imageButton10 = (ImageButton) findViewById(R.id.Button_extraCatExp);
-        editor.putString("extraName", extraName);
-        editor.commit();
+
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -205,10 +212,10 @@ public class expense_menu extends AppCompatActivity {
     private void checkSharedPreferences() {
 
         String newSavedName = pref.getString("extraName", "");
-        if (newSavedName != "") {
+        if (!newSavedName.equals("")) {
             extraName = newSavedName;
         } else {
-            extraName = "B";
+            extraName = saveName;
         }
 
     }
