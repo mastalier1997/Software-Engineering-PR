@@ -34,32 +34,24 @@ public class new_expense extends AppCompatActivity {
     int year = calendar.get(Calendar.YEAR);
 
     // Speicherung der eigenen Kategorie
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
-    static String extraName2;
+    static String extraName3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_expense);
 
-        // Speicherung der eigenen Kategorie
-        pref =  PreferenceManager.getDefaultSharedPreferences(this);
-        editor = pref.edit();
-        checkSharedPreferences();
 
         textView=(TextView) findViewById(R.id.textView_date_expense);
         ImageButton imageButton=(ImageButton) findViewById(R.id.Button_date_expense);
 
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
-        extraName2 = intent.getStringExtra("zwei");
+        extraName3 = intent.getStringExtra("zwei");
 
         repeat = (CheckBox) findViewById(R.id.checkBox_repeat_expense);
 
-        editor.putString("extraName2", extraName2);
-        editor.commit();
-       // lastSavedName = pref.getString("lastSavedName", "default");
+
 
         //Anzeige des richtigen Bildes und Textes
         switch (category) {
@@ -121,7 +113,7 @@ public class new_expense extends AppCompatActivity {
                 imgView = (ImageView) findViewById(R.id.imageView_extraCat_expense);
                 imgView.setVisibility(View.VISIBLE);
                 txtView = (TextView) findViewById(R.id.textView_extraCat_expense);
-                txtView.setText(extraName2);
+                txtView.setText(extraName3);
                 txtView.setVisibility(View.VISIBLE);
                 break;
         }
@@ -204,13 +196,5 @@ public class new_expense extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void checkSharedPreferences() {
 
-        String name_json = pref.getString("extraName2", "");
-        if (!name_json.equals("")) {
-            extraName2 = name_json;
-        } else {
-            extraName2 = "C";
-        }
-    }
 }

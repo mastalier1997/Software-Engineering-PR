@@ -24,10 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class expense_menu extends AppCompatActivity {
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+    SharedPreferences expense_pref;
+    SharedPreferences.Editor expense_editor;
     public static String extraName;
-    public static String saveName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +35,8 @@ public class expense_menu extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.dropDown_In_Out);
 
         // Speicherung der eigenen Kategorie & Kontrolle bei Neustart
-        pref =  PreferenceManager.getDefaultSharedPreferences(this);
-        editor = pref.edit();
-        saveName = extraName;
+        expense_pref =  PreferenceManager.getDefaultSharedPreferences(this);
+        expense_editor = expense_pref.edit();
         checkSharedPreferences();
 
         List<String> categories= new ArrayList<>();
@@ -174,10 +172,10 @@ public class expense_menu extends AppCompatActivity {
         });
 
         Intent extraIntent = getIntent();
-        if(extraName == null){
+        if(extraIntent.getStringExtra("eins") != null){
             extraName = extraIntent.getStringExtra("eins");
-            editor.putString("extraName", extraName);
-            editor.commit();
+            expense_editor.putString("extraName", extraName);
+            expense_editor.commit();
         }
 
 
@@ -211,11 +209,11 @@ public class expense_menu extends AppCompatActivity {
 
     private void checkSharedPreferences() {
 
-        String newSavedName = pref.getString("extraName", "");
+        String newSavedName = expense_pref.getString("extraName", "");
         if (!newSavedName.equals("")) {
             extraName = newSavedName;
         } else {
-            extraName = saveName;
+            extraName = null;
         }
 
     }
