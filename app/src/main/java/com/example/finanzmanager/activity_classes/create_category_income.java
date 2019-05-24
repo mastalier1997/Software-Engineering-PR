@@ -30,7 +30,7 @@ public class create_category_income extends AppCompatActivity {
 
         selectImage = (ImageButton) findViewById(R.id.Button_selectImage_income);
 
-        selectImage.setOnClickListener(new View.OnClickListener() {
+      /*  selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -41,7 +41,7 @@ public class create_category_income extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });
-
+      */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -53,7 +53,7 @@ public class create_category_income extends AppCompatActivity {
                 EditText content2 = findViewById(R.id.textView_newCatName_income);
                 name2 = content2.getText().toString();
                 Intent intent= new Intent(create_category_income.this, income_menu.class);
-                intent.putExtra("Test2", name2);
+                intent.putExtra("income_text", name2);
                 startActivity(intent);
 
             }

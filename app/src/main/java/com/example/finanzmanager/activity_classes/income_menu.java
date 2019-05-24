@@ -1,6 +1,8 @@
 package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,12 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class income_menu extends AppCompatActivity {
-
+    SharedPreferences income_pref;
+    SharedPreferences.Editor income_editor;
+    public static String extraName2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
+
+        // Speicherung der eigenen Kategorie & Kontrolle bei Neustart
+        income_pref =  PreferenceManager.getDefaultSharedPreferences(this);
+        income_editor = income_pref.edit();
+        income_checkSharedPreferences();
 
         Spinner dropdown2 = findViewById(R.id.dropDown_InOut);
         List<String> items2= new ArrayList<>();
@@ -124,8 +133,17 @@ public class income_menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         Intent extraIntent = getIntent();
-        final String extraName2 = extraIntent.getStringExtra("Test2");
+
+        if(extraIntent.getStringExtra("income_text") != null){
+            extraName2 = extraIntent.getStringExtra("income_text");
+            income_editor.putString("extraName2", extraName2);
+            income_editor.commit();
+        }
+        //extraName2 = extraIntent.getStringExtra("Test2");
+
         TextView imageText2 = findViewById(R.id.textView_extraCat_income);
         imageText2.setText(extraName2);
         ImageButton imageButton7 = (ImageButton) findViewById(R.id.Button_extraCatInc);
@@ -134,7 +152,7 @@ public class income_menu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(income_menu.this, new_income.class);
                 intent.putExtra("kategorie", 7);
-                intent.putExtra("Test2", extraName2);
+                intent.putExtra("income_text2", extraName2);
                 startActivity(intent);
             }
         });
@@ -154,5 +172,15 @@ public class income_menu extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void income_checkSharedPreferences() {
+
+        String newSavedName = income_pref.getString("extraName2", "");
+        if (!newSavedName.equals("")) {
+            extraName2 = newSavedName;
+        } else {
+            extraName2 = null;
+        }
+
     }
 }

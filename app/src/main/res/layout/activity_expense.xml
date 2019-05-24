@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="308dp"
         android:layout_marginTop="192dp"
+        android:fontFamily="@font/droid"
         android:text="Kino"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="348dp"
+        android:fontFamily="@font/droid"
         android:text="Sprit"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginTop="348dp"
+        android:fontFamily="@font/droid"
         android:text="FastFood"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,10 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="272dp"
         android:layout_marginTop="348dp"
+        android:fontFamily="@font/droid"
         android:text="Lebensmittel"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,10 +65,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="504dp"
+        android:fontFamily="@font/droid"
         android:text="Fitnessstudio"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,15 +79,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/droid"
         android:text=" "
         android:textColor="#000000	"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:visibility="visible"
-        android:fontFamily="@font/droid"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button_extraCatExp" />
+        app:layout_constraintTop_toBottomOf="@+id/Button_extraCatExp"
+        app:layout_constraintVertical_bias="0.089" />
 
     <TextView
         android:id="@+id/textView_hotel"
@@ -95,10 +98,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="184dp"
         android:layout_marginTop="504dp"
+        android:fontFamily="@font/droid"
         android:text="Hotel"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,10 +111,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="290dp"
         android:layout_marginTop="504dp"
+        android:fontFamily="@font/droid"
         android:text="Reisen"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,10 +124,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
         android:layout_marginTop="192dp"
+        android:fontFamily="@font/droid"
         android:text="Abhebung"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,10 +137,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="194dp"
+        android:fontFamily="@font/droid"
         android:text="Bar"
         android:textColor="#000000	"
-        android:textSize="18sp"
-        android:fontFamily="@font/droid"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

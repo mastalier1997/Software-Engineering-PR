@@ -27,22 +27,16 @@ public class create_category_expense extends AppCompatActivity {
     static int id = 10;
     //gespeicherte Variablen
     static String name;
-   // static String savedName;
-    private SharedPreferences savePreference2;
-    private SharedPreferences.Editor saveEditor2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_category_expense);
 
-        // Speicherung der eigenen Kategorie
-        savePreference2 = PreferenceManager.getDefaultSharedPreferences(this);
-        saveEditor2 = savePreference2.edit();
 
-        checkSharedPreferences();
-        selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
-
+       // selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
+    /*
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +47,7 @@ public class create_category_expense extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });
-
+    */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -64,8 +58,7 @@ public class create_category_expense extends AppCompatActivity {
             public void onClick(View v) {
                 EditText content = findViewById(R.id.textView_newCatName_expense);
                 name = content.getText().toString();
-                saveEditor2.putString("name", name);
-                saveEditor2.commit();
+
                 Intent intent= new Intent(create_category_expense.this, expense_menu.class);
                 intent.putExtra("eins", name);
                 startActivity(intent);
@@ -100,13 +93,5 @@ public class create_category_expense extends AppCompatActivity {
             }
         }
     }
-    private void checkSharedPreferences() {
 
-        String name_check = savePreference2.getString("name", "");
-        if (!name_check.equals("")) {
-            name = name_check;
-        } else {
-            name = "A";
-        }
-    }
 }

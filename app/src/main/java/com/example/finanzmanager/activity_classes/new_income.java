@@ -40,7 +40,7 @@ public class new_income extends AppCompatActivity {
 
         Intent intent = getIntent();
         int category = intent.getIntExtra("kategorie", 0);
-        String extraName3 = intent.getStringExtra("Test2");
+        String extraName3 = intent.getStringExtra("income_text2");
 
         repeat = (CheckBox) findViewById(R.id.checkBox_repeat_income);
         calendar= Calendar.getInstance();
