@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828"
-    tools:context=".activity_classes.expense_overview">
+    tools:context="navigationBar.expense_overview">
 
     <ListView
         android:id="@+id/listView_all_expenses_month"

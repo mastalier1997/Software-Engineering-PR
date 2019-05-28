@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".activity_classes.income_menu">
+    tools:context="addNew.income_menu">
 
     <ImageButton
         android:id="@+id/Button_extraCatInc"
