@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".activity_classes.create_category_income">
+    tools:context="addNew.create_category_income">
 
     <EditText
         android:id="@+id/textView_newCatName_income"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECF0F2"
-    tools:context=".activity_classes.new_expense">
+    tools:context="addNew.new_expense">
 
     <TextView
         android:id="@+id/textView_date_expense"

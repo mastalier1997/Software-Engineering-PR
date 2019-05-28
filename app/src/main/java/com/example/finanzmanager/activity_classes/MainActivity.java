@@ -10,7 +10,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,16 +26,14 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.finanzmanager.Objects.Date;
-import com.example.finanzmanager.Objects.Month;
-import com.example.finanzmanager.Objects.Month_overview;
-import com.example.finanzmanager.Objects.PositionList;
+import com.example.finanzmanager.DataClasses.Date;
+import com.example.finanzmanager.DataClasses.Month;
+import com.example.finanzmanager.DataClasses.Month_overview;
+import com.example.finanzmanager.DataClasses.PositionList;
 import com.example.finanzmanager.R;
-import com.example.finanzmanager.Objects.Income;
-import com.example.finanzmanager.Objects.Expense;
+import com.example.finanzmanager.DataClasses.Income;
+import com.example.finanzmanager.DataClasses.Expense;
 import com.google.gson.Gson;
-
-import org.apache.poi.ss.usermodel.FontFamily;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -44,6 +41,14 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.lang.Double;
 import java.util.List;
+
+import addNew.income_menu;
+import navigationBar.expense_overview;
+import navigationBar.exports;
+import navigationBar.graph;
+import navigationBar.imports;
+import navigationBar.income_overview;
+import settings.settings;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -100,12 +105,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
         checkSharedPreferences();
 
+        Log.e("year", Integer.toString(currentMonth) + "." + Integer.toString(currentYear));
+        updateListView();
+
         //DropDown für Jahre
         Spinner dropdown_year = findViewById(R.id.dropDown_year);
         if (years.isEmpty()) years.add(Calendar.getInstance().get(Calendar.YEAR));
+        Collections.sort(years);
+        Collections.reverse(years);
         ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
         adapter_year.setDropDownViewResource(R.layout.spinner);
         dropdown_year.setAdapter(adapter_year);
+        dropdown_year.setSelection(numOfYear(years, currentYear));
 
 
         //Aktualisierung wenn neues Jahr ausgewählt wird
@@ -300,6 +311,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public static void setCurrentMonth(Integer currentMonth) {
         MainActivity.currentMonth = currentMonth;
+        saveEditor.putInt("currentMonth", currentMonth);
+        saveEditor.commit();
+    }
+
+    public static void setCurrentYear(Integer currentYear) {
+        MainActivity.currentYear = currentYear;
+        saveEditor.putInt("currentYear", currentYear);
+        saveEditor.commit();
     }
 
     /**
@@ -420,10 +439,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent= new Intent(MainActivity.this, graph.class);
             startActivity(intent);
         } else if (id == R.id.nav_export) {
-            Intent intent = new Intent(MainActivity.this, Export.class);
+            Intent intent = new Intent(MainActivity.this, exports.class);
             startActivity(intent);
         } else if (id == R.id.nav_import) {
-            Intent intent = new Intent(MainActivity.this, Import.class);
+            Intent intent = new Intent(MainActivity.this, imports.class);
             startActivity(intent);
         }
 
@@ -540,7 +559,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         int year = savePreference.getInt("currentYear", -1);
-        Log.e("Jahr:", Integer.toString(year));
+
         if (year != -1) {
             currentYear = year;
         } else {
@@ -552,8 +571,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (month != -1) {
             currentMonth = month;
         } else {
-            currentMonth = 0;
+            currentMonth = 1;
         }
+    }
+
+    public int numOfYear(List<Integer> years, Integer search) {
+        int counter = 0;
+        for (Integer y : years) {
+            Log.e("year", Integer.toString(y.intValue()) + " -- " + Integer.toString(search));
+            if(y.intValue() == search) return counter;
+            counter++;
+        }
+        return counter;
     }
 
 }

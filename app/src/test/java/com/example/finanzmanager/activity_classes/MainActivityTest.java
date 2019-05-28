@@ -1,8 +1,7 @@
 package com.example.finanzmanager.activity_classes;
 
-import android.view.Menu;
 import android.view.MenuItem;
-import com.example.finanzmanager.Objects.Date;
+import com.example.finanzmanager.DataClasses.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
