@@ -8,37 +8,41 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_white_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_white_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_classes.create_category_expense" />
-        <activity android:name=".activity_classes.create_category_income" />
-        <activity android:name=".activity_classes.income_overview" />
-        <activity android:name=".activity_classes.expense_overview" />
-        <activity android:name=".activity_classes.Import" />
-        <activity android:name=".activity_classes.Export" />
-        <activity android:name=".activity_classes.graph" />
-        <activity android:name=".activity_classes.expense_menu" />
-        <activity android:name=".activity_classes.income_menu" />
-        <activity android:name=".activity_classes.new_income" />
-        <activity android:name=".activity_classes.new_expense" />
-        <activity android:name=".activity_classes.settings" />
-        <activity android:name=".activity_classes.repeat_settings_income" />
-        <activity android:name=".activity_classes.repeat_settings_expense" />
-        <activity android:name=".activity_classes.info_repeating_income" />
-        <activity android:name=".activity_classes.info_repeating_expense" />
-
+        <activity android:name="navigationBar.graph_detailed"></activity>
+        <activity android:name="addNew.create_category_expense" />
+        <activity android:name="addNew.create_category_income" />
+        <activity android:name="navigationBar.income_overview" />
+        <activity android:name="navigationBar.expense_overview" />
+        <activity android:name="navigationBar.imports" />
+        <activity android:name="navigationBar.exports" />
+        <activity android:name="navigationBar.graph" />
+        <activity android:name="addNew.expense_menu" />
+        <activity android:name="addNew.income_menu" />
+        <activity android:name="addNew.new_income" />
+        <activity android:name="addNew.new_expense" />
+        <activity android:name="settings.settings" />
+        <activity android:name="settings.repeat_settings_income" />
+        <activity android:name="settings.repeat_settings_expense" />
+        <activity android:name="settings.info_repeating_income" />
+        <activity android:name="settings.info_repeating_expense" />
         <activity
-            android:name=".activity_classes.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name="com.example.finanzmanager.activity_classes.EmailPasswordActivity"
+            android:label="LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity_classes.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

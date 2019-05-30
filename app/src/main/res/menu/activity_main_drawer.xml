@@ -12,18 +12,22 @@
         <item
             android:id="@+id/nav_expense"
             android:icon="@mipmap/dividens"
+            android:fontFamily="@font/droid"
             android:title="Ausgaben" />
         <item
             android:id="@+id/nav_graph"
             android:icon="@mipmap/lottery"
+            android:fontFamily="@font/droid"
             android:title="Grafik" />
         <item
             android:id="@+id/nav_export"
             android:icon="@drawable/ic_menu_send"
+            android:fontFamily="@font/droid"
             android:title="Export" />
         <item
             android:id="@+id/nav_import"
             android:icon="@drawable/bar"
+            android:fontFamily="@font/droid"
             android:title="Import" />
     </group>
 

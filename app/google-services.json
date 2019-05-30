@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1091801655549",
+    "firebase_url": "https://finanzmanager-bd53a.firebaseio.com",
+    "project_id": "finanzmanager-bd53a",
+    "storage_bucket": "finanzmanager-bd53a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091801655549:android:98538606535f43ff",
+        "android_client_info": {
+          "package_name": "com.example.finanzmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091801655549-enel12mamma0j1a1m60hnpj6npdqogds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finanzmanager",
+            "certificate_hash": "c9cc4267743bdfd236ed75b8c37cd4f216549fd1"
+          }
+        },
+        {
+          "client_id": "1091801655549-qap76dq8d9qqk3lbgma2rea6mparj7ji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvhu56VG_epQ3nYyM-opLoN-0SI8jCLQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091801655549-qap76dq8d9qqk3lbgma2rea6mparj7ji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,26 +16,19 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:layout_height="92dp"
+        app:srcCompat="@mipmap/logo_white_launcher" />
 
     <TextView
         android:id="@+id/textView_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="Finanzmanager"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#F66213"
         android:textSize="20sp"
+        android:fontFamily="@font/droid"
         tools:text="Finanzmanager" />
-
-    <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" " />
 
 </LinearLayout>

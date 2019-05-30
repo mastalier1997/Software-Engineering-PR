@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import addNew.income_menu;
+
 import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
