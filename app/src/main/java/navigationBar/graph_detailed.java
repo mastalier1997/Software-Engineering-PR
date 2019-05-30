@@ -44,7 +44,7 @@ public class graph_detailed extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph</font>"));
 
-        Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph2);
+        /*Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph2);
         Spinner spinnerYear = findViewById(R.id.spinnerYearGraph2);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
@@ -77,6 +77,14 @@ public class graph_detailed extends AppCompatActivity {
         }
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
         spinnerYear.setAdapter(adapter1);
+        spinnerYear.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
+                ((TextView) parent.getChildAt(0)).setTypeface(type);
+            }
+        });
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -135,14 +143,14 @@ public class graph_detailed extends AppCompatActivity {
                     /*updateListView();
                     saveEditor.putInt("currentMonth", selctedMonth);
                     saveEditor.commit();*/
-                    pieChart.animateY(3000);
+                   /* pieChart.animateY(3000);
 
                 }
                 return;
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
+        });*/
 
 
         pieChart = (PieChart) findViewById(R.id.chart1);
@@ -178,7 +186,7 @@ public class graph_detailed extends AppCompatActivity {
         entries.add(new BarEntry(8f, 3));
         entries.add(new BarEntry(7f, 4));
         entries.add(new BarEntry(3f, 5));*/
-        /*ArrayList a = positionList.getExpenseValueFromDate(4,2019);
+       /* ArrayList a = positionList.getExpenseValueFromDate(4,2019);
         for (int i=0; i<a.size();i++){
             entries.add(new BarEntry(2f,i));
         }*/
@@ -189,10 +197,10 @@ public class graph_detailed extends AppCompatActivity {
        // ArrayList a = positionList.getExpenseValueFromDate(4,2019);
         //PieEntryLabels.add(""+a.get(0)+"");
         PieEntryLabels.add("February");
-        PieEntryLabels.add("March");
+        /*PieEntryLabels.add("March");
         PieEntryLabels.add("April");
         PieEntryLabels.add("May");
-        PieEntryLabels.add("June");
+        PieEntryLabels.add("June");*/
 
     }
 

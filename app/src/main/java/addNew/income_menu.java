@@ -2,9 +2,13 @@ package addNew;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.finanzmanager.R;
+import com.example.finanzmanager.activity_classes.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +45,16 @@ public class income_menu extends AppCompatActivity {
         items2.add("Ausgaben");
 
         final ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items2);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner);
         dropdown2.setAdapter(adapter);
 
         dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
+                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
                 if (adapterView.getItemAtPosition(position).equals("Einnahmen")){
                     //do nothing
                 }else {
@@ -73,6 +82,8 @@ public class income_menu extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Einnahmen </font>"));
+
         // Es wird ein integer mitgegeben, mit dem das richtige Bild und Text ausgewählt wird
         ImageButton imageButton = (ImageButton) findViewById(R.id.Button_award);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +179,8 @@ public class income_menu extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home){
-            this.finish();
+            Intent intent = new Intent(income_menu.this, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

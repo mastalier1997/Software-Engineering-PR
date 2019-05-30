@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -288,6 +289,7 @@ public class expense_overview extends AppCompatActivity {
         //Back Button aktivieren
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Ausgaben </font>"));
     }
 
     private void updateYearListView() {

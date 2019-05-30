@@ -6,6 +6,7 @@ import java.util.Calendar;
 public class Month_overview {
 
     private ArrayList<Month> overview;
+    private int sumIncome;
 
     public Month_overview() {
         overview = new ArrayList<>();
@@ -118,6 +119,7 @@ public class Month_overview {
             }
         }
     }
+
 
     /**
      * adds a new year with all its 12 months to the list

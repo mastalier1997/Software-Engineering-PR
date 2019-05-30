@@ -18,7 +18,6 @@ public class exports extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Export </font>"));
 
 
