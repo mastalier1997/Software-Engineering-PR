@@ -573,6 +573,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             currentMonth = 1;
         }
+
     }
 
     public int numOfYear(List<Integer> years, Integer search) {

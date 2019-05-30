@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -111,6 +112,8 @@ public class new_income extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Einnahme </font>"));
+
 
         ImageButton checkButton = (ImageButton) findViewById(R.id.Button_check_income);
         checkButton.setOnClickListener(new View.OnClickListener() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF0F2"
+    android:background="#282828 "
     tools:context="addNew.expense_menu">
 
     <TextView
@@ -15,8 +15,8 @@
         android:layout_marginTop="192dp"
         android:fontFamily="@font/droid"
         android:text="Kino"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,8 +28,8 @@
         android:layout_marginTop="348dp"
         android:fontFamily="@font/droid"
         android:text="Sprit"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,12 +37,12 @@
         android:id="@+id/textView_fastFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
+        android:layout_marginStart="170dp"
         android:layout_marginTop="348dp"
         android:fontFamily="@font/droid"
         android:text="FastFood"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,8 +54,8 @@
         android:layout_marginTop="348dp"
         android:fontFamily="@font/droid"
         android:text="Lebensmittel"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,8 +67,8 @@
         android:layout_marginTop="504dp"
         android:fontFamily="@font/droid"
         android:text="Fitnessstudio"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,8 +82,8 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/droid"
         android:text=" "
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,8 +100,8 @@
         android:layout_marginTop="504dp"
         android:fontFamily="@font/droid"
         android:text="Hotel"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,8 +113,8 @@
         android:layout_marginTop="504dp"
         android:fontFamily="@font/droid"
         android:text="Reisen"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,12 +122,12 @@
         android:id="@+id/textView_atm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
+        android:layout_marginStart="172dp"
         android:layout_marginTop="192dp"
         android:fontFamily="@font/droid"
         android:text="Abhebung"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,8 +139,8 @@
         android:layout_marginTop="194dp"
         android:fontFamily="@font/droid"
         android:text="Bar"
-        android:textColor="#000000	"
-        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,22 +150,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="284dp"
         android:layout_marginTop="420dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/plane_icon_round" />
 
     <ImageButton
         android:id="@+id/Button_extraCatExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="73dp"
+        android:layout_height="71dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="564dp"
-        android:background="#ECF0F2"
+        android:layout_marginTop="548dp"
+        android:background="#282828"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/dividens_icon_round" />
+        app:srcCompat="@mipmap/plus_icon_round" />
 
     <ImageButton
         android:id="@+id/Button_gym"
@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="420dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/gym_icon_round" />
@@ -184,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginTop="420dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/hotel_icon_round" />
@@ -195,7 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="284dp"
         android:layout_marginTop="264dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/grocery_icon_round" />
@@ -206,7 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="264dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/gas_icon_round" />
@@ -217,7 +217,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="169dp"
         android:layout_marginTop="264dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/fastfood_icon_round" />
@@ -228,7 +228,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="52dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/cinema_icon_round" />
@@ -239,7 +239,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="169dp"
         android:layout_marginTop="108dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/atm_icon_round" />
@@ -250,7 +250,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="108dp"
-        android:background="#ECF0F2"
+        android:background="#282828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/bar_icon_round" />
@@ -263,6 +263,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#282828"
+        android:backgroundTint="#282828"
+        android:popupBackground="#282828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -278,8 +281,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="erstellen"
+        android:backgroundTint="#282828"
         android:fontFamily="@font/droid"
+        android:text="erstellen"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.67"

@@ -205,8 +205,8 @@ public class graph extends AppCompatActivity {
 
         if (income==0&&expense==0){
             config.startAngle(90)
-                    .addData(new SimplePieInfo(50, Color.parseColor("#FF800000"), "Einnahmen"))
-                    .addData(new SimplePieInfo(50, Color.parseColor("#FFFF00FF"), "Ausgaben"))
+                    .addData(new SimplePieInfo(50, Color.parseColor("#4CAF50"), "Einnahmen"))
+                    .addData(new SimplePieInfo(50, Color.parseColor("#DC3939"), "Ausgaben"))
                     .drawText(true).strokeMode(false)
                     .duration(1000).textSize(40);// draw pie animation duration
         }else {
@@ -232,6 +232,12 @@ public class graph extends AppCompatActivity {
         return list;
     }
 
+    /**
+     * gets number of year
+     * @param years
+     * @param search
+     * @return
+     */
     public int numOfYear(List<Integer> years, Integer search) {
         int counter = 0;
         for (Integer y : years) {
@@ -241,6 +247,12 @@ public class graph extends AppCompatActivity {
         return counter;
     }
 
+
+    /**
+     * back button to Main Activity
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
