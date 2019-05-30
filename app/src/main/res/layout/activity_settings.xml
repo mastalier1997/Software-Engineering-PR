@@ -15,6 +15,7 @@
         android:text="Einstellungen"
         android:textColor="#050505"
         android:textSize="30sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +27,7 @@
         android:layout_marginTop="104dp"
         android:textSize="17sp"
         android:text="Löschen von sich wiederholenden Positionen"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +40,7 @@
         android:layout_marginTop="176dp"
         android:text="Daten löschen"
         android:textSize="17sp"
+        android:fontFamily="@font/droid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,4 +63,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_menu_manage" />
+
+    <TextView
+        android:id="@+id/textView_logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="248dp"
+        android:fontFamily="@font/droid"
+        android:text="Ausloggen"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton_logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="232dp"
+        android:src="@android:drawable/btn_dialog"
+        app:layout_constraintStart_toEndOf="@+id/textView_logOut"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
