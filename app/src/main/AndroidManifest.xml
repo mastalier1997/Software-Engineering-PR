@@ -33,7 +33,7 @@
         <activity android:name="settings.info_repeating_expense" />
         <activity
             android:name="com.example.finanzmanager.activity_classes.EmailPasswordActivity"
-            android:label="LogIn">
+            android:label="Finanzmanager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
