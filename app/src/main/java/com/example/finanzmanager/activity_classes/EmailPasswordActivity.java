@@ -149,7 +149,7 @@ public class EmailPasswordActivity extends BaseActivity implements
 
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
-                            mStatusTextView.setText("auth_failed");
+                            mStatusTextView.setText("Fehler");
                         }
                         hideProgressDialog();
                         // [END_EXCLUDE]
@@ -230,9 +230,6 @@ public class EmailPasswordActivity extends BaseActivity implements
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
 
         } else {
-            mStatusTextView.setText("signed_out");
-            mDetailTextView.setText(null);
-
             findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
             findViewById(R.id.signedInButtons).setVisibility(View.GONE);

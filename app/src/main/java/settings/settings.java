@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.EmailPasswordActivity;
 import com.example.finanzmanager.activity_classes.MainActivity;
@@ -46,6 +49,18 @@ public class settings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Crashlytics.getInstance().crash(); // Force a crash
+            }
+        });
+
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
 
     }
 
