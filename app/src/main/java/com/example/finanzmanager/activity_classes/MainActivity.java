@@ -50,11 +50,12 @@ import navigationBar.imports;
 import navigationBar.income_overview;
 import settings.settings;
 
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //zwei objekte für die Speicherung am Smartphone
     private static SharedPreferences savePreference;
-    private static SharedPreferences.Editor saveEditor;
+    public static SharedPreferences.Editor saveEditor;
 
     //alle Variablen, welche am Smartphone gespeicher werden
     public static PositionList account;
@@ -224,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // je nachdem von welcher klasse man kommt wird unterschiedliches erstellt
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+
             if(bundle.getString("type").equals("income")) { // neue Einnahme
 
                 value = bundle.getInt("value");

@@ -78,6 +78,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:multidex:1.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+
+    // OpenCSV
+    implementation 'com.opencsv:opencsv:4.6'
 }
 repositories {
     maven { url "https://jitpack.io" }
