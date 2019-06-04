@@ -11,10 +11,10 @@ import java.util.List;
 
 public class PositionList {
 
-    private List<Income> incomeList;
+    public List<Income> incomeList;
     public List<Expense> expenseList;
-    private ArrayList<Income> repeatingIncomeList;
-    private ArrayList<Expense> repeatingExpenseList;
+    public ArrayList<Income> repeatingIncomeList;
+    public ArrayList<Expense> repeatingExpenseList;
     public ArrayList<String> categoriesIncome;
     public ArrayList<String> categoriesExpense;
 
