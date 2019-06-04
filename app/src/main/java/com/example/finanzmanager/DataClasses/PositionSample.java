@@ -1,6 +1,8 @@
 package com.example.finanzmanager.DataClasses;
 
-public class   PositionSample {
+import java.util.Comparator;
+
+public class   PositionSample implements Comparable{
     int positionType;
     Date date;
     int value;
@@ -76,4 +78,51 @@ public class   PositionSample {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    public String[] readyToExport(){
+        String[] s = new String[8];
+        s[0] = String.valueOf(positionType);
+        s[1] = String.valueOf(date.getDay());
+        s[2] = String.valueOf(date.getMonth());
+        s[3] = String.valueOf(date.getYear());
+        s[4] = String.valueOf(value);
+        s[5] = ((Boolean)reocurring).toString();
+        s[6] = category;
+        s[7] = description;
+
+        return s;
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        PositionSample other = (PositionSample)o;
+        if(this.date.getYear()> ((PositionSample) o).date.getYear()){
+            return 1;
+        }
+        else if(this.date.getYear()< ((PositionSample) o).date.getYear()){
+            return -1;
+        }
+        else{
+            if(this.date.getMonth()> ((PositionSample) o).date.getMonth()){
+                return 1;
+            }
+            else if(this.date.getMonth()< ((PositionSample) o).date.getMonth()){
+                return -1;
+            }
+            else{
+                if(this.date.getDay()> ((PositionSample) o).date.getDay()){
+                    return 1;
+                }
+                else if(this.date.getDay()< ((PositionSample) o).date.getDay()){
+                    return -1;
+                }
+                else{
+                    return 0;
+                }
+
+            }
+        }
+    }//compareTo
+
 }

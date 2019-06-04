@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.finanzmanager.DataClasses.Date;
@@ -29,7 +30,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.Buffer;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,8 +42,9 @@ import addNew.new_income;
 
 public class imports extends AppCompatActivity {
 
-    private String path;
     private Button button;
+    private TextView textView;
+    private TextView path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +56,35 @@ public class imports extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Import</font>"));
 
+        // File name
+        textView = findViewById(R.id.editText);
+        textView.setText("dateiname.csv");
+
+        // Path of file
+        path = findViewById(R.id.text_info_pfad);
+        path.setText("Pfad:" + android.os.Environment.getExternalStorageDirectory().getAbsolutePath());
+
         // import the csv file
         button = findViewById(R.id.button_import);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO: Checken ob Anroid 8.0 oder höher, sonst Import nicht möglich
                 List<PositionSample> samples = readCSVData();
+
+                // If file doesn't exist
+                if(samples == null){
+                    //Toast Message
+                    Context context = getApplicationContext();
+                    CharSequence text = textView.getText() + " existiert nicht!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+
+                // Load Data to app
                 if(!samples.isEmpty()) {
                     for (PositionSample s : samples) {
 
@@ -75,14 +103,14 @@ public class imports extends AppCompatActivity {
                             if(s.getPositionType()== 1) {
                                 addIncomeFromCurrentMonth(s.getDate(), s.getValue(),
                                         s.getCategory(), s.getDescription());
-                                MainActivity.account.addRepeatingExpense(s.getDate(), s.getValue(),
+                                MainActivity.account.addRepeatingIncome(s.getDate(), s.getValue(),
                                         s.getReocurring(), s.getCategory(), s.getDescription());
                             }
                         }
                         else if(s.getPositionType()== 0) {
                             MainActivity.account.addExpense(s.getDate(), s.getValue(),
                                     s.getReocurring(), s.getCategory(), s.getDescription());
-                            MainActivity.months.updateMonthIncome(s.getDate().getYear(),
+                            MainActivity.months.updateMonthExpense(s.getDate().getYear(),
                                     s.getDate().getMonth(), s.getValue());
                         }
                         else if(s.getPositionType()== 1) {
@@ -136,11 +164,20 @@ public class imports extends AppCompatActivity {
 
     private List<PositionSample> readCSVData() {
         List<PositionSample> dataList = new ArrayList<>();
-        InputStream is = getResources().openRawResource(R.raw.sample);
+        BufferedReader reader;
+        textView = findViewById(R.id.editText);
+
+        String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + textView.getText();
+        try {
+            reader = Files.newBufferedReader(Paths.get(csv));
+        } catch (IOException e){
+            return null;
+        }
+      /*  InputStream is = getResources().openRawResource(R.raw.sample);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
         );
-
+      */
         String line = "";
 
         try {
@@ -160,7 +197,9 @@ public class imports extends AppCompatActivity {
                         tokens[2].length() > 0 &&
                         tokens[3].length() > 0 &&
                         tokens[4].length() > 0 &&
-                        tokens[5].length() > 0) {
+                        tokens[5].length() > 0 &&
+                        tokens[6].length() > 0 &&
+                        tokens[7].length() > 0) {
                         sample.setPositionType(Integer.parseInt(tokens[0]));
                         sample.setDate(new Date(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3])));
                         sample.setValue(Integer.parseInt(tokens[4]));
