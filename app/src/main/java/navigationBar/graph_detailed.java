@@ -181,6 +181,9 @@ public class graph_detailed extends AppCompatActivity {
     public void AddValuesToPIEENTRY(){
 
         entries.add(new BarEntry(2f, 0));
+        entries.add(new BarEntry(6f, 1));
+        entries.add(new BarEntry(4f, 2));
+        entries.add(new BarEntry(3f, 3));
         /*entries.add(new BarEntry(4f, 1));
         entries.add(new BarEntry(6f, 2));
         entries.add(new BarEntry(8f, 3));
@@ -196,7 +199,11 @@ public class graph_detailed extends AppCompatActivity {
     public void AddValuesToPieEntryLabels(){
        // ArrayList a = positionList.getExpenseValueFromDate(4,2019);
         //PieEntryLabels.add(""+a.get(0)+"");
-        PieEntryLabels.add("February");
+        PieEntryLabels.add("Prämie");
+        PieEntryLabels.add("Investition");
+        PieEntryLabels.add("Fast Food");
+        PieEntryLabels.add("Dividenden");
+
         /*PieEntryLabels.add("March");
         PieEntryLabels.add("April");
         PieEntryLabels.add("May");
