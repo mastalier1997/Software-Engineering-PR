@@ -7,33 +7,16 @@
     android:background="#282828 "
     tools:context="navigationBar.graph_detailed">
 
-    <Spinner
-        android:id="@+id/spinnerYearGraph2"
-        android:layout_width="121dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="101dp"
-        android:background="@drawable/spinner_border"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerMonthGraph2"
-        android:layout_width="121dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="101dp"
-        android:background="@drawable/spinner_border"
-        android:popupBackground="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart1"
         android:layout_width="389dp"
         android:layout_height="409dp"
         android:layout_marginStart="11dp"
         android:layout_marginTop="223dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="99dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
