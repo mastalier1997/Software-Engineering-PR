@@ -1,4 +1,4 @@
-package com.example.finanzmanager.InstrumentedTests;
+package com.example.finanzmanager.activity_classes;
 
 
 import android.view.View;
@@ -8,7 +8,7 @@ import android.view.ViewParent;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.MainActivity;

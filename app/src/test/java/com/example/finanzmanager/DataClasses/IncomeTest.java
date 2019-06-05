@@ -40,7 +40,24 @@ public class IncomeTest {
     @Test
     public void getInfo() {
         String actual = income.getInfo();
-        String expected = value + "\t\t\t\t\t" + description;
+
+        StringBuffer info = new StringBuffer();
+        int value_size = 10;
+        int description_size = 17;
+        int category_size = 15;
+        info.append(" ");
+        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
+        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
+        info.append(String.format("%1$-" + category_size + "s", category).replace(' ', '\t'));
+        String repeat = "";
+        if (recurring) {
+            repeat = "ja";
+        } else {
+            repeat = "nein";
+        }
+        info.append(String.format("%1$" + 4 + "s", repeat).replace(' ', '\t'));
+        String expected = info.toString();
+
         assertEquals(expected, actual);
     }
 }

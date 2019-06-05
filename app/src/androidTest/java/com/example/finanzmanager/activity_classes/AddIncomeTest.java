@@ -1,4 +1,4 @@
-package com.example.finanzmanager.InstrumentedTests;
+package com.example.finanzmanager.activity_classes;
 
 
 import android.view.View;
@@ -12,7 +12,6 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.example.finanzmanager.R;
-import com.example.finanzmanager.activity_classes.MainActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -27,6 +26,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -36,21 +36,31 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Bei diesem Test wird eine neue Kategorie für Einnahmen erstellt.
- * Anschließend wird mit dieser eine neue einmalige Einnahme hinzugefügt.
- * Beschriftung der Einnahme: Putzmittel
- * Einnahmen pro Monat: 110
+ * Bei diesem Test wird eine einmalige Einnahme hinzugefügt.
+ * Beschriftung der Ausgabe: geld
+ * Ausgaben pro Monat: 50
  * Wiederkehrend: nein
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddNewIncomeCategoryTest {
+public class AddIncomeTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
 
     @Test
-    public void addNewIncomeCategoryTest() {
+    public void addIncomeTest() {
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.emailSignInButton), withText("anmelden"),
+                        childAtPosition(
+                                allOf(withId(R.id.emailPasswordButtons),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.RelativeLayout")),
+                                                1)),
+                                0),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(
@@ -61,28 +71,18 @@ public class AddNewIncomeCategoryTest {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.Button_createCat_expense), withText("ERSTELLEN"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                15),
-                        isDisplayed()));
-        appCompatButton.perform(click());
-
         ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_selectImage_income),
+                allOf(withId(R.id.Button_award),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                9),
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.textView_newCatName_income),
+                allOf(withId(R.id.editText_description_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -92,17 +92,17 @@ public class AddNewIncomeCategoryTest {
         appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.textView_newCatName_income),
+                allOf(withId(R.id.editText_description_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("Fwnster"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("geld"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.textView_newCatName_income), withText("Fwnster"),
+                allOf(withId(R.id.editText_description_income), withText("geld"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -112,86 +112,6 @@ public class AddNewIncomeCategoryTest {
         appCompatEditText3.perform(pressImeActionButton());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.textView_newCatName_income), withText("Fwnster"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText4.perform(replaceText("Fenster "));
-
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.textView_newCatName_income), withText("Fenster "),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText5.perform(closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.textView_newCatName_income), withText("Fenster "),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText6.perform(click());
-
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.Button_create_category_income),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
-
-        ViewInteraction appCompatImageButton3 = onView(
-                allOf(withId(R.id.Button_extraCatInc),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatImageButton3.perform(click());
-
-        ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.editText_description_income),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText7.perform(click());
-
-        ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.editText_description_income),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText8.perform(replaceText("putzmittel"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.editText_description_income), withText("putzmittel"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText9.perform(pressImeActionButton());
-
-        ViewInteraction appCompatEditText10 = onView(
                 allOf(withId(R.id.editText_value_income),
                         childAtPosition(
                                 childAtPosition(
@@ -199,19 +119,38 @@ public class AddNewIncomeCategoryTest {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText10.perform(replaceText("110"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText("50"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText11 = onView(
-                allOf(withId(R.id.editText_value_income), withText("110"),
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.editText_value_income), withText("50"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText11.perform(pressImeActionButton());
+        appCompatEditText5.perform(pressImeActionButton());
 
-        ViewInteraction appCompatImageButton4 = onView(
+        ViewInteraction appCompatImageButton2 = onView(
+                allOf(withId(R.id.Button_date_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                5),
+                        isDisplayed()));
+        appCompatImageButton2.perform(click());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        appCompatButton2.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton3 = onView(
                 allOf(withId(R.id.Button_check_income),
                         childAtPosition(
                                 childAtPosition(
@@ -219,15 +158,16 @@ public class AddNewIncomeCategoryTest {
                                         0),
                                 6),
                         isDisplayed()));
-        appCompatImageButton4.perform(click());
+        appCompatImageButton3.perform(click());
 
         ViewInteraction appCompatSpinner = onView(
                 allOf(withId(R.id.dropDown_month),
                         childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.support.design.widget.CoordinatorLayout")),
-                                        1),
-                                7),
+                                allOf(withId(R.id.constraintLayout),
+                                        childAtPosition(
+                                                withClassName(is("android.support.constraint.ConstraintLayout")),
+                                                12)),
+                                3),
                         isDisplayed()));
         appCompatSpinner.perform(click());
 
@@ -235,7 +175,7 @@ public class AddNewIncomeCategoryTest {
                 .inAdapterView(childAtPosition(
                         withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
                         0))
-                .atPosition(4);
+                .atPosition(5);
         appCompatCheckedTextView.perform(click());
     }
 
