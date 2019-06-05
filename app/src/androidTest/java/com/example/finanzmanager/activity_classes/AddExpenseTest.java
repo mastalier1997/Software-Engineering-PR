@@ -1,4 +1,4 @@
-package com.example.finanzmanager.InstrumentedTests;
+package com.example.finanzmanager.activity_classes;
 
 
 import android.view.View;
@@ -27,7 +27,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -37,20 +36,20 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Bei diesem Test wird eine monatliche Ausgabe hinzugefügt.
- * Beschriftung der Ausgabe: monatliches Essen
- * Ausgaben pro Monat: 200
- * Wiederkehrend: ja
+ * Bei diesem Test wird eine einmalige Ausgabe hinzugefügt.
+ * Beschriftung der Ausgabe: tanken fuer auto 1
+ * Ausgaben pro Monat: 40
+ * Wiederkehrend: nein
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddExpenseMonthlyTest {
+public class AddExpenseTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addExpenseMonthly() {
+    public void addExpenseTest() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(
@@ -79,12 +78,12 @@ public class AddExpenseMonthlyTest {
         appCompatCheckedTextView.perform(click());
 
         ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_fastFood),
+                allOf(withId(R.id.Button_gas),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                16),
+                                15),
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
@@ -106,10 +105,10 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("monatliches Essen "), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("tanken fuer auto 1"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editText_description_expense), withText("monatliches Essen "),
+                allOf(withId(R.id.editText_description_expense), withText("tanken fuer auto 1"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -126,10 +125,10 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("200"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText("40"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("200"),
+                allOf(withId(R.id.editText_value_expense), withText("40"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -138,36 +137,7 @@ public class AddExpenseMonthlyTest {
                         isDisplayed()));
         appCompatEditText5.perform(pressImeActionButton());
 
-        ViewInteraction appCompatCheckBox = onView(
-                allOf(withId(R.id.checkBox_repeat_expense), withText("Wiederkehrend"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatCheckBox.perform(click());
-
         ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.Button_date_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
-
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageButton3 = onView(
                 allOf(withId(R.id.Button_check_expense),
                         childAtPosition(
                                 childAtPosition(
@@ -175,7 +145,7 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 6),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatImageButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

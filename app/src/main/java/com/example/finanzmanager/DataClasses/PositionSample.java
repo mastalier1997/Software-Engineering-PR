@@ -1,14 +1,13 @@
 package com.example.finanzmanager.DataClasses;
 
-import java.util.Comparator;
 
 public class   PositionSample implements Comparable{
-    int positionType;
-    Date date;
-    int value;
-    boolean reocurring;
-    String category;
-    String description;
+    private int positionType;
+    private Date date;
+    private int value;
+    private boolean reocurring;
+    private String category;
+    private String description;
 
     public String getCategory() {
         return category;
@@ -96,25 +95,24 @@ public class   PositionSample implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        PositionSample other = (PositionSample)o;
-        if(this.date.getYear()> ((PositionSample) o).date.getYear()){
+        if(this.date.getYear()> ((PositionSample) o).getDate().getYear()){
             return 1;
         }
-        else if(this.date.getYear()< ((PositionSample) o).date.getYear()){
+        else if(this.date.getYear()< ((PositionSample) o).getDate().getYear()){
             return -1;
         }
         else{
-            if(this.date.getMonth()> ((PositionSample) o).date.getMonth()){
+            if(this.date.getMonth()> ((PositionSample) o).getDate().getMonth()){
                 return 1;
             }
-            else if(this.date.getMonth()< ((PositionSample) o).date.getMonth()){
+            else if(this.date.getMonth()< ((PositionSample) o).getDate().getMonth()){
                 return -1;
             }
             else{
-                if(this.date.getDay()> ((PositionSample) o).date.getDay()){
+                if(this.date.getDay()> ((PositionSample) o).getDate().getDay()){
                     return 1;
                 }
-                else if(this.date.getDay()< ((PositionSample) o).date.getDay()){
+                else if(this.date.getDay()< ((PositionSample) o).getDate().getDay()){
                     return -1;
                 }
                 else{

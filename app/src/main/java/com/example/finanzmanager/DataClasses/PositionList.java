@@ -299,6 +299,8 @@ public class PositionList {
         return found;
     }
 
+
+    //TODO: Methode nie benützt, kann man löschen?
     public ArrayList<Double> getExpenseValueFromDate(int month, int year) {
         ArrayList<Double> found = new ArrayList<>();
         for (int i = 0; i<expenseList.size(); i++) {
@@ -398,11 +400,10 @@ public class PositionList {
 
     /**
      * returns the number of incomes in total
-     */
+     */ //TODO: Methode löschen? wird nie benützt
     public int incomeLength() {
         return incomeList.size();
     }
-
 
 
     /**
@@ -410,7 +411,7 @@ public class PositionList {
      * @param month
      * @param year
      * @return number
-     */
+     */ //TODO: Methode löschen? wird nie benützt
     public int incomeLengthInMonth (int month, int year) {
         int size = 0;
         for(Income i : incomeList) {
@@ -421,7 +422,7 @@ public class PositionList {
 
     /**
      * returns the number of expenses in total
-     */
+     */ //TODO: Methode löschen? wird nie benützt
     public int expenseLength() {
         return expenseList.size();
     }
@@ -430,7 +431,7 @@ public class PositionList {
      * returns the number of expense in a month
      * @param month
      * @param year
-     */
+     */ //TODO: Methode löschen? wird nie benützt
     public int expenseLengthInMonth (int month, int year) {
         int size = 0;
         for(Expense i : expenseList) {

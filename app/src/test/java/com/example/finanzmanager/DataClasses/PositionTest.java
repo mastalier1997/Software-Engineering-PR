@@ -13,7 +13,7 @@ public class PositionTest {
     private double value = 10.10;
     // accepted delta for value
     private double delta = 0.01;
-    private boolean recurring = false;
+    private boolean recurring = true;
     private String category = "cat";
     private String description = "is a cat";
 
@@ -74,5 +74,46 @@ public class PositionTest {
     public void getDescription(){
         String actual = position.getDescription();
         assertEquals(description, actual);
+    }
+
+    @Test
+    public void getInfo(){
+        StringBuffer info = new StringBuffer();
+        int value_size = 10;
+        int description_size = 17;
+        int category_size = 15;
+        info.append(" ");
+        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
+        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
+        info.append(String.format("%1$-" + category_size + "s", category).replace(' ', '\t'));
+        String repeat = "";
+        if (recurring) {
+            repeat = "ja";
+        } else {
+            repeat = "nein";
+        }
+        info.append(String.format("%1$" + 4 + "s", repeat).replace(' ', '\t'));
+        String expected = info.toString();
+
+        String actual = position.getInfo();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getInfoDate(){
+        StringBuffer info = new StringBuffer();
+        int value_size = 10;
+        int description_size = 17;
+        int date_size = 19;
+        info.append(" ");
+        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
+        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
+        info.append(String.format("%1$" + date_size + "s", date.getString()).replace(' ', '\t'));
+        String expected = info.toString();
+
+        String actual = position.getInfoDate();
+
+        assertEquals(expected, actual);
     }
 }

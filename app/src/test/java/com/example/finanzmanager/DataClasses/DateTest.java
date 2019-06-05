@@ -45,16 +45,20 @@ public class DateTest {
         date = new Date(10, 10, -2010);
     }
 
-    /*
     @Test
-    public void printDate() {
-        String expected = day + "." + month + "." + year;
-        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        date.printDate();
-        assertEquals(expected, outContent.toString());
+    public void getString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append(day);
+        sb.append(".");
+        sb.append(month);
+        sb.append(".");
+        sb.append(year);
+        String expected = sb.toString();
+
+        String actual = date.getString();
+        assertEquals(expected, actual);
     }
-    */
+
 
     @Test
     public void getDay() {
