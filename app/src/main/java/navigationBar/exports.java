@@ -145,7 +145,7 @@ public class exports extends AppCompatActivity {
                 ps.setCategory(i.getCategory());
                 ps.setDate(i.getDate());
                 ps.setDescription(i.getDescription());
-                ps.setPositionType(1); // 1=income
+                ps.setPositionType(0); // 0=income
                 ps.setReocurring(i.getRecurring());
                 ps.setValue((int)i.getValue()); //TODO: Doubles exportieren möglich machen
                 allPos.add(ps);
