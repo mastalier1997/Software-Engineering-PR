@@ -2,6 +2,7 @@ package addNew;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
@@ -33,6 +34,8 @@ public class income_menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         // Speicherung der eigenen Kategorie & Kontrolle bei Neustart
         income_pref =  PreferenceManager.getDefaultSharedPreferences(this);

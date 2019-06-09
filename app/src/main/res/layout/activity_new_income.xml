@@ -13,12 +13,16 @@
         android:layout_height="63dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="248dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="420dp"
         android:background="#FFFFFF	"
         android:ems="10"
         android:fontFamily="@font/droid"
         android:hint="Beschreibung (optinal)"
         android:inputType="textPersonName"
         android:textColor="#F0000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,11 +32,15 @@
         android:layout_height="63dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="332dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="336dp"
         android:background="#FFFFFF	"
         android:ems="10"
         android:fontFamily="@font/droid"
         android:inputType="number"
         android:textColor="#F0000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,10 +50,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="480dp"
+        android:layout_marginEnd="206dp"
+        android:layout_marginBottom="219dp"
         android:buttonTint="#FFFFFF"
         android:fontFamily="@font/droid"
         android:text="Wiederkehrend"
         android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,22 +80,28 @@
         android:layout_width="43dp"
         android:layout_height="52dp"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="280dp"
+        android:layout_marginTop="647dp"
+        android:layout_marginEnd="292dp"
         android:layout_marginBottom="32dp"
         android:background="#282828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/cancel_inv_foreground" />
 
     <ImageButton
         android:id="@+id/Button_date_income"
         android:layout_width="81dp"
         android:layout_height="82dp"
+        android:layout_marginStart="258dp"
         android:layout_marginTop="452dp"
         android:layout_marginEnd="72dp"
+        android:layout_marginBottom="96dp"
         android:background="#282828"
+        app:layout_constraintBottom_toTopOf="@+id/Button_check_income"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/calender_inv_foreground" />
 
@@ -92,10 +110,14 @@
         android:layout_width="75dp"
         android:layout_height="90dp"
         android:layout_marginStart="265dp"
+        android:layout_marginTop="630dp"
+        android:layout_marginEnd="71dp"
         android:layout_marginBottom="11dp"
         android:background="#282828"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/accespt_foreground" />
 
     <ImageView
