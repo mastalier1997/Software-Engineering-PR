@@ -43,8 +43,12 @@
         <activity
             android:name=".activity_classes.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
+
+
+
     </application>
 
 </manifest>

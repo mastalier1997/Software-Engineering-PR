@@ -1,6 +1,7 @@
 package addNew;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class create_category_income extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_category_income);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         selectImage = (ImageButton) findViewById(R.id.Button_selectImage_income);
 

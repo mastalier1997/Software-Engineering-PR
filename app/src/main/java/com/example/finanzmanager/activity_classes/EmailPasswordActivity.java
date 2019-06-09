@@ -17,6 +17,7 @@
 package com.example.finanzmanager.activity_classes;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ public class EmailPasswordActivity extends BaseActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_emailpassword);
 
         // Views

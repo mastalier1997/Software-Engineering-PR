@@ -1,5 +1,6 @@
 package navigationBar;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -35,6 +36,8 @@ public class income_overview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_income_overview);
 
         Spinner spinner_month = findViewById(R.id.spinner_Month_income);

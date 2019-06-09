@@ -14,6 +14,10 @@
         android:layout_height="398dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="152dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="181dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +27,12 @@
         android:layout_height="29dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/spinner_border"
         android:popupBackground="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/animatedPieView_graph"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerYearGraph"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,8 +42,12 @@
         android:layout_height="29dp"
         android:layout_marginStart="252dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/spinner_border"
         android:popupBackground="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/animatedPieView_graph"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,9 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
+        android:layout_marginTop="575dp"
+        android:layout_marginEnd="117dp"
         android:layout_marginBottom="108dp"
         android:text="Detalierte Übersicht"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

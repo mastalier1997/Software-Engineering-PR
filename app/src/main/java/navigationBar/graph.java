@@ -2,6 +2,7 @@ package navigationBar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -43,6 +44,8 @@ public class graph extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_graph);
         Log.e("Jahr und Monat", Integer.toString(MainActivity.currentYear) + Integer.toString(MainActivity.currentMonth) );
         Log.e("test", "test");

@@ -1,5 +1,6 @@
 package navigationBar;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -43,6 +44,7 @@ public class graph_detailed extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph</font>"));
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         /*Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph2);
         Spinner spinnerYear = findViewById(R.id.spinnerYearGraph2);

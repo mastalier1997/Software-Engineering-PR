@@ -1,6 +1,7 @@
 package addNew;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -29,9 +30,11 @@ public class create_category_expense extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_category_expense);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-       // selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
+
+        // selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
     /*
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
