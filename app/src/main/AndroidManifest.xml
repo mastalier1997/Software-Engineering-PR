@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
 
     <application
         android:allowBackup="true"
@@ -14,26 +13,44 @@
         android:roundIcon="@mipmap/logo_white_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="navigationBar.graph_detailed"></activity>
-        <activity android:name="addNew.create_category_expense" />
-        <activity android:name="addNew.create_category_income" />
-        <activity android:name="navigationBar.income_overview" />
-        <activity android:name="navigationBar.expense_overview" />
-        <activity android:name="navigationBar.imports" />
-        <activity android:name="navigationBar.exports" />
-        <activity android:name="navigationBar.graph" />
-        <activity android:name="addNew.expense_menu" />
-        <activity android:name="addNew.income_menu" />
-        <activity android:name="addNew.new_income" />
-        <activity android:name="addNew.new_expense" />
-        <activity android:name="settings.settings" />
-        <activity android:name="settings.repeat_settings_income" />
-        <activity android:name="settings.repeat_settings_expense" />
-        <activity android:name="settings.info_repeating_income" />
-        <activity android:name="settings.info_repeating_expense" />
+        <activity android:name="navigationBar.graph_detailed"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.create_category_expense"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.create_category_income"
+            android:screenOrientation="portrait"/>
+        <activity android:name="navigationBar.income_overview"
+            android:screenOrientation="portrait"/>
+        <activity android:name="navigationBar.expense_overview"
+            android:screenOrientation="portrait"/>
+        <activity android:name="navigationBar.imports"
+            android:screenOrientation="portrait"/>
+        <activity android:name="navigationBar.exports"
+            android:screenOrientation="portrait"/>
+        <activity android:name="navigationBar.graph"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.expense_menu"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.income_menu"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.new_income"
+            android:screenOrientation="portrait"/>
+        <activity android:name="addNew.new_expense"
+            android:screenOrientation="portrait"/>
+        <activity android:name="settings.settings"
+            android:screenOrientation="portrait"/>
+        <activity android:name="settings.repeat_settings_income"
+            android:screenOrientation="portrait"/>
+        <activity android:name="settings.repeat_settings_expense"
+            android:screenOrientation="portrait"/>
+        <activity android:name="settings.info_repeating_income"
+            android:screenOrientation="portrait"/>
+        <activity android:name="settings.info_repeating_expense"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.example.finanzmanager.activity_classes.EmailPasswordActivity"
-            android:label="Finanzmanager">
+            android:label="Finanzmanager"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,8 +63,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
-
-
 
     </application>
 
