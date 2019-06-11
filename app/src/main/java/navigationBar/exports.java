@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -18,29 +16,18 @@ import android.widget.Toast;
 
 import com.example.finanzmanager.DataClasses.Expense;
 import com.example.finanzmanager.DataClasses.Income;
-import com.example.finanzmanager.DataClasses.Position;
 import com.example.finanzmanager.DataClasses.PositionSample;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.MainActivity;
 import com.opencsv.CSVWriter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class exports extends AppCompatActivity {
 
@@ -62,7 +49,7 @@ public class exports extends AppCompatActivity {
         // TextView Message
         textView = findViewById(R.id.text_info_Export);
         textView.setText("Durch Klicken auf \"Exportieren\" werden alle Daten in eine CSV Datei exportiert (Endung .csv)" +
-                    "\n\nSpeicherort: " + android.os.Environment.getExternalStorageDirectory().getAbsolutePath());
+                "\n\nSpeicherort: Eigene Dateien --> Interner Speicher");
 
         // Writing to CSV File
         button = findViewById(R.id.button_export);
@@ -70,19 +57,31 @@ public class exports extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                checkForPermission();
-                try {
-                    export();
-                } catch(IOException e){
-                    e.printStackTrace();
-                }
-                //Toast Message
-                Context context = getApplicationContext();
-                CharSequence text = "Export in CSV-Datei erfolgreich.";
-                int duration = Toast.LENGTH_SHORT;
+                // Check if permission WRITE_EXTERNAL_STORAGE is already granted
+                if (!(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+                    askForPermission();
+                } else {
+                    Log.d("exportData", "permission already granted");
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                    try {
+                        exportData();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+
+                        //Toast Message
+                        Context context = getApplicationContext();
+                        CharSequence text = "Export in CSV-Datei fehlgeschlagen.";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    //Toast Message
+                    Context context = getApplicationContext();
+                    CharSequence text = "Export in CSV-Datei erfolgreich. \n Dateiname: FM_Data... .csv";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
             }
         }); // End setOnClickListener
     }
@@ -91,30 +90,25 @@ public class exports extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             this.finish();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void checkForPermission(){
-        int REQUEST_WRITE_EXTERNAL_STORAGE = 99919;
-        if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-            Log.d("export", "permission already granted");
-        } else{
-            if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                Toast.makeText(this, "Zugriff auf den Speicher benötigt, um Daten zu exportieren",
-                        Toast.LENGTH_SHORT).show();
-            }
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
+    private void askForPermission() {
+        int REQUEST_WRITE_EXTERNAL_STORAGE = 99901;
+        if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(this, "Zugriff auf den Speicher benötigt, um Daten zu exportieren",
+                    Toast.LENGTH_LONG).show();
         }
-
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
     }
 
-    private void export() throws IOException{
-        //TODO: Android Version abfragen ober >= 8.0 Oreo, sonst export nicht möglich
-        String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/finanzmanager_data_" + System.currentTimeMillis() + ".csv";
+    private void exportData() throws IOException {
+        //TODO: Android Version abfragen ober >= 8.0 Oreo, sonst exportData nicht möglich
+        String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/FM_Data_" + System.currentTimeMillis() + ".csv";
         try (
                 Writer writer = Files.newBufferedWriter(Paths.get(csv));
 
@@ -130,56 +124,56 @@ public class exports extends AppCompatActivity {
 
             //add repeating Incomes to list
             List<Income> r_income_list = MainActivity.account.repeatingIncomeList;
-            for( Income i : r_income_list){
+            for (Income i : r_income_list) {
                 PositionSample ps = new PositionSample();
                 ps.setCategory(i.getCategory());
                 ps.setDate(i.getDate());
                 ps.setDescription(i.getDescription());
                 ps.setPositionType(1); // 1=income
                 ps.setReocurring(i.getRecurring());
-                ps.setValue((int)i.getValue()); //TODO: Doubles exportieren möglich machen
+                ps.setValue(i.getValue());
                 allPos.add(ps);
             }
 
             //add repeating Expenses to list
             List<Expense> r_expense_list = MainActivity.account.repeatingExpenseList;
-            for( Expense i : r_expense_list){
+            for (Expense i : r_expense_list) {
                 PositionSample ps = new PositionSample();
                 ps.setCategory(i.getCategory());
                 ps.setDate(i.getDate());
                 ps.setDescription(i.getDescription());
                 ps.setPositionType(0); // 0=income
                 ps.setReocurring(i.getRecurring());
-                ps.setValue((int)i.getValue()); //TODO: Doubles exportieren möglich machen
+                ps.setValue(i.getValue());
                 allPos.add(ps);
             }
 
             //add non repeating Incomes to list
             List<Income> income_list = MainActivity.account.incomeList;
-            for( Income i : income_list){
-                if(!i.getRecurring()) {
+            for (Income i : income_list) {
+                if (!i.getRecurring()) {
                     PositionSample ps = new PositionSample();
                     ps.setCategory(i.getCategory());
                     ps.setDate(i.getDate());
                     ps.setDescription(i.getDescription());
                     ps.setPositionType(1); // 1=income
                     ps.setReocurring(i.getRecurring());
-                    ps.setValue((int) i.getValue()); //TODO: Doubles exportieren möglich machen
+                    ps.setValue(i.getValue());
                     allPos.add(ps);
                 }
             }
 
             //add non repeating Expenses to list
             List<Expense> expense_list = MainActivity.account.expenseList;
-            for( Expense i : expense_list){
-                if(!i.getRecurring()) {
+            for (Expense i : expense_list) {
+                if (!i.getRecurring()) {
                     PositionSample ps = new PositionSample();
                     ps.setCategory(i.getCategory());
                     ps.setDate(i.getDate());
                     ps.setDescription(i.getDescription());
                     ps.setPositionType(0); // 0=expense
                     ps.setReocurring(i.getRecurring());
-                    ps.setValue((int) i.getValue()); //TODO: Doubles exportieren möglich machen
+                    ps.setValue(i.getValue());
                     allPos.add(ps);
                 }
             }
@@ -190,13 +184,14 @@ public class exports extends AppCompatActivity {
             //*Write to file*
 
             //Header of CSV-File
-            String[] headerRecord = {"Aus-/Eingabe","Tag","Monat","Jahr","Betrag","Wiederk.","Kategorie","Beschreibung"};
+            String[] headerRecord = {"Aus-/Eingabe", "Tag", "Monat", "Jahr", "Betrag", "Wiederk.", "Kategorie", "Beschreibung"};
             csvWriter.writeNext(headerRecord);
 
             //Write every Position to file
-            for(PositionSample ps : allPos){
+            for (PositionSample ps : allPos) {
                 csvWriter.writeNext(ps.readyToExport());
             }
         }
     }
+
 }

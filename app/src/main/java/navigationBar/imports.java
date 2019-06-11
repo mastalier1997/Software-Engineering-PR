@@ -1,18 +1,16 @@
 package navigationBar;
 
-import android.app.ListActivity;
+import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,26 +18,17 @@ import com.example.finanzmanager.DataClasses.Date;
 import com.example.finanzmanager.DataClasses.Expense;
 import com.example.finanzmanager.DataClasses.Income;
 import com.example.finanzmanager.DataClasses.Month;
-import com.example.finanzmanager.DataClasses.Month_overview;
 import com.example.finanzmanager.DataClasses.PositionSample;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.MainActivity;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.Buffer;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import addNew.new_income;
 
 public class imports extends AppCompatActivity {
 
@@ -65,7 +54,7 @@ public class imports extends AppCompatActivity {
 
         // Path of file
         path = findViewById(R.id.text_info_pfad);
-        path.setText("Pfad:" + android.os.Environment.getExternalStorageDirectory().getAbsolutePath());
+        path.setText("Datei von: Eigene Dateien --> Interner Speicher");
 
         // import the csv file
         button = findViewById(R.id.button_import);
@@ -73,96 +62,104 @@ public class imports extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Checken ob Anroid 8.0 oder höher, sonst Import nicht möglich
-                List<PositionSample> samples = readCSVData();
 
-                // If file doesn't exist
-                if(samples == null){
-                    //Toast Message
-                    Context context = getApplicationContext();
-                    CharSequence text = textView.getText() + " existiert nicht!";
-                    int duration = Toast.LENGTH_SHORT;
+                // Check if permission READ_EXTERNAL_STORAGE is already granted
+                if (!(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+                    askForPermission();
+                } else {
+                    Log.d("imports", "permission already granted");
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    return;
-                }
-
-                // Load Data to app
-                if(!samples.isEmpty()) {
-                    for (PositionSample s : samples) {
-
-                        if(MainActivity.months.yearExists(s.getDate().getYear()) == false) {
-                            MainActivity.months.newYear(s.getDate().getYear());
-                            updateRepeating(s.getDate().getYear());
-                        }
-
-                        if(s.getReocurring()){
-                            if(s.getPositionType()== 0) {
-                                addExpenseFromCurrentMonth(s.getDate(), s.getValue(),
-                                        s.getCategory(), s.getDescription());
-                                MainActivity.account.addRepeatingExpense(s.getDate(), s.getValue(),
-                                        s.getReocurring(), s.getCategory(), s.getDescription());
-                            }
-                            if(s.getPositionType()== 1) {
-                                addIncomeFromCurrentMonth(s.getDate(), s.getValue(),
-                                        s.getCategory(), s.getDescription());
-                                MainActivity.account.addRepeatingIncome(s.getDate(), s.getValue(),
-                                        s.getReocurring(), s.getCategory(), s.getDescription());
-                            }
-                        }
-                        else if(s.getPositionType()== 0) {
-                            MainActivity.account.addExpense(s.getDate(), s.getValue(),
-                                    s.getReocurring(), s.getCategory(), s.getDescription());
-                            MainActivity.months.updateMonthExpense(s.getDate().getYear(),
-                                    s.getDate().getMonth(), s.getValue());
-                        }
-                        else if(s.getPositionType()== 1) {
-                            MainActivity.account.addIncome(s.getDate(), s.getValue(),
-                                    s.getReocurring(), s.getCategory(), s.getDescription());
-                            MainActivity.months.updateMonthIncome(s.getDate().getYear(),
-                                    s.getDate().getMonth(), s.getValue());
-                        }
-                        else {
-                            Log.d("imports", "Sample from CSV was not added. Unkown why");
-                        }
-
-                        if (!MainActivity.years.contains(s.getDate().getYear())) {
-                            MainActivity.years.add(s.getDate().getYear());
-                        }
-                    }
-                    Gson gson = new Gson();
-
-                    String account_json = gson.toJson(MainActivity.account);
-                    String months_json = gson.toJson(MainActivity.months);
-                    String years_json = gson.toJson(MainActivity.years);
-                    MainActivity.saveEditor.putString("months", months_json);
-                    MainActivity.saveEditor.putString("years", years_json);
-                    MainActivity.saveEditor.putString("account", account_json);
-                    MainActivity.saveEditor.commit();
-
-                    //Toast Message
-                    Context context = getApplicationContext();
-                    CharSequence text = "Import der CSV-Datei erfolgreich.";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-
-                }else{
-                    Log.d("imports", "CSV file is empty");
-
-                    //Toast Message
-                    Context context = getApplicationContext();
-                    CharSequence text = "Import der CSV-Datei fehlgeschlagen. Die Datei ist" +
-                            "leer.";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    importData();
                 }
             }
-        });
+        }); // End setOnClickListener()
 
+    }
+
+    private void importData() {
+        List<PositionSample> samples = readCSVData();
+
+        // If file doesn't exist
+        if (samples == null) {
+            //Toast Message
+            Context context = getApplicationContext();
+            CharSequence text = textView.getText() + " existiert nicht!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
+
+        // Load Data to app
+        if (!samples.isEmpty()) {
+            for (PositionSample s : samples) {
+
+                if (MainActivity.months.yearExists(s.getDate().getYear()) == false) {
+                    MainActivity.months.newYear(s.getDate().getYear());
+                    updateRepeating(s.getDate().getYear());
+                }
+
+                if (s.getReocurring()) {
+                    if (s.getPositionType() == 0) {
+                        addExpenseFromCurrentMonth(s.getDate(), s.getValue(),
+                                s.getCategory(), s.getDescription());
+                        MainActivity.account.addRepeatingExpense(s.getDate(), s.getValue(),
+                                s.getReocurring(), s.getCategory(), s.getDescription());
+                    }
+                    if (s.getPositionType() == 1) {
+                        addIncomeFromCurrentMonth(s.getDate(), s.getValue(),
+                                s.getCategory(), s.getDescription());
+                        MainActivity.account.addRepeatingIncome(s.getDate(), s.getValue(),
+                                s.getReocurring(), s.getCategory(), s.getDescription());
+                    }
+                } else if (s.getPositionType() == 0) {
+                    MainActivity.account.addExpense(s.getDate(), s.getValue(),
+                            s.getReocurring(), s.getCategory(), s.getDescription());
+                    MainActivity.months.updateMonthExpense(s.getDate().getYear(),
+                            s.getDate().getMonth(), s.getValue());
+                } else if (s.getPositionType() == 1) {
+                    MainActivity.account.addIncome(s.getDate(), s.getValue(),
+                            s.getReocurring(), s.getCategory(), s.getDescription());
+                    MainActivity.months.updateMonthIncome(s.getDate().getYear(),
+                            s.getDate().getMonth(), s.getValue());
+                } else {
+                    Log.d("imports", "Sample from CSV was not added. Unkown why");
+                }
+
+                if (!MainActivity.years.contains(s.getDate().getYear())) {
+                    MainActivity.years.add(s.getDate().getYear());
+                }
+            }
+            Gson gson = new Gson();
+
+            String account_json = gson.toJson(MainActivity.account);
+            String months_json = gson.toJson(MainActivity.months);
+            String years_json = gson.toJson(MainActivity.years);
+            MainActivity.saveEditor.putString("months", months_json);
+            MainActivity.saveEditor.putString("years", years_json);
+            MainActivity.saveEditor.putString("account", account_json);
+            MainActivity.saveEditor.commit();
+
+            //Toast Message
+            Context context = getApplicationContext();
+            CharSequence text = "Import der CSV-Datei erfolgreich.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else {
+            Log.d("imports", "CSV file is empty");
+
+            //Toast Message
+            Context context = getApplicationContext();
+            CharSequence text = "Import der CSV-Datei fehlgeschlagen. Die Datei ist" +
+                    "leer.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     private List<PositionSample> readCSVData() {
@@ -173,28 +170,25 @@ public class imports extends AppCompatActivity {
         String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + textView.getText();
         try {
             reader = Files.newBufferedReader(Paths.get(csv));
-        } catch (IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
-      /*  InputStream is = getResources().openRawResource(R.raw.sample);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-      */
+
         String line = "";
 
         try {
             // Spaltenüberschrift in csv-datei überspringen
             reader.readLine();
 
-               while (((line = reader.readLine()) != null)) {
+            while (((line = reader.readLine()) != null)) {
 
-                   // split by ';'
-                    String[] tokens = line.split(";");
+                // split by ';'
+                String[] tokens = line.split(";");
 
-                   // read the data
-                    PositionSample sample = new PositionSample();
-                    if(tokens.length >= 8 &&
+                // read the data
+                PositionSample sample = new PositionSample();
+                if (tokens.length >= 8 &&
                         tokens[0].length() > 0 &&
                         tokens[1].length() > 0 &&
                         tokens[2].length() > 0 &&
@@ -203,35 +197,35 @@ public class imports extends AppCompatActivity {
                         tokens[5].length() > 0 &&
                         tokens[6].length() > 0 &&
                         tokens[7].length() > 0) {
-                        sample.setPositionType(Integer.parseInt(tokens[0]));
-                        sample.setDate(new Date(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3])));
-                        sample.setValue(Integer.parseInt(tokens[4]));
-                        sample.setReocurring(Boolean.parseBoolean(tokens[5]));
-                        sample.setCategory(tokens[6]);
-                        sample.setDescription(tokens[7]);
+                    sample.setPositionType(Integer.parseInt(tokens[0]));
+                    sample.setDate(new Date(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3])));
+                    sample.setValue(Double.parseDouble(tokens[4]));
+                    sample.setReocurring(Boolean.parseBoolean(tokens[5]));
+                    sample.setCategory(tokens[6]);
+                    sample.setDescription(tokens[7]);
 
-                        if(sample.getPositionType() == 0 || sample.getPositionType() == 1) {
-                            dataList.add(sample);
-                            Log.d("imports", "Just created: " + sample);
-                        } else{
-                            Log.d("imports", "Invalid PositionType: " + sample);
-                        }
-                    } else{
-                        Log.d("imports", "Invalid data: " + sample);
+                    if (sample.getPositionType() == 0 || sample.getPositionType() == 1) {
+                        dataList.add(sample);
+                        Log.d("imports", "Just created: " + sample);
+                    } else {
+                        Log.d("imports", "Invalid PositionType: " + sample);
                     }
-               }
+                } else {
+                    Log.d("imports", "Invalid data: " + sample);
+                }
+            }
         } catch (IOException e) {
             Log.wtf("imports", "Error reading sample.csv on line " + line, e);
             e.printStackTrace();
         }
         return dataList;
-     }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             this.finish();
         }
 
@@ -240,6 +234,7 @@ public class imports extends AppCompatActivity {
 
     /**
      * A new repeating Income gets added to all following months
+     *
      * @param date
      * @param value
      * @param category
@@ -259,6 +254,7 @@ public class imports extends AppCompatActivity {
 
     /**
      * A new repeating Expense gets added to all following months
+     *
      * @param date
      * @param value
      * @param category
@@ -289,4 +285,14 @@ public class imports extends AppCompatActivity {
             addExpenseFromCurrentMonth(date, e.getValue(), e.getCategory(), e.getDescription());
         }
     }
+
+    private void askForPermission() {
+        int REQUEST_READ_EXTERNAL_STORAGE = 99902;
+        if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Toast.makeText(this, "Zugriff auf den Speicher benötigt, um Daten zu importieren",
+                    Toast.LENGTH_LONG).show();
+        }
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
+    }
+
 }

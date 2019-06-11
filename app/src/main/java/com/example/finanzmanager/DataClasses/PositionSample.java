@@ -4,7 +4,7 @@ package com.example.finanzmanager.DataClasses;
 public class   PositionSample implements Comparable{
     private int positionType;
     private Date date;
-    private int value;
+    private double value;
     private boolean reocurring;
     private String category;
     private String description;
@@ -50,11 +50,11 @@ public class   PositionSample implements Comparable{
         this.date = date;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
