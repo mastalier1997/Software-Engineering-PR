@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#2C2C2C</color>
     <color name="colorAccent">#F66213</color>
     <color name="colorDrop">#FFFF</color>
+    <color name="colorThemeGreen">#09F330</color>
+    <color name="colorThemeBlue">#1CCAFA</color>
 
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
