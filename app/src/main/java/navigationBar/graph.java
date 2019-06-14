@@ -52,7 +52,8 @@ public class graph extends AppCompatActivity {
         //Back Button aktivieren
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Graph </font>"));
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='"+getResources().getColor(R.color.colorAccent)+"'>Graph </font>"));
 
 
 

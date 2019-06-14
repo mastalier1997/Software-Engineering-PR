@@ -3,7 +3,10 @@ package settings;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,12 +18,21 @@ import com.example.finanzmanager.activity_classes.EmailPasswordActivity;
 import com.example.finanzmanager.activity_classes.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //Back Button aktivieren
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='"+getResources().getColor(R.color.colorAccent)+"'>Einstellungen </font>"));
+
 
         setContentView(R.layout.activity_settings);
 
@@ -61,10 +73,38 @@ public class settings extends AppCompatActivity {
             }
         });
 
+
         addContentView(crashButton, new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        Button mbutton = findViewById(R.id.colorPicker);
+        int mDefColor = ContextCompat.getColor(settings.this,R.color.colorAccent);
+        mbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               setTheme(R.style.BlueTheme);
+            }
+        });
+    }
+
+
+
+    /**
+     * back button to Main Activity
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home){
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(myIntent, 0);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
