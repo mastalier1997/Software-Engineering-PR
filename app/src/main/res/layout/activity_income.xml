@@ -14,13 +14,15 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="392dp"
         android:layout_marginEnd="285dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:background="#282828"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/textView_extraCat_income"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
         app:srcCompat="@mipmap/plus_icon_round" />
 
     <Spinner
@@ -65,14 +67,16 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="472dp"
         android:layout_marginEnd="273dp"
-        android:layout_marginBottom="234dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/droid"
         android:textColor="#FFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
 
     <TextView
         android:id="@+id/textView_dividend"
@@ -80,16 +84,18 @@
         android:layout_height="25dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="348dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="358dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/droid"
         android:text="Dividenden"
         android:textColor="#FFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView_refund"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/textView_refund"
@@ -98,15 +104,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="348dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="363dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/droid"
         android:text="Rückerstattung"
         android:textColor="#FFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView_dividend"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.019" />
 
     <TextView
         android:id="@+id/textView_salary"
@@ -150,15 +158,17 @@
         android:layout_marginStart="159dp"
         android:layout_marginTop="192dp"
         android:layout_marginEnd="41dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/droid"
         android:text="Investition"
         android:textColor="#FFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/Button_dividend"
         app:layout_constraintEnd_toStartOf="@+id/textView_salary"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
 
     <ImageButton
         android:id="@+id/Button_award"
@@ -217,9 +227,10 @@
         android:background="#282828"
         app:layout_constraintBottom_toTopOf="@+id/textView_dividend"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@mipmap/dividens_icon_round" />
 
     <ImageButton

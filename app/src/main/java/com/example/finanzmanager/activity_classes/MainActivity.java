@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                //((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
                 Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
-                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
+               // ((TextView) adapterView.getChildAt(0)).setTypeface(type);
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);

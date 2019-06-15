@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF0F2"
+    android:background="#282828 "
     tools:context="addNew.create_category_expense">
 
     <EditText
@@ -16,10 +16,10 @@
         android:layout_marginEnd="64dp"
         android:background="@color/white"
         android:ems="10"
+        android:fontFamily="@font/droid"
         android:hint=" Name der Kategorie"
         android:inputType="textPersonName"
         android:visibility="visible"
-        android:fontFamily="@font/droid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,15 +33,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#ECF0F2"
-        android:scaleType="centerCrop"
+        android:background="#282828 "
+        android:backgroundTint="#282828 "
+        android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.263"
-        app:srcCompat="@mipmap/dividens_icon_round" />
+        app:srcCompat="@mipmap/plus_icon_round" />
 
     <ImageButton
         android:id="@+id/Button_create_category_expense"
@@ -50,11 +51,11 @@
         android:layout_marginStart="265dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="11dp"
-        android:background="#EAEEF1"
+        android:background="#282828 "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/check_icon_web" />
+        app:srcCompat="@mipmap/accespt_foreground" />
 
     <ImageButton
         android:id="@+id/Button_cancel_category_expense"
@@ -63,10 +64,9 @@
         android:layout_marginStart="64dp"
         android:layout_marginEnd="280dp"
         android:layout_marginBottom="11dp"
-        android:background="#EAEEF1"
+        android:background="#282828 "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cancel_icon_web" />
-
+        app:srcCompat="@mipmap/cancel_inv_foreground" />
 </android.support.constraint.ConstraintLayout>

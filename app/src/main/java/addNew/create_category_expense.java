@@ -7,11 +7,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.finanzmanager.R;
+import com.example.finanzmanager.activity_classes.MainActivity;
 
 import java.io.IOException;
 
@@ -92,5 +94,15 @@ public class create_category_expense extends AppCompatActivity {
             }
         }
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
+        if (id == android.R.id.home){
+            Intent intent = new Intent(create_category_expense.this, expense_menu.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
