@@ -195,7 +195,7 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/dividens_icon_round" />
+        app:srcCompat="@mipmap/plus_icon_round" />
 
     <TextView
         android:id="@+id/textView_investmentReturns"
@@ -285,7 +285,7 @@
         android:id="@+id/textView_extraCat_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="172dp"
         android:fontFamily="@font/droid"
         android:text="empty "
