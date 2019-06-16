@@ -16,9 +16,9 @@
             android:title="Ausgaben" />
         <item
             android:id="@+id/nav_graph"
-            android:icon="@mipmap/lottery"
             android:fontFamily="@font/droid"
-            android:title="Grafik" />
+            android:icon="@mipmap/chart_foreground"
+            android:title="Graph" />
         <item
             android:id="@+id/nav_export"
             android:icon="@drawable/ic_menu_send"

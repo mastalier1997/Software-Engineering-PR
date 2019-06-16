@@ -12,9 +12,14 @@
         android:layout_height="45dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="104dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="582dp"
         android:fontFamily="@font/droid"
         android:text="Löschen von sich wiederholenden Positionen"
-        android:textSize="17sp"
+        android:textColor="@color/logo_white_background"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,22 +29,32 @@
         android:layout_width="225dp"
         android:layout_height="45dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="513dp"
         android:fontFamily="@font/droid"
         android:text="Daten löschen"
-        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_repeat_settings" />
 
     <ImageButton
         android:id="@+id/button_delete_Data"
         android:layout_width="43dp"
         android:layout_height="47dp"
-        android:layout_marginStart="283dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="524dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/cancel_icon" />
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <ImageButton
         android:id="@+id/button_repeat_settings"
@@ -47,40 +62,56 @@
         android:layout_height="55dp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="100dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="576dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu_manage" />
+        app:srcCompat="@android:drawable/ic_menu_manage" />
 
     <TextView
         android:id="@+id/textView_logOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="472dp"
         android:fontFamily="@font/droid"
         android:text="Ausloggen"
-        android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton_logOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="232dp"
-        android:src="@android:drawable/btn_dialog"
-        app:layout_constraintStart_toEndOf="@+id/textView_logOut"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="50dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="285dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="464dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@android:drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="317dp"
-        android:layout_marginEnd="210dp"
-        android:layout_marginBottom="394dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="295dp"
+        android:layout_marginEnd="209dp"
+        android:layout_marginBottom="416dp"
         android:drawableTint="@color/white"
         android:fontFamily="@font/droid"
         android:text="Akzent Farbe ändern"
@@ -89,26 +120,23 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/colorPicker"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/colorPicker"
-        android:layout_width="55dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="253dp"
-        android:layout_marginTop="303dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="380dp"
+        android:layout_width="28dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="296dp"
+        android:layout_marginTop="292dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="406dp"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

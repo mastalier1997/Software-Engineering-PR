@@ -33,6 +33,10 @@ import com.example.finanzmanager.DataClasses.PositionList;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.DataClasses.Income;
 import com.example.finanzmanager.DataClasses.Expense;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -90,9 +94,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Finanzmanger </font>"));
 
-        /*AdView adView = findViewById(R.id.adView);
+        //Einrichten um Werbung anzuzueigen
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");*/
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+
 
         // sumIncome und sumExpense für die Ausgabe
         sumIncome = (TextView) findViewById(R.id.textView_sumIncome);
@@ -127,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dropdown_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                //((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#F66213"));
                 Typeface type = ResourcesCompat.getFont(getApplicationContext(), R.font.droid);
-               // ((TextView) adapterView.getChildAt(0)).setTypeface(type);
+                ((TextView) adapterView.getChildAt(0)).setTypeface(type);
                 if (!(currentYear == (Integer) adapterView.getSelectedItem())) {
                     currentYear = (Integer) adapterView.getSelectedItem();
                     saveEditor.putInt("currentYear", currentYear);
