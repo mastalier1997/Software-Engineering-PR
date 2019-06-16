@@ -53,6 +53,7 @@ public class graph extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Schrift in der Status Bar angeben
         getSupportActionBar().setTitle(Html.fromHtml("<font color='"+getResources().getColor(R.color.colorAccent)+"'>Graph </font>"));
 
 
@@ -63,6 +64,7 @@ public class graph extends AppCompatActivity {
             drawPie(income, expense);
         }
 
+        //Auswahl des Jahres und Monats
         Log.e("test", "test");
         Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph);
         Spinner spinnerYear = findViewById(R.id.spinnerYearGraph);
@@ -70,16 +72,14 @@ public class graph extends AppCompatActivity {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
 
-            // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinnerMonth);
             android.widget.ListPopupWindow popupWindow1 = (android.widget.ListPopupWindow) popup.get(spinnerYear);
 
-            // Set popupWindow height to 800px
             popupWindow.setHeight(800);
             popupWindow1.setHeight(800);
         }
         catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            // silently fail...
+
         }
 
         Log.e("test", "test");
@@ -197,7 +197,7 @@ public class graph extends AppCompatActivity {
     }
 
     /**
-     * draw the Pie chart
+     * zeichnet Graph
      */
     public void drawPie(double income, double expense){
 
@@ -227,17 +227,8 @@ public class graph extends AppCompatActivity {
     }
 
 
-    public List listElement(){
-        List<SimplePieInfo> list=new ArrayList<>();
-        list.add(new SimplePieInfo(20,Color.parseColor("#78314"),"Test"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#58314"),"Test1"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#48314"),"Test2"));
-        list.add(new SimplePieInfo(20,Color.parseColor("#38314"),"Test3"));
-        return list;
-    }
-
     /**
-     * gets number of year
+     * Gibt Jahr zurück
      * @param years
      * @param search
      * @return
@@ -253,7 +244,7 @@ public class graph extends AppCompatActivity {
 
 
     /**
-     * back button to Main Activity
+     * Zurück Button
      * @param item
      * @return
      */

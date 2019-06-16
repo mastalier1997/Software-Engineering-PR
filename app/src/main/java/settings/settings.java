@@ -78,12 +78,15 @@ public class settings extends AppCompatActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
+
+
         Button mbutton = findViewById(R.id.colorPicker);
         int mDefColor = ContextCompat.getColor(settings.this,R.color.colorAccent);
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               setTheme(R.style.BlueTheme);
+               //setTheme(R.style.BlueTheme);
+                getTheme().applyStyle(R.style.BlueTheme,true);
             }
         });
     }
