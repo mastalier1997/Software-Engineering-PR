@@ -8,46 +8,111 @@
     tools:context="navigationBar.income_overview">
 
     <ListView
-        android:id="@+id/listView_all_incomes_month"
-        android:layout_width="378dp"
-        android:layout_height="392dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
-        android:background="@drawable/listview_border_green"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/listView_all_incomes_category"
-        android:layout_width="378dp"
-        android:layout_height="392dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
-        android:background="@drawable/listview_border_green"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
         android:id="@+id/listView_all_incomes_quarters"
-        android:layout_width="378dp"
-        android:layout_height="392dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
+        android:layout_width="343dp"
+        android:layout_height="390dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/listview_border_green"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_sort_income_cat"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/droid"
+        android:text=" Betrag Beschreibung      Art    Wh."
+        android:textColor="#4CAF50"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_sortBy_income" />
+
+    <Spinner
+        android:id="@+id/spinner_category_income"
+        android:layout_width="155dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="195dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/spinner_border"
+        android:dropDownWidth="wrap_content"
+        android:popupBackground="#282828"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_sortBy_income" />
+
+    <TextView
+        android:id="@+id/textView_sort_income_date"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/droid"
+        android:text=" Betrag Beschreibung      Datum"
+        android:textColor="#4CAF50"
+        android:textSize="15sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_sortBy_income" />
 
     <ListView
         android:id="@+id/listView_all_incomes_years"
-        android:layout_width="378dp"
-        android:layout_height="392dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="155dp"
+        android:layout_width="343dp"
+        android:layout_height="390dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/listview_border_green"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_year_income"
+        android:layout_width="155dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="195dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/spinner_border"
+        android:popupBackground="#282828"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_sortBy_income" />
+
+    <ListView
+        android:id="@+id/listView_all_incomes_month"
+        android:layout_width="343dp"
+        android:layout_height="390dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/listview_border_green"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,80 +124,79 @@
         android:id="@+id/spinner_Month_income"
         android:layout_width="155dp"
         android:layout_height="32dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/spinner_border"
         android:dropDownWidth="wrap_content"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/spinner_year_income"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense"
+        app:layout_constraintVertical_bias="0.909" />
 
     <Spinner
         android:id="@+id/spinner_quarter_income"
         android:layout_width="155dp"
         android:layout_height="32dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/spinner_border"
         android:dropDownWidth="wrap_content"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/spinner_year_income"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner_category_income"
-        android:layout_width="155dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="108dp"
-        android:background="@drawable/spinner_border"
-        android:dropDownWidth="wrap_content"
-        android:popupBackground="#282828"
-        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner_year_income"
-        android:layout_width="155dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginBottom="19dp"
-        android:background="@drawable/spinner_border"
-        android:popupBackground="#282828"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/textView_sort_income_description"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_Month_income"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense"
+        app:layout_constraintVertical_bias="0.909" />
 
     <Spinner
         android:id="@+id/spinner_sortBy_income"
         android:layout_width="200dp"
         android:layout_height="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="187dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/spinner_border"
         android:popupBackground="#282828"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_category_income"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textView_sortBy_income" />
 
     <TextView
         android:id="@+id/textView_sortBy_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="251dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="600dp"
         android:text="Sortieren nach:"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_sortBy_income"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
+
+    <ListView
+        android:id="@+id/listView_all_incomes_category"
+        android:layout_width="343dp"
+        android:layout_height="390dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/listview_border_green"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -141,83 +205,34 @@
         android:id="@+id/textView_sort_income_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="163dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="1dp"
         android:fontFamily="@font/droid"
-        android:text="Beschreibung"
         android:textColor="#4CAF50"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_incomes_month"
-        app:layout_constraintEnd_toStartOf="@+id/textView_sort_income_cat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="163dp" />
 
     <TextView
         android:id="@+id/textView_sort_income_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="163dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="1dp"
         android:fontFamily="@font/droid"
-        android:text="Betrag"
-        android:textColor="#4CAF50"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_incomes_month"
-        app:layout_constraintEnd_toStartOf="@+id/textView_sort_income_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_sort_income_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="345dp"
-        android:layout_marginTop="163dp"
-        android:fontFamily="@font/droid"
-        android:text="Datum"
         android:textColor="#4CAF50"
         android:textSize="15sp"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="163dp" />
 
     <TextView
         android:id="@+id/textView_sort_income_repeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="308dp"
-        android:layout_marginTop="163dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="1dp"
         android:fontFamily="@font/droid"
-        android:text="wiederholt"
         android:textColor="#4CAF50"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_incomes_month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_sort_income_cat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="163dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="@font/droid"
-        android:text="Art"
-        android:textColor="#4CAF50"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_incomes_month"
-        app:layout_constraintEnd_toStartOf="@+id/textView_sort_income_repeat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="309dp"
+        tools:layout_editor_absoluteY="163dp" />
 
 
 </android.support.constraint.ConstraintLayout>
