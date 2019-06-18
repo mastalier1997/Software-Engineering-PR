@@ -77,7 +77,7 @@ public class PositionTest {
     }
 
     @Test
-    public void getInfo(){
+    public void getInfo(){ //TODO Änderungen aus Position übernehmen
         StringBuffer info = new StringBuffer();
         int value_size = 10;
         int description_size = 17;
@@ -101,7 +101,7 @@ public class PositionTest {
     }
 
     @Test
-    public void getInfoDate(){
+    public void getInfoDate(){//TODO Änderungen aus Position übernehmen
         StringBuffer info = new StringBuffer();
         int value_size = 10;
         int description_size = 17;
