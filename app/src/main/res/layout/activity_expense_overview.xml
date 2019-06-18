@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <ListView
-        android:id="@+id/listView_all_expenses_month"
+        android:id="@+id/listView_all_incomes_month"
         android:layout_width="343dp"
         android:layout_height="390dp"
         android:layout_marginStart="8dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listView_all_expenses_category"
+        android:id="@+id/listView_all_incomes_category"
         android:layout_width="343dp"
         android:layout_height="390dp"
         android:layout_marginStart="8dp"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listView_all_expenses_quarters"
+        android:id="@+id/listView_all_incomes_quarters"
         android:layout_width="343dp"
         android:layout_height="390dp"
         android:layout_marginStart="8dp"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listView_all_expenses_years"
+        android:id="@+id/listView_all_incomes_years"
         android:layout_width="343dp"
         android:layout_height="390dp"
         android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
         android:dropDownWidth="wrap_content"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense"
@@ -113,7 +113,7 @@
         android:dropDownWidth="wrap_content"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense"
@@ -131,7 +131,7 @@
         android:dropDownWidth="wrap_content"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense" />
@@ -147,7 +147,7 @@
         android:background="@drawable/spinner_border"
         android:popupBackground="#282828"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sortBy_expense" />
@@ -161,7 +161,7 @@
         android:layout_marginBottom="100dp"
         android:background="@drawable/spinner_border"
         android:popupBackground="#282828"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_sortBy_expense" />
@@ -201,7 +201,7 @@
         android:textColor="#DC3939"
         android:textSize="15sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_sortBy_expense" />
@@ -229,7 +229,7 @@
         android:text=" Betrag Beschreibung      Art    Wh."
         android:textColor="#DC3939"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_all_expenses_years"
+        app:layout_constraintBottom_toTopOf="@id/listView_all_incomes_years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_sortBy_expense" />

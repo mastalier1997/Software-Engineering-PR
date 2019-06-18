@@ -45,10 +45,11 @@ public class expense_overview extends AppCompatActivity {
         Spinner spinner_category = findViewById(R.id.spinner_category_expense);
         Spinner spinner_sort_by = findViewById(R.id.spinner_sortBy_expense);
         Spinner spinner_quarter = findViewById(R.id.spinner_quarter_expense);
-        listView_expense_month = findViewById(R.id.listView_all_expenses_month);
-        listView_expense_category = findViewById(R.id.listView_all_expenses_category);
-        listView_expense_quarter = findViewById(R.id.listView_all_expenses_quarters);
-        listView_expense_year = findViewById(R.id.listView_all_expenses_years);
+        // income-listViews correct, no mistake!
+        listView_expense_month = findViewById(R.id.listView_all_incomes_month);
+        listView_expense_category = findViewById(R.id.listView_all_incomes_category);
+        listView_expense_quarter = findViewById(R.id.listView_all_incomes_quarters);
+        listView_expense_year = findViewById(R.id.listView_all_incomes_years);
         textView_cat = findViewById(R.id.textView_sort_expense_cat);
         textView_date = findViewById(R.id.textView_sort_expense_date);
         textView_repeat = findViewById(R.id.textView_sort_expense_repeat);
