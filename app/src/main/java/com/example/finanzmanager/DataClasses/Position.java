@@ -20,8 +20,34 @@ public class Position {
      * @return String info
      */
     public String getInfo() {
+        String desc = description;
+        String cat = category;
+
         StringBuffer info = new StringBuffer();
-        int value_size = 10;
+        info.append(" ");
+        info.append(String.format(String.format("%6s", Double.toString(value))));
+        if(desc.length() > 17) {
+            desc = desc.substring(0, 14) + "...";
+        }
+        info.append(" ");
+        info.append(String.format(String.format("%-17s", desc)));
+        if(cat.length() > 6) {
+            cat = cat.substring(0, 5) + ".";
+        }
+        info.append(" ");
+        info.append(String.format(String.format("%-6s", cat)));
+        info.append(" ");
+        String rec;
+        if(recurring)
+            rec = "ja";
+        else rec = "nein";
+        info.append(String.format(String.format("%-5s", rec)));
+        return info.toString();
+
+        //TODO kann eigentlich entfernt werden
+        /*
+        StringBuffer info = new StringBuffer();
+        int value_size = 9;
         int description_size = 17;
         int category_size = 15;
         info.append(" ");
@@ -36,9 +62,30 @@ public class Position {
         }
         info.append(String.format("%1$" + 4 + "s", repeat).replace(' ', '\t'));
         return info.toString();
+        */
     }
 
     public String getInfoDate() {
+        String desc = description;
+        String cat = category;
+
+        StringBuffer info = new StringBuffer();
+        info.append(" ");
+        info.append(String.format(String.format("%6s", Double.toString(value))));
+        if(desc.length() > 17) {
+            desc = desc.substring(0, 14) + "...";
+        }
+        info.append(" ");
+        info.append(String.format(String.format("%-17s", desc)));
+        if(cat.length() > 6) {
+            cat = cat.substring(0, 5) + ".";
+        }
+        info.append(" ");
+        info.append(String.format("%6s", date.getString()));
+        return info.toString();
+
+        //TODO kann eigentlich entfernt werden
+        /*
         StringBuffer info = new StringBuffer();
         int value_size = 10;
         int description_size = 17;
@@ -48,6 +95,7 @@ public class Position {
         info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
         info.append(String.format("%1$" + date_size + "s", date.getString()).replace(' ', '\t'));
         return info.toString();
+        */
     }
 
     /**
