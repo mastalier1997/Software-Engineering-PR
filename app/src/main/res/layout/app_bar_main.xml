@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ToolbarTheme"
+            android:theme="@style/toolbar"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -39,5 +39,7 @@
         app:useCompatPadding="true"
 
         app:srcCompat="@mipmap/plus_foreground" />
+
+
 
 </android.support.design.widget.CoordinatorLayout>

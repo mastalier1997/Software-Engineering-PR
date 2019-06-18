@@ -3,6 +3,7 @@ package com.example.finanzmanager.activity_classes;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Finanzmanger </font>"));
+
+
 
         //Einrichten um Werbung anzuzueigen
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");

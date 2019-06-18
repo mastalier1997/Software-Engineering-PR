@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -61,6 +62,8 @@ public class create_category_income extends AppCompatActivity {
                 name2 = content2.getText().toString();
                 Intent intent= new Intent(create_category_income.this, income_menu.class);
                 intent.putExtra("income_text", name2);
+                //ImageButton button = findViewById(R.id.Button_extraCatInc);
+                //button.setVisibility(View.VISIBLE);
                 startActivity(intent);
 
             }

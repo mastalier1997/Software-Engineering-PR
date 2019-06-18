@@ -472,4 +472,6 @@
         ads:layout_constraintTop_toTopOf="parent"></com.google.android.gms.ads.AdView>
 
 
+
+
 </android.support.constraint.ConstraintLayout>

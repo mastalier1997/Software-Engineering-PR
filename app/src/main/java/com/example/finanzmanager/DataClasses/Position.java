@@ -65,6 +65,11 @@ public class Position {
         */
     }
 
+    /**
+     *
+     * @return
+     */
+
     public String getInfoDate() {
         String desc = description;
         String cat = category;
