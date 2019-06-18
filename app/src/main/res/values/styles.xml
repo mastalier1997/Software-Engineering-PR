@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+
     </style>
 
     <style name="GreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -70,6 +74,18 @@
     <style name="ThemeOverlay.MyTitleText" parent="AppTheme">
         <item name="android:gravity">center</item>
         <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/logo_white_background</item>
+    </style>
+
+    <style name="toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:color">#FFF</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:overlapAnchor">false</item>
+        <item name="android:dropDownHorizontalOffset">-20dp</item>
     </style>
 
 </resources>

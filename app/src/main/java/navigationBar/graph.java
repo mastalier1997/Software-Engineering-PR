@@ -186,14 +186,14 @@ public class graph extends AppCompatActivity {
         });
 
         Log.e("test", "test");
-        Button detailViewButton = (Button) findViewById(R.id.detailedView);
+       /* Button detailViewButton = (Button) findViewById(R.id.detailedView);
         detailViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(graph.this, graph_detailed.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /**
