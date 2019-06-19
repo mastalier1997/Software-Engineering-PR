@@ -323,6 +323,7 @@ public class PositionList {
     public void addIncome(Date date, double value, boolean recurring, String category, String description) {
         Income i = new Income(date, value, recurring, category, description);
         incomeList.add(i);
+        addNewIncomeCategory(category);
     }
 
     /**
@@ -336,6 +337,7 @@ public class PositionList {
     public void addExpense(Date date, double value, boolean recurring, String category, String description) {
         Expense e = new Expense(date, value, recurring, category, description);
         expenseList.add(e);
+        addNewExpenseCategory(category);
     }
 
     /**
@@ -349,6 +351,7 @@ public class PositionList {
     public void addRepeatingIncome(Date date, double value, boolean recurring, String category, String description) {
         Income i = new Income(date, value, recurring, category, description);
         this.repeatingIncomeList.add(i);
+        addNewIncomeCategory(category);
     }
 
     /**
@@ -362,6 +365,7 @@ public class PositionList {
     public void addRepeatingExpense(Date date, double value, boolean recurring, String category, String description) {
         Expense e = new Expense(date, value, recurring, category, description);
         this.repeatingExpenseList.add(e);
+        addNewExpenseCategory(category);
     }
 
     /**
@@ -465,4 +469,36 @@ public class PositionList {
         }
         return affectedExpenses;
     }
+
+    /**
+     * checks if the expense-category is new or already in use
+     * --> adds it if true
+     * @param cat the checked category
+     * @return true if new, false otherwise
+     */
+    public boolean addNewExpenseCategory(String cat){
+        if(!(categoriesExpense.contains(cat))){
+            categoriesExpense.add(cat);
+            categoriesExpense.sort(String::compareTo);
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * checks if the income-category is new or already in use
+     * --> adds it if true
+     * @param cat the checked category
+     * @return true if new, false otherwise
+     */
+    public boolean addNewIncomeCategory(String cat){
+        if(!(categoriesIncome.contains(cat))){
+            categoriesIncome.add(cat);
+            categoriesIncome.sort(String::compareTo);
+            return true;
+        }
+        return false;
+    }
+
 }
