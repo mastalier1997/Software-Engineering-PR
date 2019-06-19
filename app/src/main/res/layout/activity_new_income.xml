@@ -7,6 +7,23 @@
     android:background="#282828"
     tools:context="addNew.new_income">
 
+    <TextView
+        android:id="@+id/hinweisBetrag2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/droid"
+        android:text="Betrag Eingabe erforderlich"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editText_description_income"
         android:layout_width="276dp"
@@ -18,7 +35,7 @@
         android:background="#FFFFFF	"
         android:ems="10"
         android:fontFamily="@font/droid"
-        android:hint="Beschreibung (optinal)"
+        android:hint="Beschreibung (optional)"
         android:inputType="textPersonName"
         android:textColor="#F0000000"
         app:layout_constraintBottom_toTopOf="@+id/Button_cancel_income"

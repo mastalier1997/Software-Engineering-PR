@@ -8,6 +8,37 @@
     tools:context="navigationBar.graph">
 
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="117dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="561dp"
+        android:layout_marginEnd="245dp"
+        android:layout_marginBottom="153dp"
+        android:fontFamily="@font/droid"
+        android:text="Einnahmen"
+        android:textColor="#FFF"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/einnahmen"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="561dp"
+        android:layout_marginEnd="370dp"
+        android:layout_marginBottom="145dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/grünEinnahmen" />
+
     <com.razerdp.widget.animatedpieview.AnimatedPieView
         android:id="@+id/animatedPieView_graph"
         android:layout_width="384dp"
@@ -47,6 +78,37 @@
         app:layout_constraintBottom_toTopOf="@+id/animatedPieView_graph"
         app:layout_constraintEnd_toEndOf="@+id/animatedPieView_graph"
         app:layout_constraintStart_toStartOf="@+id/animatedPieView_graph"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="599dp"
+        android:layout_marginEnd="370dp"
+        android:layout_marginBottom="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/rotAusgaben" />
+
+    <TextView
+        android:id="@+id/ausgaben"
+        android:layout_width="117dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="599dp"
+        android:layout_marginEnd="245dp"
+        android:layout_marginBottom="115dp"
+        android:fontFamily="@font/droid"
+        android:text="Ausgaben"
+        android:textColor="#FFF"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

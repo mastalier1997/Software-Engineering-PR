@@ -85,7 +85,7 @@ public class graph extends AppCompatActivity {
         Log.e("test", "test");
         ArrayList<String> month = new ArrayList<>();
         month.add("Jannuar"); month.add("Februar"); month.add("März");month.add("April"); month.add("Mai");
-        month.add("Juni");month.add("Juli"); month.add("August"); month.add("September"); month.add("October");
+        month.add("Juni");month.add("Juli"); month.add("August"); month.add("September"); month.add("Oktober");
         month.add("November"); month.add("Dezember");
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, month);
         adapter.setDropDownViewResource(R.layout.spinner);
@@ -205,20 +205,19 @@ public class graph extends AppCompatActivity {
         AnimatedPieView mAnimatedPieView = findViewById(R.id.animatedPieView_graph);
         AnimatedPieViewConfig config = new AnimatedPieViewConfig();
 
-        //config.addDatas(addElement());
 
         if (income==0&&expense==0){
             config.startAngle(90)
                     .addData(new SimplePieInfo(50, Color.parseColor("#4CAF50"), "Einnahmen"))
                     .addData(new SimplePieInfo(50, Color.parseColor("#DC3939"), "Ausgaben"))
-                    .drawText(true).strokeMode(false)
+                    //.drawText(true).strokeMode(false)
                     .autoSize(true)
                     .duration(1000).textSize(40);// draw pie animation duration
         }else {
             config.startAngle(-90)//.addDatas(listElement())// Starting angle offset
                     .addData(new SimplePieInfo(income, Color.parseColor("#4CAF50"), "Einnahmen"))
                     .addData(new SimplePieInfo(expense, Color.parseColor("#DC3939"), "Ausgaben"))
-                    .drawText(true).strokeMode(false)
+                    //.drawText(true).strokeMode(false)
                     .autoSize(true)
                     .duration(1000).textSize(40);// draw pie animation duration
         }

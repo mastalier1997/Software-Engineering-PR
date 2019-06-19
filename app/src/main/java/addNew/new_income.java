@@ -3,9 +3,14 @@ package addNew;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,11 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.MainActivity;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class new_income extends AppCompatActivity {
 
@@ -30,7 +37,7 @@ public class new_income extends AppCompatActivity {
 
     Calendar calendar = Calendar.getInstance();
     int day = calendar.get(Calendar.DAY_OF_MONTH);
-    int month = calendar.get(Calendar.MONTH);
+    int month = calendar.get(Calendar.MONTH)+1;
     int year = calendar.get(Calendar.YEAR);
 
     @Override
@@ -102,7 +109,7 @@ public class new_income extends AppCompatActivity {
                 datePickerDialog = new DatePickerDialog(new_income.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
-                        textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
+                        textView.setText(mDay +"."+(mMonth)+"."+mYear);
                         day = mDay;
                         month = mMonth+1;
                         year = mYear;
@@ -118,40 +125,70 @@ public class new_income extends AppCompatActivity {
 
 
         ImageButton checkButton = (ImageButton) findViewById(R.id.Button_check_income);
-        checkButton.setOnClickListener(new View.OnClickListener() {
+        EditText add = (EditText) findViewById(R.id.editText_value_income);
+        checkButton.setEnabled(false);
+
+        add.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                //Betrag abspeichern
-                EditText add = (EditText) findViewById(R.id.editText_value_income);
-                int addNumber = Integer.parseInt(add.getText().toString());
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (s.toString().equals("")){
 
-                //kategorie speichern
-                String category = txtView.getText().toString();
+                }
+            }
 
-                //Beschreibung speichern
-                EditText descriptionText = (EditText) findViewById(R.id.editText_description_income);
-                String description = descriptionText.getText().toString();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals("")){
+                    checkButton.setEnabled(false);
+                }else {
+                    checkButton.setEnabled(true);
+                }
+            }
 
-                //wiederkehrend
-                Boolean repeats = false;
-                if(repeat.isChecked()) repeats = true;
-
-                //alles in einem Bundle gespeichert
-                Bundle extras = new Bundle();
-                extras.putInt("value", addNumber);
-                extras.putInt("day", day);
-                extras.putInt("month", month);
-                extras.putInt("year", year);
-                extras.putString("category", category);
-                extras.putString("description", description);
-                extras.putBoolean("repeats", repeats);
-                extras.putString("type", "income");
-
-                Intent intent= new Intent(new_income.this, MainActivity.class);
-                intent.putExtras(extras);
-                startActivity(intent);
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextView textView = findViewById(R.id.hinweisBetrag2);
+                textView.setVisibility(View.INVISIBLE);
             }
         });
+
+        checkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Betrag abspeichern
+                    int addNumber = Integer.parseInt(add.getText().toString());
+
+                    //kategorie speichern
+                    String category = txtView.getText().toString();
+
+                    //Beschreibung speichern
+                    EditText descriptionText = (EditText) findViewById(R.id.editText_description_income);
+                    String description = descriptionText.getText().toString();
+
+                    //wiederkehrend
+                    Boolean repeats = false;
+                    if (repeat.isChecked()) repeats = true;
+
+                    //alles in einem Bundle gespeichert
+                    Bundle extras = new Bundle();
+                    extras.putInt("value", addNumber);
+                    extras.putInt("day", day);
+                    extras.putInt("month", month);
+                    extras.putInt("year", year);
+                    extras.putString("category", category);
+                    extras.putString("description", description);
+                    extras.putBoolean("repeats", repeats);
+                    extras.putString("type", "income");
+
+                    Intent intent = new Intent(new_income.this, MainActivity.class);
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    //}
+
+
+                }
+        });
+
 
         ImageButton cancelButton = (ImageButton) findViewById(R.id.Button_cancel_income);
         cancelButton.setOnClickListener(new View.OnClickListener() {
