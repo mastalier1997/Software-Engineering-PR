@@ -9,16 +9,17 @@
 
     <TextView
         android:id="@+id/text_info_Import3"
-        android:layout_width="302dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="150dp"
         android:gravity="center"
         android:text="Dateiname eingeben:"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/button_import"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,36 +27,34 @@
 
     <TextView
         android:id="@+id/text_info_pfad"
-        android:layout_width="322dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Pfad: none"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_import"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/text_info_Import" />
 
     <Button
         android:id="@+id/button_import"
         android:layout_width="207dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="500dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Importieren"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_info_Import"
@@ -79,9 +78,9 @@
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/layout_border"
         android:ems="10"
         android:gravity="center"
@@ -90,9 +89,9 @@
         android:textColor="#F66213"
         android:textIsSelectable="true"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_info_pfad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_info_Import" />
+        app:layout_constraintTop_toBottomOf="@+id/text_info_Import3" />
 
 </android.support.constraint.ConstraintLayout>

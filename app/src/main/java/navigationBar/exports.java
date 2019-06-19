@@ -24,6 +24,7 @@ import com.opencsv.CSVWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +34,7 @@ public class exports extends AppCompatActivity {
 
     private Button button;
     private TextView textView;
+    private TextView path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +48,9 @@ public class exports extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Export </font>"));
 
-        // TextView Message
-        textView = findViewById(R.id.text_info_Export);
-        textView.setText("Durch Klicken auf \"Exportieren\" werden alle Daten in eine CSV Datei exportiert (Endung .csv)" +
-                "\n\nSpeicherort: Eigene Dateien --> Interner Speicher");
+        // Path of file
+        textView = findViewById(R.id.text_info_pfad2);
+        textView.setText("Pfad: Eigene Dateien --> Interner Speicher");
 
         // Writing to CSV File
         button = findViewById(R.id.button_export);
@@ -65,22 +66,24 @@ public class exports extends AppCompatActivity {
 
                     try {
                         exportData();
-                    } catch (IOException e) {
-                        e.printStackTrace();
 
                         //Toast Message
                         Context context = getApplicationContext();
-                        CharSequence text = "Export in CSV-Datei fehlgeschlagen.";
+                        CharSequence text = "Export in CSV-Datei erfolgreich.";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                    } catch (IOException e) {
+                        //Toast Message
+                        Context context = getApplicationContext();
+                        CharSequence text = e.getMessage();
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+
+                        e.printStackTrace();
                     }
-                    //Toast Message
-                    Context context = getApplicationContext();
-                    CharSequence text = "Export in CSV-Datei erfolgreich. \n Dateiname: FM_Data... .csv";
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
                 }
             }
         }); // End setOnClickListener
@@ -108,7 +111,24 @@ public class exports extends AppCompatActivity {
 
     private void exportData() throws IOException {
         //TODO: Android Version abfragen ober >= 8.0 Oreo, sonst exportData nicht möglich
-        String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/FM_Data_" + System.currentTimeMillis() + ".csv";
+        path = findViewById(R.id.editText2);
+        String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path.getText();
+
+        // Append suffix for filetype if missing
+        if(!(csv.endsWith(".csv"))){
+            StringBuffer sb = new StringBuffer();
+            sb.append(csv + ".csv");
+            csv = sb.toString();
+        }
+
+        // Check if file already exists
+        boolean pathExists =
+                Files.exists(Paths.get(csv),
+                        new LinkOption[]{ LinkOption.NOFOLLOW_LINKS});
+        if(pathExists)
+            throw new IOException(path.getText() + " existiert bereits!");
+
+        // Write data to file
         try (
                 Writer writer = Files.newBufferedWriter(Paths.get(csv));
 

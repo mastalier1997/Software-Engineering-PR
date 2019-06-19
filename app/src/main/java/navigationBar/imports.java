@@ -50,7 +50,7 @@ public class imports extends AppCompatActivity {
 
         // File name
         textView = findViewById(R.id.editText);
-        textView.setText("dateiname.csv");
+        textView.setText("FiMa_data.csv");
 
         // Path of file
         path = findViewById(R.id.text_info_pfad);
