@@ -22,9 +22,11 @@ public class Position {
     public String getInfo() {
         String desc = description;
         String cat = category;
-
         StringBuffer info = new StringBuffer();
-        info.append(" ");
+
+        if(Double.toString(value).length() <= 6)
+            info.append(" ");
+
         info.append(String.format(String.format("%6s", Double.toString(value))));
         if(desc.length() > 17) {
             desc = desc.substring(0, 14) + "...";
