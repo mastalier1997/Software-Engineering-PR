@@ -121,6 +121,6 @@ public class   PositionSample implements Comparable{
 
             }
         }
-    }//compareTo
+    }
 
 }
