@@ -134,7 +134,7 @@ public class new_expense extends AppCompatActivity {
                 datePickerDialog = new DatePickerDialog(new_expense.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
-                        textView.setText(mDay +"."+(mMonth)+"."+mYear);
+                        textView.setText(mDay +"."+(mMonth+1)+"."+mYear);
                         day = mDay;
                         month = mMonth+1;
                         year = mYear;

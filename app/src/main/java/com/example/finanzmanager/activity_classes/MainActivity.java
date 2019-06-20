@@ -515,9 +515,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (months.size() != 0) {
             Month output = months.getMonth(currentYear, currentMonth);
             if (output != null) {
-                String Income = Double.toString(output.getSumIncome());
-                String Expense = Double.toString(output.getSumExpense());
-                String Balance = Double.toString(output.getBalance());
+                String Income = String.format("%.2f",output.getSumIncome());
+                String Expense = String.format("%.2f",output.getSumExpense());
+                String Balance = String.format("%.2f",output.getBalance());
 
                 sumIncome.setText(Income);
                 sumExpense.setText(Expense);
