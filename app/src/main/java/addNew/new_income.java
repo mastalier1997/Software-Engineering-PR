@@ -106,6 +106,7 @@ public class new_income extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                month=month-1;
                 datePickerDialog = new DatePickerDialog(new_income.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
@@ -128,6 +129,7 @@ public class new_income extends AppCompatActivity {
         EditText add = (EditText) findViewById(R.id.editText_value_income);
         checkButton.setEnabled(false);
 
+        //checkt ob Input im Feld geschehen ist
         add.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -155,35 +157,39 @@ public class new_income extends AppCompatActivity {
         checkButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Betrag abspeichern
-                    int addNumber = Integer.parseInt(add.getText().toString());
+                    switch (add.getText().toString()){
+                        case "":break;
+                        default://Betrag abspeichern
+                            double addNumber = Double.parseDouble(add.getText().toString());
 
-                    //kategorie speichern
-                    String category = txtView.getText().toString();
+                            //kategorie speichern
+                            String category = txtView.getText().toString();
 
-                    //Beschreibung speichern
-                    EditText descriptionText = (EditText) findViewById(R.id.editText_description_income);
-                    String description = descriptionText.getText().toString();
+                            //Beschreibung speichern
+                            EditText descriptionText = (EditText) findViewById(R.id.editText_description_income);
+                            String description = descriptionText.getText().toString();
 
-                    //wiederkehrend
-                    Boolean repeats = false;
-                    if (repeat.isChecked()) repeats = true;
+                            //wiederkehrend
+                            Boolean repeats = false;
+                            if (repeat.isChecked()) repeats = true;
 
-                    //alles in einem Bundle gespeichert
-                    Bundle extras = new Bundle();
-                    extras.putInt("value", addNumber);
-                    extras.putInt("day", day);
-                    extras.putInt("month", month);
-                    extras.putInt("year", year);
-                    extras.putString("category", category);
-                    extras.putString("description", description);
-                    extras.putBoolean("repeats", repeats);
-                    extras.putString("type", "income");
+                            //alles in einem Bundle gespeichert
+                            Bundle extras = new Bundle();
+                            extras.putDouble("value", addNumber);
+                            extras.putInt("day", day);
+                            extras.putInt("month", month);
+                            extras.putInt("year", year);
+                            extras.putString("category", category);
+                            extras.putString("description", description);
+                            extras.putBoolean("repeats", repeats);
+                            extras.putString("type", "income");
 
-                    Intent intent = new Intent(new_income.this, MainActivity.class);
-                    intent.putExtras(extras);
-                    startActivity(intent);
-                    //}
+                            Intent intent = new Intent(new_income.this, MainActivity.class);
+                            intent.putExtras(extras);
+                            startActivity(intent);
+
+                    }
+
 
 
                 }
