@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Integer currentMonth;
 
     //sonstige Variablen
-    int value = 0;
+    double value = 0;
     String description = "";
     String category = "";
     int day, month, year = 0;
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if(bundle.getString("type").equals("income")) { // neue Einnahme
 
-                value = bundle.getInt("value");
+                value = bundle.getDouble("value");
                 description = bundle.getString("description");
                 category = bundle.getString("category");
                 repeat = bundle.getBoolean("repeats");
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (!years.contains(year)) { years.add(year); }
 
             } else if (bundle.getString("type").equals("expense")){ //neue Ausgabe
-                value = bundle.getInt("value");
+                value = bundle.getDouble("value");
                 description = bundle.getString("description");
                 category = bundle.getString("category");
                 repeat = bundle.getBoolean("repeats");
