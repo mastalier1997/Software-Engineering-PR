@@ -68,6 +68,7 @@
         android:ems="10"
         android:fontFamily="@font/droid"
         android:hint="Beschreibung (optional)"
+        android:maxLength="30"
         android:inputType="textPersonName"
         android:textColor="#F0000000"
         app:layout_constraintBottom_toTopOf="@+id/Button_cancel_expense"
