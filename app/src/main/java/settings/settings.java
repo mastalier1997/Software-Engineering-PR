@@ -18,7 +18,6 @@ import com.example.finanzmanager.activity_classes.EmailPasswordActivity;
 import com.example.finanzmanager.activity_classes.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
-import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class settings extends AppCompatActivity {
 
