@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.finanzmanager.R;
-import com.example.finanzmanager.activity_classes.MainActivity;
 
 import java.io.IOException;
 
@@ -38,21 +37,6 @@ public class create_category_expense extends AppCompatActivity {
         setContentView(R.layout.activity_create_category_expense);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-
-        // selectImage = (ImageButton) findViewById(R.id.Button_selectImage_expense);
-    /*
-        selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                // Bild änderbar, bringt aber noch nichts
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-            }
-        });
-    */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Kategorie erstellen </font>"));
