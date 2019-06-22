@@ -57,6 +57,7 @@ import settings.settings;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static List<Integer> yearsNew;
     //zwei objekte für die Speicherung am Smartphone
     private static SharedPreferences savePreference;
     public static SharedPreferences.Editor saveEditor;
@@ -125,15 +126,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.e("year", Integer.toString(currentMonth) + "." + Integer.toString(currentYear));
         updateListView();
 
+
+
         //DropDown für Jahre
         Spinner dropdown_year = findViewById(R.id.dropDown_year);
-        if (years.isEmpty()) years.add(Calendar.getInstance().get(Calendar.YEAR));
-        Collections.sort(years);
-        Collections.reverse(years);
-        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        yearsNew = new ArrayList<>();
+        for (int i = 2010; i<2026;i++){
+                yearsNew.add(i);
+        }
+        Collections.sort(yearsNew);
+        Collections.reverse(yearsNew);
+        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, yearsNew);
         adapter_year.setDropDownViewResource(R.layout.spinner);
         dropdown_year.setAdapter(adapter_year);
-        dropdown_year.setSelection(numOfYear(years, currentYear));
+        dropdown_year.setSelection(numOfYear(yearsNew, currentYear));
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(dropdown_year);
+
+            popupWindow.setHeight(600);
+
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
 
 
         //Aktualisierung wenn neues Jahr ausgewählt wird
@@ -266,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     account.addRepeatingIncome(date, value, true, category, description);
                 }
 
-                if (!years.contains(year)) { years.add(year); }
+
 
             } else if (bundle.getString("type").equals("expense")){ //neue Ausgabe
                 value = bundle.getDouble("value");
@@ -293,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
 
-                if (!years.contains(year)) { years.add(year); }
+
             }
             Gson gson = new Gson();
 
