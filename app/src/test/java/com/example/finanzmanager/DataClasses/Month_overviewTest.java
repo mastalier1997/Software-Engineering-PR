@@ -3,22 +3,30 @@ package com.example.finanzmanager.DataClasses;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
+@RunWith(JUnit4.class)
 public class Month_overviewTest {
+    private Random random;
     private Month_overview m_o;
-    private int year = 2010;
-    private int month = 10;
-    // Wert fuer updateMonthExpense & updateMonthIncome
-    private int value = 100;
+    private int year;
+    private int month;
+    private int value;
     // Delta fuer Double-Werte
     private double delta = 0.01;
 
     @Before
     public void setUp() {
+        random = new Random();
+        year = 1900+random.nextInt(201);
+        month = 1+random.nextInt(12);
+        value = random.nextInt(999999);
         m_o = new Month_overview();
     }
 
@@ -53,7 +61,7 @@ public class Month_overviewTest {
         int month2;
         if(month>=12) month2 = month-1;
         else month2 = month+1;
-        assertNull(m_o.getMonth(year, month2));
+        assertNull(m_o.getMonth(year+1, month2));
     }
 
     @Test
@@ -93,11 +101,15 @@ public class Month_overviewTest {
 
     @Test
     public void fromMonth(){
-        ArrayList<Month> arrayList =  m_o.fromMonth(year, month);
-        assertEquals(m_o.size(), arrayList.size());
-        m_o.newYear(year);
-        arrayList =  m_o.fromMonth(year, month);
-        assertEquals(m_o.size()-(month-1), arrayList.size());
+        assertEquals(12, m_o.fromMonth(2019, 1).size());
+        m_o.newMonth(1900, 1);
+        assertEquals(13, m_o.fromMonth(1900, 1).size());
+        m_o.newMonth(1900 + 1, 12);
+        assertEquals(14, m_o.fromMonth(1900, 1).size());
+        m_o.newMonth(2100, 1);
+        assertEquals(1, m_o.fromMonth(2100, 1).size());
+        m_o.newMonth(2100, 12);
+        assertEquals(2, m_o.fromMonth(2100, 1).size());
     }
 
     @Test

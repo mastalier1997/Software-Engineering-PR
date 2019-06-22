@@ -127,8 +127,7 @@ public class PositionList {
         return found;
     }
 
-    public ArrayList<String> getIncomeCategories() {
-        return categoriesIncome;
+    public ArrayList<String> getIncomeCategories() { return categoriesIncome;
     }
 
     public ArrayList<String> getExpenseCategories() {
@@ -299,19 +298,6 @@ public class PositionList {
         return found;
     }
 
-
-    //TODO: Methode nie benützt, kann man löschen?
-    public ArrayList<Double> getExpenseValueFromDate(int month, int year) {
-        ArrayList<Double> found = new ArrayList<>();
-        for (int i = 0; i<expenseList.size(); i++) {
-            if (expenseList.get(i).getDate().getMonth() == month && expenseList.get(i).getDate().getYear() == year) {
-                found.add(this.getValueExpense(i));
-            }
-        }
-        Collections.reverse(found);
-        return found;
-    }
-
     /**
      * adds a new Income to the list
      * @param date
@@ -321,6 +307,8 @@ public class PositionList {
      * @param description
      */
     public void addIncome(Date date, double value, boolean recurring, String category, String description) {
+        if(recurring)
+            throw new IllegalArgumentException("must not be true");
         Income i = new Income(date, value, recurring, category, description);
         incomeList.add(i);
         addNewIncomeCategory(category);
@@ -335,6 +323,8 @@ public class PositionList {
      * @param description
      */
     public void addExpense(Date date, double value, boolean recurring, String category, String description) {
+        if(recurring)
+            throw new IllegalArgumentException("must not be true");
         Expense e = new Expense(date, value, recurring, category, description);
         expenseList.add(e);
         addNewExpenseCategory(category);
@@ -349,6 +339,8 @@ public class PositionList {
      * @param description
      */
     public void addRepeatingIncome(Date date, double value, boolean recurring, String category, String description) {
+        if(!recurring)
+            throw new IllegalArgumentException("must not be false");
         Income i = new Income(date, value, recurring, category, description);
         this.repeatingIncomeList.add(i);
         addNewIncomeCategory(category);
@@ -363,6 +355,8 @@ public class PositionList {
      * @param description
      */
     public void addRepeatingExpense(Date date, double value, boolean recurring, String category, String description) {
+        if(!recurring)
+            throw new IllegalArgumentException("must not be false");
         Expense e = new Expense(date, value, recurring, category, description);
         this.repeatingExpenseList.add(e);
         addNewExpenseCategory(category);
@@ -382,7 +376,8 @@ public class PositionList {
      * @param i
      * @return expense
      */
-    public String getExpense(int i) { return expenseList.get(i).getInfo(); }
+    public String getExpense(int i) {
+        return expenseList.get(i).getInfo(); }
 
     /**
      * returns the income at an index
@@ -401,48 +396,6 @@ public class PositionList {
     public String getExpenseDate(int i) { return expenseList.get(i).getInfoDate(); }
 
     public double getValueExpense(int i){ return  expenseList.get(i).getValue();}
-
-    /**
-     * returns the number of incomes in total
-     */ //TODO: Methode löschen? wird nie benützt
-    public int incomeLength() {
-        return incomeList.size();
-    }
-
-
-    /**
-     * returns the number of incomes in a month
-     * @param month
-     * @param year
-     * @return number
-     */ //TODO: Methode löschen? wird nie benützt
-    public int incomeLengthInMonth (int month, int year) {
-        int size = 0;
-        for(Income i : incomeList) {
-            if (i.getDate().getMonth() == month && i.getDate().getYear() == year) size++;
-        }
-        return size;
-    }
-
-    /**
-     * returns the number of expenses in total
-     */ //TODO: Methode löschen? wird nie benützt
-    public int expenseLength() {
-        return expenseList.size();
-    }
-
-    /**
-     * returns the number of expense in a month
-     * @param month
-     * @param year
-     */ //TODO: Methode löschen? wird nie benützt
-    public int expenseLengthInMonth (int month, int year) {
-        int size = 0;
-        for(Expense i : expenseList) {
-            if (i.getDate().getMonth() == month && i.getDate().getYear() == year) size++;
-        }
-        return size;
-    }
 
     /**
      * returns all repeating incomes where the year of the starting date is smaller then the

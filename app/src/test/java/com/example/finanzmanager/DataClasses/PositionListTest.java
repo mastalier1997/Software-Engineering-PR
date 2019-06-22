@@ -3,27 +3,63 @@ package com.example.finanzmanager.DataClasses;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.Random;
 
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
-// TODO: In PositionList neu hinzugefügte Methoden testen unnd
-//  Testklasse auf 100% Code coverage bringen!
+@RunWith(JUnit4.class)
 public class PositionListTest {
+    private Random random;
     private PositionList pl;
-    private int year = 2010;
-    private int month = 10;
-    private double d = 10.10;
-    private boolean recurring = false;
-    private String category = "cat";
-    private String description = "this is a cat";
-    private Date date = new Date(10, month, year);
+    private int year;
+    private int month;
+    private int day;
+    private double d;
+    private String category;
+    private String description;
+    private Date date, q1, q2, q3, q4;
 
     @Before
     public void setUp() {
+        random = new Random();
+        year = 1900+random.nextInt(201);
+        month = 1+random.nextInt(12);
+        day = 1+random.nextInt(31);
+        d = (random.nextInt(999999)+0.99);
+        category = "cat";
+        description = "this is a cat";
+        date = mock(Date.class);
         pl = new PositionList();
 
+        // Mocking Attributes
+        when(date.getYear()).thenReturn(year);
+        when(date.getMonth()).thenReturn(month);
+        when(date.getDay()).thenReturn(day);
+
+        q1 = mock(Date.class);
+        when(q1.getYear()).thenReturn(2010);
+        when(q1.getMonth()).thenReturn(2);
+        when(q1.getDay()).thenReturn(10);
+
+        q2 = mock(Date.class);
+        when(q2.getYear()).thenReturn(2010);
+        when(q2.getMonth()).thenReturn(5);
+        when(q2.getDay()).thenReturn(10);
+
+        q3 = mock(Date.class);
+        when(q3.getYear()).thenReturn(2010);
+        when(q3.getMonth()).thenReturn(8);
+        when(q3.getDay()).thenReturn(10);
+
+        q4 = mock(Date.class);
+        when(q4.getYear()).thenReturn(2010);
+        when(q4.getMonth()).thenReturn(11);
+        when(q4.getDay()).thenReturn(10);
     }
 
     @After
@@ -35,7 +71,7 @@ public class PositionListTest {
     public void getIncomeFromDate() {
         assertEquals(0, pl.getIncomeFromDate(month, year).size());
 
-        pl.addIncome(date, d, recurring, category, description);
+        pl.addIncome(date, d, false, category, description);
         assertEquals(1, pl.getIncomeFromDate(month, year).size());
         // Monat nicht enthalten
         int month2;
@@ -48,7 +84,7 @@ public class PositionListTest {
     public void getExpenseFromDate() {
         assertEquals(0, pl.getExpenseFromDate(month, year).size());
 
-        pl.addExpense(date, d, recurring, category, description);
+        pl.addExpense(date, d, false, category, description);
         assertEquals(1, pl.getExpenseFromDate(month, year).size());
         // Monat nicht enthalten
         int month2;
@@ -59,40 +95,61 @@ public class PositionListTest {
 
     @Test
     public void addIncome() {
-        pl.addIncome(date, d, recurring, category, description);
-        pl.addIncome(date, d+1, recurring, category, description);
-        pl.addIncome(date, d+2, recurring, category, description);
-        assertEquals(3, pl.getIncomeFromDate(month, year).size());
+        try {
+            pl.addIncome(date, d, true, category, description);
+        } catch(IllegalArgumentException e){
+            assertEquals("must not be true", e.getMessage());
+        }
+        pl.addIncome(date, d+1, false, category, description);
+        pl.addIncome(date, d+2, false, category, description);
+        assertTrue(pl.getIncome(1).contains(Double.toString(d+2)));
     }
 
     @Test
     public void addExpense() {
-        pl.addExpense(date, d, recurring, category, description);
-        pl.addExpense(date, d+1, recurring, category, description);
-        pl.addExpense(date, d+2, recurring, category, description);
-        assertEquals(3, pl.getExpenseFromDate(month, year).size());
+        try{
+            pl.addExpense(q1, d, true, category, description);
+        } catch(IllegalArgumentException e){
+            assertEquals("must not be true", e.getMessage());
+        }
+        pl.addExpense(q2, d+1, false, category, description);
+        pl.addExpense(q3, d+2, false, category, description);
+        assertTrue(pl.getExpense(1).contains(Double.toString(d+2)));
     }
 
     @Test
     public void getIncome() {
-        pl.addIncome(date, d, recurring, category, description);
-        pl.addIncome(date, d+1, recurring, category, description);
-        pl.addIncome(date, d+2, recurring, category, description);
-        assertNotNull(pl.getIncome(2));
-       // assertNull(pl.getIncome(4));
+        pl.addIncome(date, d, false, category, description);
+        pl.addIncome(date, d+1, false, category, description);
+        pl.addIncome(date, d+2, false, category, description);
+        assertTrue(pl.getIncome(2).contains(Double.toString(d+2)));
+        try{
+            pl.getIncome(3);
+        } catch (IndexOutOfBoundsException e){
+            assertEquals("Index: 3, Size: 3", e.getMessage());
+        }
     }
 
     @Test
     public void getExpense() {
-        pl.addExpense(date, d, recurring, category, description);
-        pl.addExpense(date, d+1, recurring, category, description);
-        pl.addExpense(date, d+2, recurring, category, description);
-        assertNotNull(pl.getExpense(2));
-        // assertNull(pl.getExpense(4));
+        pl.addExpense(date, d, false, category, description);
+        pl.addExpense(date, d+1, false, category, description);
+        pl.addExpense(date, d+2, false, category, description);
+        assertTrue(pl.getExpense(2).contains(Double.toString(d+2)));
+        try{
+            pl.getExpense(3);
+        } catch (IndexOutOfBoundsException e){
+            assertEquals("Index: 3, Size: 3", e.getMessage());
+        }
     }
 
     @Test
     public void addRepeatingIncome(){
+        try{
+            pl.addRepeatingIncome(date, d, false, category, description);
+        } catch(IllegalArgumentException e){
+            assertEquals("must not be false", e.getMessage());
+        }
         ArrayList<Income> list = new ArrayList<>();
         int size = list.size();
         pl.addRepeatingIncome(date, d, true, category, description);
@@ -101,6 +158,11 @@ public class PositionListTest {
 
     @Test
     public void addRepeatingExpense(){
+        try{
+            pl.addRepeatingExpense(date, d, false, category, description);
+        } catch(IllegalArgumentException e){
+            assertEquals("must not be false", e.getMessage());
+        }
         ArrayList<Expense> list = new ArrayList<>();
         int size = list.size();
         pl.addRepeatingExpense(date, d, true, category, description);
@@ -109,71 +171,86 @@ public class PositionListTest {
 
     @Test
     public void updateRepeatingIncome(){
-        pl.addRepeatingIncome(date, d, recurring, category, description);
-        assertEquals(0, pl.updateRepeatingIncome(year).size());
+        assertEquals(0, pl.updateRepeatingIncome(year+1).size());
+        pl.addRepeatingIncome(date, d, true, category, description);
+        assertEquals(1, pl.updateRepeatingIncome(year+1).size());
     }
 
     @Test
     public void updateRepeatingExpense(){
-        pl.addRepeatingExpense(date, d, recurring, category, description);
-        assertEquals(0, pl.updateRepeatingExpense(year).size());
+        assertEquals(0, pl.updateRepeatingExpense(year+1).size());
+        pl.addRepeatingExpense(date, d, true, category, description);
+        assertEquals(1, pl.updateRepeatingExpense(year+1).size());
     }
 
     @Test
     public void changeRepeatingIncomeList(){
-        pl.addRepeatingIncome(date, d, recurring, category, description);
-        pl.changeRepeatingIncomeList(description, d, "newString", 9.10);
+        pl.addRepeatingIncome(date, d, true, category, description);
+        pl.changeRepeatingIncomeList(description, d, "newString", d+1);
         assertEquals("newString", pl.get_repeatingIncomeList().get(0).getDescription());
+        assertEquals(d+1, pl.get_repeatingIncomeList().get(0).getValue(), 0.001);
     }
 
     @Test
     public void changeRepeatingExpenseList(){
-        pl.changeRepeatingExpenseList(description, d, "newString", 9.10);
-        assertEquals(0, pl.get_repeatingExpenseList().size());
+        pl.addRepeatingExpense(date, d, true, category, description);
+        pl.changeRepeatingExpenseList(description, d, "newString", d+1);
+        assertEquals("newString", pl.get_repeatingExpenseList().get(0).getDescription());
+        assertEquals(d+1, pl.get_repeatingExpenseList().get(0).getValue(), 0.01);
     }
 
     @Test
     public void getIncomeFromQuarter(){
-        ArrayList<String> al = pl.getIncomeFromQuarter(1, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(2, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(3, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(4, 2010);
-        assertNotNull(al.toArray());
+
+        pl.addIncome(q1, d, false, "q12345", description);
+        pl.addIncome(q2, d, false, "q23451", description);
+        pl.addIncome(q3, d, false, "q34512", description);
+        pl.addIncome(q4, d, false, "q45123", description);
+
+        assertTrue(pl.getIncomeFromQuarter(1, 2010).get(0).contains("q12345"));
+        assertTrue(pl.getIncomeFromQuarter(2, 2010).get(0).contains("q23451"));
+        assertTrue(pl.getIncomeFromQuarter(3, 2010).get(0).contains("q34512"));
+        assertTrue(pl.getIncomeFromQuarter(4, 2010).get(0).contains("q45123"));
 
     }
 
     @Test
     public void getExpenseFromQuarter(){
-        ArrayList<String> al = pl.getExpenseFromQuarter(1, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(2, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(3, 2010);
-        assertNotNull(al.toArray());
-        al = pl.getIncomeFromQuarter(4, 2010);
-        assertNotNull(al.toArray());
 
+        pl.addExpense(q1, d, false, "q12345", description);
+        pl.addExpense(q2, d, false, "q23451", description);
+        pl.addExpense(q3, d, false, "q34512", description);
+        pl.addExpense(q4, d, false, "q45123", description);
+
+        assertTrue(pl.getExpenseFromQuarter(1, 2010).get(0).contains("q12345"));
+        assertTrue(pl.getExpenseFromQuarter(2, 2010).get(0).contains("q23451"));
+        assertTrue(pl.getExpenseFromQuarter(3, 2010).get(0).contains("q34512"));
+        assertTrue(pl.getExpenseFromQuarter(4, 2010).get(0).contains("q45123"));
     }
 
     @Test
     public void getIncomeFromYear(){
-        ArrayList<String> l = pl.getIncomeFromYear(2010);
-        assertNotNull(l);
+        assertNotNull(pl.getIncomeFromYear(year));
+
     }
 
     @Test
     public void getExpenseFromYear(){
-        ArrayList<String> l = pl.getExpenseFromYear(2010);
-        assertNotNull(l);
+        assertNotNull(pl.getExpenseFromYear(year));
     }
 
     @Test
     public void getExpenseFromCategory(){
-        ArrayList<String> l = pl.getExpenseFromCategory(category);
-        assertNotNull(l);
+
+        pl.addExpense(q1, d, false, "q12345", description);
+        pl.addExpense(q2, d+1, false, "q23451", description);
+        pl.addExpense(q3, d+2, false, "q34512", description);
+        pl.addExpense(q4, d+3, false, "q45123", description);
+
+        assertTrue(pl.getExpenseFromCategory("q12345").get(0).contains(Double.toString(d)));
+        assertTrue(pl.getExpenseFromCategory("q23451").get(0).contains(Double.toString(d+1)));
+        assertTrue(pl.getExpenseFromCategory("q34512").get(0).contains(Double.toString(d+2)));
+        assertTrue(pl.getExpenseFromCategory("q45123").get(0).contains(Double.toString(d+3)));
     }
 
     @Test
@@ -188,40 +265,86 @@ public class PositionListTest {
 
     @Test
     public void deleteRepeatingIncome(){
-        pl.addRepeatingIncome(date, d, recurring, category, description);
-        assertEquals(d, pl.get_repeatingIncomeList().get(0).getValue(), 0.01);
+
+        pl.addRepeatingIncome(q1, d, true, category, description);
+        pl.addRepeatingIncome(q2, d+1, true, category, description);
+        pl.addRepeatingIncome(q3, d+2, true, category, description);
+        pl.addRepeatingIncome(q4, d+3, true, category, description);
+        pl.addRepeatingIncome(date, d, true, category, description);
+
+        int before = pl.get_repeatingIncomeList().size();
         pl.deleteRepeatingIncome(description, d);
-        assertTrue(pl.get_repeatingIncomeList().isEmpty());
+        int after = pl.get_repeatingIncomeList().size();
+
+        assertEquals(before-1, after);
     }
 
     @Test
     public void deleteRepeatingExpense(){
-        pl.addRepeatingExpense(date, d, recurring, category, description);
-        assertEquals(d, pl.get_repeatingExpenseList().get(0).getValue(), 0.01);
+
+        pl.addRepeatingExpense(q1, d, true, category, description);
+        pl.addRepeatingExpense(q2, d+1, true, category, description);
+        pl.addRepeatingExpense(q3, d+2, true, category, description);
+        pl.addRepeatingExpense(q4, d+3, true, category, description);
+        pl.addRepeatingExpense(date, d, true, category, description);
+
+        int before = pl.get_repeatingExpenseList().size();
         pl.deleteRepeatingExpense(description, d);
-        assertTrue(pl.get_repeatingExpenseList().isEmpty());
+        int after = pl.get_repeatingExpenseList().size();
+
+        assertEquals(before-1, after);
     }
 
     @Test
     public void getIncomeDate(){
-        pl.addIncome(date, d, recurring, category, description);
-        String s = pl.getIncomeDate(0);
-        assertEquals(s, pl.getIncomeDate(0));
+        pl.addIncome(date, d, false, category, description);
+        assertTrue(pl.getIncomeDate(0).contains(Double.toString(d)));
     }
 
     @Test
     public void getExpenseDate(){
-        pl.addExpense(date, d, recurring, category, description);
-        String s = pl.getExpenseDate(0);
-        assertEquals(s, pl.getExpenseDate(0));
+        pl.addExpense(date, d, false, category, description);
+        assertTrue(pl.getExpenseDate(0).contains(Double.toString(d)));
     }
 
     @Test
     public void getValueExpense(){
-        pl.addExpense(date, d, recurring, category, description);
-        assertEquals(d, pl.getValueExpense(0), 0.01);
+        pl.addExpense(date, d, false, category, description);
+        assertEquals(d, pl.getValueExpense(0), 0.001);
     }
 
+    @Test
+    public void getIncomeFromCategory(){
+        Date q1 = mock(Date.class);
+        when(q1.getYear()).thenReturn(2010);
+        when(q1.getMonth()).thenReturn(2);
+        when(q1.getDay()).thenReturn(10);
+
+        Date q2 = mock(Date.class);
+        when(q2.getYear()).thenReturn(2010);
+        when(q2.getMonth()).thenReturn(5);
+        when(q2.getDay()).thenReturn(10);
+
+        Date q3 = mock(Date.class);
+        when(q3.getYear()).thenReturn(2010);
+        when(q3.getMonth()).thenReturn(8);
+        when(q3.getDay()).thenReturn(10);
+
+        Date q4 = mock(Date.class);
+        when(q4.getYear()).thenReturn(2010);
+        when(q4.getMonth()).thenReturn(11);
+        when(q4.getDay()).thenReturn(10);
+
+        pl.addIncome(q1, d, false, "q12345", description);
+        pl.addIncome(q2, d+1, false, "q23451", description);
+        pl.addIncome(q3, d+2, false, "q34512", description);
+        pl.addIncome(q4, d+3, false, "q45123", description);
+
+        assertTrue(pl.getIncomeFromCategory("q12345").get(0).contains(Double.toString(d)));
+        assertTrue(pl.getIncomeFromCategory("q23451").get(0).contains(Double.toString(d+1)));
+        assertTrue(pl.getIncomeFromCategory("q34512").get(0).contains(Double.toString(d+2)));
+        assertTrue(pl.getIncomeFromCategory("q45123").get(0).contains(Double.toString(d+3)));
+    }
 
 
 }

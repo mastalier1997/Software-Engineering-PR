@@ -4,24 +4,31 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
+@RunWith(JUnit4.class)
 public class PositionSampleTest {
 
     PositionSample positionSample;
-
     int positionType1 = 1;
     int positionType0 = 0;
-    int value = 500;
+    double value = 500.0;
     boolean reocurring = true;
     String category = "cat";
     String description = "this is a cat";
-    Date date = new Date(10, 10, 2010);
+    Date date;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
+        date = mock(Date.class);
+        when(date.getDay()).thenReturn(10);
+        when(date.getMonth()).thenReturn(10);
+        when(date.getYear()).thenReturn(2010);
+
         positionSample = new PositionSample();
         positionSample.setPositionType(positionType1);
         positionSample.setValue(value);
@@ -32,7 +39,7 @@ public class PositionSampleTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         positionSample = null;
     }
 
@@ -87,14 +94,14 @@ public class PositionSampleTest {
 
     @Test
     public void getValue() {
-        assertEquals(value, positionSample.getValue());
+        assertEquals(value, positionSample.getValue(), 0.001);
     }
 
     @Test
     public void setValue() {
-        assertEquals(value, positionSample.getValue());
+        assertEquals(value, positionSample.getValue(), 0.001);
         positionSample.setValue(10);
-        assertEquals(10, positionSample.getValue());
+        assertEquals(10, positionSample.getValue(), 0.001);
     }
 
     @Test
@@ -138,29 +145,66 @@ public class PositionSampleTest {
         assertArrayEquals(s, positionSample.readyToExport());
     }
 
-    @Test @Ignore
+    @Test
     public void compareTo() {
-        //TODO: Warum schlägt dieser Test fehl?
-        PositionSample ps1 = positionSample;
-        PositionSample ps2 = positionSample;
-        PositionSample ps3 = positionSample;
 
-        ps1.setDate(new Date(9, 10, 2010));
-        ps2.setDate(new Date(10, 9, 2010));
-        ps3.setDate(new Date(10, 10, 2009));
+        // Nicht Instanz von PositionSample
+        assertEquals(-1, positionSample.compareTo(date));
 
+        // Mocking fuer Date
+        Date date2 = mock(Date.class);
+        when(date2.getDay()).thenReturn(9);
+        when(date2.getMonth()).thenReturn(10);
+        when(date2.getYear()).thenReturn(2010);
+
+        Date date3 = mock(Date.class);
+        when(date3.getDay()).thenReturn(10);
+        when(date3.getMonth()).thenReturn(9);
+        when(date3.getYear()).thenReturn(2010);
+
+        Date date4 = mock(Date.class);
+        when(date4.getDay()).thenReturn(10);
+        when(date4.getMonth()).thenReturn(10);
+        when(date4.getYear()).thenReturn(2009);
+
+        // PositionSample-Instanzen zum Vergleichen
+        PositionSample ps1 = new PositionSample();
+        ps1.setDescription(description);
+        ps1.setCategory(category);
+        ps1.setDate(date2);
+        ps1.setPositionType(positionType0);
+        ps1.setReocurring(reocurring);
+        ps1.setValue(value);
+
+        PositionSample ps2 = new PositionSample();
+        ps2.setDescription(description);
+        ps2.setCategory(category);
+        ps2.setDate(date3);
+        ps2.setPositionType(positionType0);
+        ps2.setReocurring(reocurring);
+        ps2.setValue(value);
+
+        PositionSample ps3 = new PositionSample();
+        ps3.setDescription(description);
+        ps3.setCategory(category);
+        ps3.setDate(date4);
+        ps3.setPositionType(positionType0);
+        ps3.setReocurring(reocurring);
+        ps3.setValue(value);
+
+        // Vergleiche >
         assertEquals(1, positionSample.compareTo(ps1));
         assertEquals(1, positionSample.compareTo(ps2));
         assertEquals(1, positionSample.compareTo(ps3));
 
-        ps1.setDate(new Date(10, 10, 2010));
+        // Vergleiche =
+        ps1.setDate(date);
         assertEquals(0, positionSample.compareTo(ps1));
+        ps1.setDate(date2);
 
-        ps1.setDate(new Date(11, 10, 2010));
-        ps2.setDate(new Date(10, 11, 2010));
-        ps3.setDate(new Date(10, 10, 2011));
-        assertEquals(-1, positionSample.compareTo(ps1));
-        assertEquals(-1, positionSample.compareTo(ps2));
-        assertEquals(-1, positionSample.compareTo(ps3));
+        // Vergleiche <
+        assertEquals(-1, ps1.compareTo(positionSample));
+        assertEquals(-1, ps2.compareTo(positionSample));
+        assertEquals(-1, ps3.compareTo(positionSample));
     }
 }

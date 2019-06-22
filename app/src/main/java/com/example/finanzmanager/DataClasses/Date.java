@@ -7,7 +7,8 @@ public class Date {
     private int year;
 
     public Date(int day, int month, int year) {
-        if (day <= 0 || month <= 0 || year <= 0) {
+        if (day < 1 || month < 1 || year < 1900
+            || day > 31 || month > 12 || year > 2100) {
             throw new IllegalArgumentException("Ungueltiges Datum");
         }
 

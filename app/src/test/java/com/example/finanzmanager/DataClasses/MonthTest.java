@@ -3,18 +3,26 @@ package com.example.finanzmanager.DataClasses;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import java.util.Random;
 import static org.junit.Assert.*;
 
+@RunWith(JUnit4.class)
 public class MonthTest {
+    Random random;
     private Month month;
-    private int intMonth = 10;
-    private int year = 2010;
+    private int intMonth;
+    private int year;
     // Delta fuer Double-Werte
-    private double delta = 0.01;
+    private double delta = 0.001;
 
     @Before
     public void setUp() {
+        random = new Random();
+        year = 1900+random.nextInt(201);
+        intMonth = 1+random.nextInt(12);
         month = new Month(year, intMonth);
     }
 
