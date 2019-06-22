@@ -95,6 +95,8 @@ public class   PositionSample implements Comparable{
 
     @Override
     public int compareTo(Object o) {
+        if(!(o instanceof PositionSample))
+            return -1;
         if(this.date.getYear()> ((PositionSample) o).getDate().getYear()){
             return 1;
         }

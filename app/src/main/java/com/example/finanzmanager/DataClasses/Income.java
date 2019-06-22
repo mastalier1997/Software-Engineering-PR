@@ -2,6 +2,7 @@ package com.example.finanzmanager.DataClasses;
 
 public class Income extends Position {
 
+    //TODO Wird nie verwendet, zu etwas gut?
     private int id;
     static private int idCounter = 0;
 

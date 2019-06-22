@@ -328,15 +328,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public static void setCurrentMonth(Integer currentMonth) {
-        MainActivity.currentMonth = currentMonth;
-        saveEditor.putInt("currentMonth", currentMonth);
-        saveEditor.commit();
+        if(currentMonth >= 1 && currentMonth <= 12) {
+            MainActivity.currentMonth = currentMonth;
+            saveEditor.putInt("currentMonth", currentMonth);
+            saveEditor.commit();
+        } else{
+            Log.d("MainActivity", "Invalid: Month<1 or Month>12"  );
+        }
     }
 
     public static void setCurrentYear(Integer currentYear) {
-        MainActivity.currentYear = currentYear;
-        saveEditor.putInt("currentYear", currentYear);
-        saveEditor.commit();
+        if(currentYear>=1900 && currentYear<=2100) {
+            MainActivity.currentYear = currentYear;
+            saveEditor.putInt("currentYear", currentYear);
+            saveEditor.commit();
+        } else{
+            Log.d("MainActivity", "Invalid: Month<1900 or Month>2100");
+        }
     }
 
     /**

@@ -45,26 +45,6 @@ public class Position {
         else rec = "nein";
         info.append(String.format(String.format("%-5s", rec)));
         return info.toString();
-
-        //TODO kann eigentlich entfernt werden
-        /*
-        StringBuffer info = new StringBuffer();
-        int value_size = 9;
-        int description_size = 17;
-        int category_size = 15;
-        info.append(" ");
-        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
-        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
-        info.append(String.format("%1$-" + category_size + "s", category).replace(' ', '\t'));
-        String repeat = "";
-        if (recurring) {
-            repeat = "ja";
-        } else {
-            repeat = "nein";
-        }
-        info.append(String.format("%1$" + 4 + "s", repeat).replace(' ', '\t'));
-        return info.toString();
-        */
     }
 
     /**
@@ -90,19 +70,6 @@ public class Position {
         info.append(" ");
         info.append(String.format("%6s", date.getString()));
         return info.toString();
-
-        //TODO kann eigentlich entfernt werden
-        /*
-        StringBuffer info = new StringBuffer();
-        int value_size = 10;
-        int description_size = 17;
-        int date_size = 19;
-        info.append(" ");
-        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
-        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
-        info.append(String.format("%1$" + date_size + "s", date.getString()).replace(' ', '\t'));
-        return info.toString();
-        */
     }
 
     /**

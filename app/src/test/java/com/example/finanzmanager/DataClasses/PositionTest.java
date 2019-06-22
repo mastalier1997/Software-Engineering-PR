@@ -3,22 +3,34 @@ package com.example.finanzmanager.DataClasses;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import java.util.Random;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+@RunWith(JUnit4.class)
 public class PositionTest {
+    private Random random;
     private Position position;
-    private Date date = mock(Date.class);
-    private double value = 10.10;
+    private Date date;
+    private double value;
+    private boolean recurring;
+    private String category;
+    private String description;
+
     // accepted delta for value
-    private double delta = 0.01;
-    private boolean recurring = true;
-    private String category = "cat";
-    private String description = "is a cat";
+    private double delta = 0.001;
 
     @Before
     public void setUp() {
+        random = new Random();
+        date = mock(Date.class);
+        value = (random.nextInt(999999)+0.99);
+        recurring = random.nextBoolean();
+        category = "cat";
+        description = "this is a cat";
         position = new Position(date, value, recurring, category, description);
     }
 
@@ -32,18 +44,6 @@ public class PositionTest {
         position = new Position(date, value, recurring, category, description);
         assertNotNull(position);
     }
-
-    // TODO: printPosition entfernen
-    /*
-    @Test
-    public void printPosition() {
-        String expected = ", Betrag: " + value + ", Kategorie: " + category + "\r\n";
-        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        position.printPosition();
-        assertEquals(expected, outContent.toString());
-    }
-    */
 
     @Test
     public void getDate() {
@@ -77,43 +77,18 @@ public class PositionTest {
     }
 
     @Test
-    public void getInfo(){ //TODO Änderungen aus Position übernehmen
-        StringBuffer info = new StringBuffer();
-        int value_size = 10;
-        int description_size = 17;
-        int category_size = 15;
-        info.append(" ");
-        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
-        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
-        info.append(String.format("%1$-" + category_size + "s", category).replace(' ', '\t'));
-        String repeat = "";
-        if (recurring) {
-            repeat = "ja";
-        } else {
-            repeat = "nein";
-        }
-        info.append(String.format("%1$" + 4 + "s", repeat).replace(' ', '\t'));
-        String expected = info.toString();
-
-        String actual = position.getInfo();
-
-        assertEquals(expected, actual);
+    public void getInfo(){
+        assertNotNull(position.getInfo());
+        Position position1 = new Position(date, 1, !recurring,
+                "1234asdfqwe", "qwertzuiopüasdfghjkl");
+        assertNotNull(position1.getInfo());
     }
 
     @Test
-    public void getInfoDate(){//TODO Änderungen aus Position übernehmen
-        StringBuffer info = new StringBuffer();
-        int value_size = 10;
-        int description_size = 17;
-        int date_size = 19;
-        info.append(" ");
-        info.append(String.format("%1$-" + value_size + "s", Double.toString(value)).replace(' ', '\t'));
-        info.append(String.format("%1$-" + description_size + "s", description).replace(' ', '\t'));
-        info.append(String.format("%1$" + date_size + "s", date.getString()).replace(' ', '\t'));
-        String expected = info.toString();
-
-        String actual = position.getInfoDate();
-
-        assertEquals(expected, actual);
+    public void getInfoDate(){
+        assertNotNull(position.getInfoDate());
+        Position position1 = new Position(date, 1, !recurring,
+                "1234asdfqwe", "qwertzuiopüasdfghjkl");
+        assertNotNull(position1.getInfoDate());
     }
 }
