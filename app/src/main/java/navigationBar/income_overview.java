@@ -84,8 +84,9 @@ public class income_overview extends AppCompatActivity {
         adapter_month.setDropDownViewResource(R.layout.spinner);
         spinner_month.setAdapter(adapter_month);
 
-        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.years);
+        ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.yearsNew);
         adapter_year.setDropDownViewResource(R.layout.spinner);
+        //spinner_year.setSelection(7);
         spinner_year.setAdapter(adapter_year);
 
         // Kategorien
@@ -165,7 +166,7 @@ public class income_overview extends AppCompatActivity {
                             listView_income_category.setVisibility(View.INVISIBLE);
                             spinner_category.setVisibility(View.INVISIBLE);
                             textView_date.setVisibility(View.INVISIBLE);
-                            listView_income_month.setVisibility(View.VISIBLE);
+                            listView_income_month.setVisibility(View.INVISIBLE);
                             spinner_month.setVisibility(View.INVISIBLE);
                             spinner_year.setVisibility(View.VISIBLE);
                             textView_cat.setVisibility(View.VISIBLE);
