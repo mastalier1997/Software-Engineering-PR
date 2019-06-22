@@ -307,8 +307,6 @@ public class PositionList {
      * @param description
      */
     public void addIncome(Date date, double value, boolean recurring, String category, String description) {
-        if(recurring)
-            throw new IllegalArgumentException("must not be true");
         Income i = new Income(date, value, recurring, category, description);
         incomeList.add(i);
         addNewIncomeCategory(category);
@@ -323,8 +321,6 @@ public class PositionList {
      * @param description
      */
     public void addExpense(Date date, double value, boolean recurring, String category, String description) {
-        if(recurring)
-            throw new IllegalArgumentException("must not be true");
         Expense e = new Expense(date, value, recurring, category, description);
         expenseList.add(e);
         addNewExpenseCategory(category);

@@ -95,11 +95,6 @@ public class PositionListTest {
 
     @Test
     public void addIncome() {
-        try {
-            pl.addIncome(date, d, true, category, description);
-        } catch(IllegalArgumentException e){
-            assertEquals("must not be true", e.getMessage());
-        }
         pl.addIncome(date, d+1, false, category, description);
         pl.addIncome(date, d+2, false, category, description);
         assertTrue(pl.getIncome(1).contains(Double.toString(d+2)));
@@ -107,11 +102,6 @@ public class PositionListTest {
 
     @Test
     public void addExpense() {
-        try{
-            pl.addExpense(q1, d, true, category, description);
-        } catch(IllegalArgumentException e){
-            assertEquals("must not be true", e.getMessage());
-        }
         pl.addExpense(q2, d+1, false, category, description);
         pl.addExpense(q3, d+2, false, category, description);
         assertTrue(pl.getExpense(1).contains(Double.toString(d+2)));

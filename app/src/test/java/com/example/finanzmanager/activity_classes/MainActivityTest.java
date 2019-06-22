@@ -11,18 +11,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.robolectric.*;
-import org.robolectric.android.controller.ActivityController;
-
 import addNew.income_menu;
-import settings.settings;
 
+import static android.os.Looper.getMainLooper;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
-    private ActivityController<MainActivity> controller;
     private MainActivity activity;
 
     @Before
@@ -87,23 +84,37 @@ public class MainActivityTest {
 
     @Test
     public void checkRepeatingPositionsGetUpdatedInNewYears(){
-        Date d1 = new Date(10, 10, 2010);
-        Date d2 = new Date(10, 10, 2011);
-        Date d3 = new Date(15, 11, 2018);
+        Date d1 = mock(Date.class);
+        when(d1.getDay()).thenReturn(10);
+        when(d1.getMonth()).thenReturn(10);
+        when(d1.getYear()).thenReturn(2010);
+
+        Date d2 = mock(Date.class);
+        when(d2.getDay()).thenReturn(10);
+        when(d2.getMonth()).thenReturn(10);
+        when(d2.getYear()).thenReturn(2011);
+
+        Date d3 = mock(Date.class);
+        when(d3.getDay()).thenReturn(15);
+        when(d3.getMonth()).thenReturn(11);
+        when(d3.getYear()).thenReturn(2018);
 
         activity.addExpenseFromCurrentMonth(d1, 20, "Bar", "neue Bar");
         MainActivity.account.addRepeatingExpense(d1, 20, true, "Bar", "neue Bar");
+        assertEquals(3, MainActivity.account.getExpenseFromYear(2010).size());
+        shadowOf(getMainLooper()).idle();
 
+        /*
         activity.addIncomeFromCurrentMonth(d2, 20, "Bar", "andere Bar");
         MainActivity.account.addRepeatingIncome(d2, 20, true, "Bar", "andere Bar");
 
         activity.addExpenseFromCurrentMonth(d3, 500, "Sprit", "für neuen BMW");
         MainActivity.account.addRepeatingExpense(d3, 500, true, "Sprit", "für neuen BMW");
 
-      //  assertNotEquals(MainActivity.account.getExpenseFromYear());
-      //  activity.addIncomeFromCurrentMonth(d3, 5000, "Sprit", "altes Auto");
-      //  MainActivity.account.addRepeatingIncome(d3, 5000, true, "Sprit", "altes Auto");
-
+        assertNotEquals(MainActivity.account.getExpenseFromYear());
+        activity.addIncomeFromCurrentMonth(d3, 5000, "Sprit", "altes Auto");
+        MainActivity.account.addRepeatingIncome(d3, 5000, true, "Sprit", "altes Auto");
+*/
     }
 
     @Test
