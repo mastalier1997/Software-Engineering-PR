@@ -91,7 +91,7 @@ public class graph extends AppCompatActivity {
         spinnerMonth.setAdapter(adapter);
         spinnerMonth.setSelection(MainActivity.currentMonth-1);
 
-        List<Integer> year = MainActivity.years;
+        List<Integer> year = MainActivity.yearsNew;
 
         Log.e("test", "test");
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
