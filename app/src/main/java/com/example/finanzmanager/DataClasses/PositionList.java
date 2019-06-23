@@ -150,9 +150,9 @@ public class PositionList {
         for(int i = 0; i<incomeList.size(); i++) {
             Income test = incomeList.get(i);
             if (test.getDescription().equals(description) && test.getValue() == value && test.getDate().getYear() >= year) {
-                Log.e("Schleifentest:", "Vor der IF");
+                //Log.e("Schleifentest:", "Vor der IF");
                 if ((test.getDate().getYear() == year && test.getDate().getMonth() >= month) || test.getDate().getYear() > year) {
-                    Log.e("Schleifentest:", "Nach der IF");
+                    //Log.e("Schleifentest:", "Nach der IF");
                     incomeList.remove(i);
                     i--; //notwendig da das i+1 element auf die Stelle i rückt und somit im nächsten Schleifendurchgang übersprungen wird
                     MainActivity.months.updateMonthIncome(test.getDate().getYear(), test.getDate().getMonth(), -value);
@@ -449,5 +449,88 @@ public class PositionList {
         }
         return false;
     }
+
+
+    /********************************
+    *********************************
+    *** METHODEN AUS MainActivity ***
+    *********************************
+    *********************************/
+
+    /**
+     * when a new year is added, all repeating positions are updated
+     * @param year
+     *
+     */
+    public void updateRepeating(int year) {
+        ArrayList<Income> incomes = updateRepeatingIncome(year);
+        ArrayList<Expense> expenses = updateRepeatingExpense(year);
+        Date date = new Date(1, 1, year);
+        int counter = 1;
+        for (Income i : incomes) {
+            MainActivity.account.addIncomeFromCurrentMonth(date, i.getValue(), i.getCategory(), i.getDescription());
+            counter++;
+        }
+        for (Expense e : expenses) {
+            MainActivity.account.addExpenseFromCurrentMonth(date, e.getValue(), e.getCategory(), e.getDescription());
+        }
+    }
+
+    /**
+     * A new repeating Income gets added to all following months
+     * @param date
+     * @param value
+     * @param category
+     * @param description
+     */
+    //bei wiederkehrendem Einkommen wird die erfasste Einnahme in alle bisher erstellten zukünftigen Monate eingefügt
+    public void addIncomeFromCurrentMonth(Date date, double value, String category, String description) {
+        int month = date.getMonth();
+        int year = date.getYear();
+        ArrayList<Month> from = MainActivity.months.fromMonth(year, month);
+        for (Month i : from) {
+            Date currentDate = new Date(15, i.getMonth(), i.getYear());
+            addIncome(currentDate, value, true, category, description);
+            MainActivity.months.updateMonthIncome(i.getYear(), i.getMonth(), value);
+        }
+    }
+
+    /**
+     * A new repeating Expense gets added to all following months
+     * @param date
+     * @param value
+     * @param category
+     * @param description
+     */
+    //bei wiederkehrendem Ausgaben wird die erfasste Ausgabe in alle bisher erstellten zukünftigen Monate eingefügt
+    public void addExpenseFromCurrentMonth(Date date, double value, String category, String description) {
+        int month = date.getMonth();
+        int year = date.getYear();
+        ArrayList<Month> from = MainActivity.months.fromMonth(year, month);
+        for (Month i : from) {
+            Date currentDate = new Date(15, i.getMonth(), i.getYear());
+            addExpense(currentDate, value, true, category, description);
+            MainActivity.months.updateMonthExpense(i.getYear(), i.getMonth(), value);
+        }
+    }
+
+    public int numOfYear(List<Integer> years, Integer search) {
+        if(search < 1900)
+            return 0;
+
+        int counter = 0;
+        for (Integer y : years) {
+          //Log.e("year", Integer.toString(y.intValue()) + " -- " + Integer.toString(search));
+            if(y.intValue() == search) return counter;
+            counter++;
+        }
+        return counter-1;
+    }
+
+    /**************************************
+     **************************************
+     *** METHODEN AUS MainActivity ENDE ***
+     **************************************
+     **************************************/
 
 }

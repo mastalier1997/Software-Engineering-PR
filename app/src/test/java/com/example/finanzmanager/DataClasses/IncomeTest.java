@@ -42,4 +42,10 @@ public class IncomeTest {
         assertNotNull(income);
     }
 
+    @Test
+    public void getId(){
+        assertEquals(0, income.getId());
+        Income i2 = new Income(date, value, recurring, category, description);
+        assertEquals(1, i2.getId());
+    }
 }

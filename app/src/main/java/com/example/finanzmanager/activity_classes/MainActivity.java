@@ -31,8 +31,6 @@ import com.example.finanzmanager.DataClasses.Month;
 import com.example.finanzmanager.DataClasses.Month_overview;
 import com.example.finanzmanager.DataClasses.PositionList;
 import com.example.finanzmanager.R;
-import com.example.finanzmanager.DataClasses.Income;
-import com.example.finanzmanager.DataClasses.Expense;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -41,7 +39,6 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.lang.Double;
 import java.util.List;
@@ -139,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayAdapter<Integer> adapter_year = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, yearsNew);
         adapter_year.setDropDownViewResource(R.layout.spinner);
         dropdown_year.setAdapter(adapter_year);
-        dropdown_year.setSelection(numOfYear(yearsNew, currentYear));
+        dropdown_year.setSelection(account.numOfYear(yearsNew, currentYear));
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
@@ -273,14 +270,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if(months.yearExists(year) == false) {
                     months.newYear(year);
-                    updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
+                    account.updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
                 }
 
                 if(repeat == false) {
                     account.addIncome(date, value, repeat, category, description);
                     months.updateMonthIncome(year, month, value);
                 } else {
-                    addIncomeFromCurrentMonth(date, value, category, description);
+                    account.addIncomeFromCurrentMonth(date, value, category, description);
                     account.addRepeatingIncome(date, value, true, category, description);
                 }
 
@@ -299,14 +296,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if(months.yearExists(year) == false) {
                     months.newYear(year);
-                    updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
+                    account.updateRepeating(year); //falls ein neues Jahr eingefügt wird, werden alle sich wiederholenden Position eingefügt
                 }
 
                 if(repeat == false) {
                     account.addExpense(date, value, repeat, category, description);
                     months.updateMonthExpense(year, month, value);
                 } else {
-                    addExpenseFromCurrentMonth(date, value, category, description);
+                    account.addExpenseFromCurrentMonth(date, value, category, description);
                     account.addRepeatingExpense(date, value, true, category, description);
 
                 }
@@ -375,62 +372,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         saveEditor.putString("account", account_json);
         saveEditor.putString("months", months_json);
         saveEditor.commit();
-    }
-
-    /**
-     * when a new year is added, all repeating positions are updated
-     * @param year
-     */
-    private void updateRepeating(int year) {
-        ArrayList<Income> incomes = account.updateRepeatingIncome(year);
-        ArrayList<Expense> expenses = account.updateRepeatingExpense(year);
-        Date date = new Date(1, 1, year);
-        int counter = 1;
-        for (Income i : incomes) {
-            addIncomeFromCurrentMonth(date, i.getValue(), i.getCategory(), i.getDescription());
-            counter++;
-        }
-        for (Expense e : expenses) {
-            addExpenseFromCurrentMonth(date, e.getValue(), e.getCategory(), e.getDescription());
-        }
-    }
-
-    /**
-     * A new repeating Income gets added to all following months
-     * @param date
-     * @param value
-     * @param category
-     * @param description
-     */
-    //bei wiederkehrendem Einkommen wird die erfasste Einnahme in alle bisher erstellten zukünftigen Monate eingefügt
-    public void addIncomeFromCurrentMonth(Date date, double value, String category, String description) {
-        int month = date.getMonth();
-        int year = date.getYear();
-        ArrayList<Month> from = months.fromMonth(year, month);
-        for (Month i : from) {
-            Date currentDate = new Date(15, i.getMonth(), i.getYear());
-            account.addIncome(currentDate, value, true, category, description);
-            months.updateMonthIncome(i.getYear(), i.getMonth(), value);
-        }
-    }
-
-    /**
-     * A new repeating Expense gets added to all following months
-     * @param date
-     * @param value
-     * @param category
-     * @param description
-     */
-    //bei wiederkehrendem Ausgaben wird die erfasste Ausgabe in alle bisher erstellten zukünftigen Monate eingefügt
-    public void addExpenseFromCurrentMonth(Date date, double value, String category, String description) {
-        int month = date.getMonth();
-        int year = date.getYear();
-        ArrayList<Month> from = months.fromMonth(year, month);
-        for (Month i : from) {
-            Date currentDate = new Date(15, i.getMonth(), i.getYear());
-            account.addExpense(currentDate, value, true, category, description);
-            months.updateMonthExpense(i.getYear(), i.getMonth(), value);
-        }
     }
 
     @Override
@@ -618,16 +559,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             currentMonth = 1;
         }
 
-    }
-
-    public int numOfYear(List<Integer> years, Integer search) {
-        int counter = 0;
-        for (Integer y : years) {
-            Log.e("year", Integer.toString(y.intValue()) + " -- " + Integer.toString(search));
-            if(y.intValue() == search) return counter;
-            counter++;
-        }
-        return counter;
     }
 
 }
