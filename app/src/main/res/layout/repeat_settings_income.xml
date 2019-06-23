@@ -4,24 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#282828"
     android:layout_height="match_parent">
-
-    <ImageButton
-        android:id="@+id/button_cancel_income_setting"
-        android:layout_width="63dp"
-        android:layout_height="55dp"
-        android:background="#ECF0F2"
-        app:srcCompat="@drawable/cancel_icon_web"
-        tools:layout_editor_absoluteX="303dp"
-        tools:layout_editor_absoluteY="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/textView_current_Income_description2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Beschreibung"
@@ -34,7 +24,7 @@
         android:id="@+id/textView_current_Income_value2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Betrag"
@@ -47,10 +37,10 @@
         android:id="@+id/textView_current_Income_repeat2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="308dp"
+        android:layout_marginStart="292dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
-        android:text="wiederholt"
+        android:text="Wh."
         android:textColor="#4CAF50"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +67,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/spinner_border"
+        android:dropDownSelector="@color/colorAccent"
+        android:popupBackground="#282828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -86,11 +79,13 @@
 
     <ListView
         android:id="@+id/listView_repeating_income"
-        android:layout_width="378dp"
+        android:layout_width="343dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="92dp"
+        android:layout_marginEnd="36dp"
         android:background="@drawable/listview_border_green"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

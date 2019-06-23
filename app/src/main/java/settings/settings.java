@@ -64,20 +64,6 @@ public class settings extends AppCompatActivity {
             }
         });
 
-        Button crashButton = new Button(this);
-        crashButton.setText("Crash!");
-        crashButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Crashlytics.getInstance().crash(); // Force a crash
-            }
-        });
-
-
-        addContentView(crashButton, new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-
-
 
         Button mbutton = findViewById(R.id.colorPicker);
         int mDefColor = ContextCompat.getColor(settings.this,R.color.colorAccent);
