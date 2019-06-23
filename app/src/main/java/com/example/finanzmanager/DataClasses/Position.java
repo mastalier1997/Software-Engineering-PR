@@ -24,15 +24,15 @@ public class Position {
         String cat = category;
         StringBuffer info = new StringBuffer();
 
-        if(Double.toString(value).length() <= 6)
+        if(Double.toString(value).length() <= 8)
             info.append(" ");
 
-        info.append(String.format(String.format("%6s", Double.toString(value))));
-        if(desc.length() > 17) {
-            desc = desc.substring(0, 14) + "...";
+        info.append(String.format(String.format("%8s", Double.toString(value))));
+        if(desc.length() > 18) {
+            desc = desc.substring(0, 15) + "...";
         }
         info.append(" ");
-        info.append(String.format(String.format("%-17s", desc)));
+        info.append(String.format(String.format("%-18s", desc)));
         if(cat.length() > 6) {
             cat = cat.substring(0, 5) + ".";
         }
@@ -41,9 +41,9 @@ public class Position {
         info.append(" ");
         String rec;
         if(recurring)
-            rec = "ja";
-        else rec = "nein";
-        info.append(String.format(String.format("%-5s", rec)));
+            rec = "\u2713";
+        else rec = "x";
+        info.append(String.format(String.format("%-1s", rec)));
         return info.toString();
     }
 
@@ -57,13 +57,16 @@ public class Position {
         String cat = category;
 
         StringBuffer info = new StringBuffer();
-        info.append(" ");
-        info.append(String.format(String.format("%6s", Double.toString(value))));
-        if(desc.length() > 17) {
-            desc = desc.substring(0, 14) + "...";
+
+        if(Double.toString(value).length() <= 8)
+            info.append(" ");
+
+        info.append(String.format(String.format("%8s", Double.toString(value))));
+        if(desc.length() > 18) {
+            desc = desc.substring(0, 15) + "...";
         }
         info.append(" ");
-        info.append(String.format(String.format("%-17s", desc)));
+        info.append(String.format(String.format("%-18s", desc)));
         if(cat.length() > 6) {
             cat = cat.substring(0, 5) + ".";
         }
