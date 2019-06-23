@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.example.finanzmanager.R;
 import com.example.finanzmanager.activity_classes.MainActivity;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class new_income extends AppCompatActivity {
 
@@ -122,6 +126,7 @@ public class new_income extends AppCompatActivity {
 
         ImageButton checkButton = (ImageButton) findViewById(R.id.Button_check_income);
         EditText add = (EditText) findViewById(R.id.editText_value_income);
+        add.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(6,2)});
         checkButton.setEnabled(false);
 
         //checkt ob Input im Feld geschehen ist
@@ -210,5 +215,24 @@ public class new_income extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class DecimalDigitsInputFilter implements InputFilter {
+
+        Pattern mPattern;
+
+        public DecimalDigitsInputFilter(int digitsBeforeZero,int digitsAfterZero) {
+            mPattern=Pattern.compile("[0-9]{0," + (digitsBeforeZero-1) + "}+((\\.[0-9]{0," + (digitsAfterZero-1) + "})?)||(\\.)?");
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+            Matcher matcher=mPattern.matcher(dest);
+            if(!matcher.matches())
+                return "";
+            return null;
+        }
+
     }
 }
