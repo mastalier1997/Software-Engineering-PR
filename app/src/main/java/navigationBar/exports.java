@@ -111,7 +111,6 @@ public class exports extends AppCompatActivity {
     }
 
     private void exportData() throws IOException {
-        //TODO: Android Version abfragen ober >= 8.0 Oreo, sonst exportData nicht möglich
         path = findViewById(R.id.editText2);
         String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path.getText();
 

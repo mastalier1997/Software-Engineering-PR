@@ -61,7 +61,6 @@ public class imports extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Checken ob Anroid 8.0 oder höher, sonst Import nicht möglich
 
                 // Check if permission READ_EXTERNAL_STORAGE is already granted
                 if (!(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
