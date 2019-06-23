@@ -96,18 +96,18 @@ public class imports extends AppCompatActivity {
 
                 if (MainActivity.months.yearExists(s.getDate().getYear()) == false) {
                     MainActivity.months.newYear(s.getDate().getYear());
-                    updateRepeating(s.getDate().getYear());
+                    MainActivity.account.updateRepeating(s.getDate().getYear());
                 }
 
                 if (s.getReocurring()) {
                     if (s.getPositionType() == 0) {
-                        addExpenseFromCurrentMonth(s.getDate(), s.getValue(),
+                        MainActivity.account.addExpenseFromCurrentMonth(s.getDate(), s.getValue(),
                                 s.getCategory(), s.getDescription());
                         MainActivity.account.addRepeatingExpense(s.getDate(), s.getValue(),
                                 s.getReocurring(), s.getCategory(), s.getDescription());
                     }
                     if (s.getPositionType() == 1) {
-                        addIncomeFromCurrentMonth(s.getDate(), s.getValue(),
+                        MainActivity.account.addIncomeFromCurrentMonth(s.getDate(), s.getValue(),
                                 s.getCategory(), s.getDescription());
                         MainActivity.account.addRepeatingIncome(s.getDate(), s.getValue(),
                                 s.getReocurring(), s.getCategory(), s.getDescription());
@@ -230,60 +230,6 @@ public class imports extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A new repeating Income gets added to all following months
-     *
-     * @param date
-     * @param value
-     * @param category
-     * @param description
-     */
-    //bei wiederkehrendem Einkommen wird die erfasste Einnahme in alle bisher erstellten zukünftigen Monate eingefügt
-    public void addIncomeFromCurrentMonth(Date date, double value, String category, String description) {
-        int month = date.getMonth();
-        int year = date.getYear();
-        ArrayList<Month> from = MainActivity.months.fromMonth(year, month);
-        for (Month i : from) {
-            Date currentDate = new Date(15, i.getMonth(), i.getYear());
-            MainActivity.account.addIncome(currentDate, value, true, category, description);
-            MainActivity.months.updateMonthIncome(i.getYear(), i.getMonth(), value);
-        }
-    }
-
-    /**
-     * A new repeating Expense gets added to all following months
-     *
-     * @param date
-     * @param value
-     * @param category
-     * @param description
-     */
-    //bei wiederkehrendem Ausgaben wird die erfasste Ausgabe in alle bisher erstellten zukünftigen Monate eingefügt
-    public void addExpenseFromCurrentMonth(Date date, double value, String category, String description) {
-        int month = date.getMonth();
-        int year = date.getYear();
-        ArrayList<Month> from = MainActivity.months.fromMonth(year, month);
-        for (Month i : from) {
-            Date currentDate = new Date(15, i.getMonth(), i.getYear());
-            MainActivity.account.addExpense(currentDate, value, true, category, description);
-            MainActivity.months.updateMonthExpense(i.getYear(), i.getMonth(), value);
-        }
-    }
-
-    private void updateRepeating(int year) {
-        ArrayList<Income> incomes = MainActivity.account.updateRepeatingIncome(year);
-        ArrayList<Expense> expenses = MainActivity.account.updateRepeatingExpense(year);
-        Date date = new Date(1, 1, year);
-        int counter = 1;
-        for (Income i : incomes) {
-            addIncomeFromCurrentMonth(date, i.getValue(), i.getCategory(), i.getDescription());
-            counter++;
-        }
-        for (Expense e : expenses) {
-            addExpenseFromCurrentMonth(date, e.getValue(), e.getCategory(), e.getDescription());
-        }
     }
 
     private void askForPermission() {

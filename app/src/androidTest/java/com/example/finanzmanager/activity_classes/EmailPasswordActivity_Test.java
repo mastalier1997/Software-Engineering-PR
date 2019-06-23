@@ -1,7 +1,6 @@
 package com.example.finanzmanager.activity_classes;
 
 
-import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -23,11 +22,9 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -35,13 +32,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class GraphDetailedViewTest2 {
+public class EmailPasswordActivity_Test {
 
     @Rule
     public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
 
     @Test
-    public void graphDetailedViewTest2() {
+    public void emailPasswordActivity_Test() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.fieldEmail),
                         childAtPosition(
@@ -51,7 +48,7 @@ public class GraphDetailedViewTest2 {
                                                 0)),
                                 0),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("ronald_moritz@yahoo.com"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("ron"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.fieldPassword),
@@ -65,15 +62,26 @@ public class GraphDetailedViewTest2 {
         appCompatEditText2.perform(replaceText("hallo1"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.fieldPassword), withText("hallo1"),
+                allOf(withId(R.id.fieldEmail), withText("ron"),
                         childAtPosition(
                                 allOf(withId(R.id.emailPasswordFields),
                                         childAtPosition(
                                                 withClassName(is("android.widget.RelativeLayout")),
                                                 0)),
-                                1),
+                                0),
                         isDisplayed()));
-        appCompatEditText3.perform(pressImeActionButton());
+        appCompatEditText3.perform(replaceText("ronald_moritz@yahoo.com"));
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.fieldEmail), withText("ronald_moritz@yahoo.com"),
+                        childAtPosition(
+                                allOf(withId(R.id.emailPasswordFields),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.RelativeLayout")),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        appCompatEditText4.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.emailSignInButton), withText("anmelden"),
@@ -85,40 +93,6 @@ public class GraphDetailedViewTest2 {
                                 0),
                         isDisplayed()));
         appCompatButton.perform(click());
-
-        //Wait for LogIn
-        SystemClock.sleep(2000);
-
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Open navigation drawer"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withClassName(is("android.support.design.widget.AppBarLayout")),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
-
-        ViewInteraction navigationMenuItemView = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.design_navigation_view),
-                                childAtPosition(
-                                        withId(R.id.nav_view),
-                                        0)),
-                        3),
-                        isDisplayed()));
-        navigationMenuItemView.perform(click());
-
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.detailedView), withText("Detalierte Übersicht"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

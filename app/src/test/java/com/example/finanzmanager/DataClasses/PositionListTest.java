@@ -1,5 +1,10 @@
 package com.example.finanzmanager.DataClasses;
 
+import android.util.Log;
+
+import com.example.finanzmanager.activity_classes.MainActivity;
+
+import org.apache.tools.ant.Main;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.mockito.Mockito.*;
@@ -305,26 +311,6 @@ public class PositionListTest {
 
     @Test
     public void getIncomeFromCategory(){
-        Date q1 = mock(Date.class);
-        when(q1.getYear()).thenReturn(2010);
-        when(q1.getMonth()).thenReturn(2);
-        when(q1.getDay()).thenReturn(10);
-
-        Date q2 = mock(Date.class);
-        when(q2.getYear()).thenReturn(2010);
-        when(q2.getMonth()).thenReturn(5);
-        when(q2.getDay()).thenReturn(10);
-
-        Date q3 = mock(Date.class);
-        when(q3.getYear()).thenReturn(2010);
-        when(q3.getMonth()).thenReturn(8);
-        when(q3.getDay()).thenReturn(10);
-
-        Date q4 = mock(Date.class);
-        when(q4.getYear()).thenReturn(2010);
-        when(q4.getMonth()).thenReturn(11);
-        when(q4.getDay()).thenReturn(10);
-
         pl.addIncome(q1, d, false, "q12345", description);
         pl.addIncome(q2, d+1, false, "q23451", description);
         pl.addIncome(q3, d+2, false, "q34512", description);
@@ -336,5 +322,18 @@ public class PositionListTest {
         assertTrue(pl.getIncomeFromCategory("q45123").get(0).contains(Double.toString(d+3)));
     }
 
+    @Test
+    public void numOfYear(){
+        List<Integer> list = new ArrayList<>();
+        for(int i = 1900; i<=2100; i++){
+            list.add(i);
+        }
+        assertEquals(0, pl.numOfYear(list, -1));
+        assertEquals(0, pl.numOfYear(list, 1900));
+        assertEquals(1, pl.numOfYear(list, 1901));
+        assertEquals(200, pl.numOfYear(list, 2100));
+        assertEquals(200, pl.numOfYear(list, 2101));
+        assertEquals(200, pl.numOfYear(list, 2200));
+    }
 
 }
