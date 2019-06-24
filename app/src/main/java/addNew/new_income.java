@@ -115,6 +115,19 @@ public class new_income extends AppCompatActivity {
                         year = mYear;
                     }
                 }, year, month, day);
+                Calendar minYear = Calendar.getInstance();
+                minYear.set(Calendar.DAY_OF_MONTH, 1);
+                minYear.set(Calendar.MONTH, 0);
+                minYear.set(Calendar.YEAR, 2010);
+
+                Calendar maxYear = Calendar.getInstance();
+                maxYear.set(Calendar.DAY_OF_MONTH, 31);
+                maxYear.set(Calendar.MONTH, 11);
+                maxYear.set(Calendar.YEAR, 2025);
+
+
+                datePickerDialog.getDatePicker().setMinDate(minYear.getTimeInMillis());   //min Date = 01.01.2010
+                datePickerDialog.getDatePicker().setMaxDate(maxYear.getTimeInMillis());   //max Date = 31.12.2025
                 datePickerDialog.show();
             }
         });
