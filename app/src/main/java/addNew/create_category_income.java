@@ -2,10 +2,7 @@ package addNew;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
@@ -17,16 +14,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.finanzmanager.R;
 
-import java.io.IOException;
 
 public class create_category_income extends AppCompatActivity {
 
-    ImageButton selectImage;
     ImageButton check;
     ImageButton cancel;
-    private int PICK_IMAGE_REQUEST = 1;
-    static int id = 10;
     String name2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +32,10 @@ public class create_category_income extends AppCompatActivity {
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#F66213'>Kategorie erstellen </font>"));
 
 
-
         check = (ImageButton) findViewById(R.id.Button_create_category_income);
         EditText text = findViewById(R.id.textView_newCatName_income);
         check.setEnabled(false);
+
 
         //checkt ob Input im Feld geschehen ist
         text.addTextChangedListener(new TextWatcher() {
@@ -65,6 +59,7 @@ public class create_category_income extends AppCompatActivity {
                 textView.setVisibility(View.INVISIBLE);
             }
         });
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +70,6 @@ public class create_category_income extends AppCompatActivity {
                         name2 = content2.getText().toString();
                         Intent intent= new Intent(create_category_income.this, income_menu.class);
                         intent.putExtra("income_text", name2);
-                        //ImageButton button = findViewById(R.id.Button_extraCatInc);
-                        //button.setVisibility(View.VISIBLE);
                         startActivity(intent);
                 }
 
@@ -95,22 +88,6 @@ public class create_category_income extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
-            Uri uri = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                selectImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
