@@ -55,8 +55,6 @@ public class CreateCategoryIncome extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TextView textView = findViewById(R.id.infoName);
-                textView.setVisibility(View.INVISIBLE);
             }
         });
 
