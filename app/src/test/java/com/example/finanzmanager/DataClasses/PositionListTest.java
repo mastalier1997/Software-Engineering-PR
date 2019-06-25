@@ -1,10 +1,5 @@
 package com.example.finanzmanager.DataClasses;
 
-import android.util.Log;
-
-import com.example.finanzmanager.activity_classes.MainActivity;
-
-import org.apache.tools.ant.Main;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

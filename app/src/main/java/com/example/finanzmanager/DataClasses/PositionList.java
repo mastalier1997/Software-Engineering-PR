@@ -1,8 +1,6 @@
 package com.example.finanzmanager.DataClasses;
 
-import android.util.Log;
-
-import com.example.finanzmanager.activity_classes.MainActivity;
+import com.example.finanzmanager.ActivityClasses.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
