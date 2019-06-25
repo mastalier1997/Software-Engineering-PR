@@ -58,8 +58,6 @@ public class CreateCategoryExpense extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TextView textView = findViewById(R.id.infoName2);
-                textView.setVisibility(View.INVISIBLE);
             }
         });
 
