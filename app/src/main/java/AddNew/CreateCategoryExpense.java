@@ -20,6 +20,7 @@ public class CreateCategoryExpense extends AppCompatActivity {
 
     ImageButton check;
     ImageButton cancel;
+
     //gespeicherte Variablen
     static String name;
 
