@@ -46,6 +46,7 @@ public class EmailPasswordActivity extends BaseActivity implements
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
+    static public String Username = "";
     // [END declare_auth]
 
     @Override
@@ -80,6 +81,7 @@ public class EmailPasswordActivity extends BaseActivity implements
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             Log.e("test", "wrong signin");
+            Username = currentUser.getEmail();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
@@ -139,6 +141,7 @@ public class EmailPasswordActivity extends BaseActivity implements
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            Username = user.getEmail();
                             Intent intent = new Intent(EmailPasswordActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else {

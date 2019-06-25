@@ -1,11 +1,13 @@
 package com.example.finanzmanager.ActivityClasses;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
@@ -113,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView_expense = (ListView) findViewById(R.id.listView_expense);
 
         //Datenspeicherung
-
-        savePreference = PreferenceManager.getDefaultSharedPreferences(this);
+        int key = EmailPasswordActivity.Username.hashCode();
+        savePreference = getSharedPreferences(Integer.toString(key), Context.MODE_PRIVATE);
         saveEditor = savePreference.edit();
 
         //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
