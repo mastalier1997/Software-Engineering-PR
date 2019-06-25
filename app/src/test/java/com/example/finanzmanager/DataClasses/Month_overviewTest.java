@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -14,7 +13,7 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class Month_overviewTest {
     private Random random;
-    private Month_overview m_o;
+    private MonthOverview m_o;
     private int year;
     private int month;
     private int value;
@@ -27,7 +26,7 @@ public class Month_overviewTest {
         year = 1900+random.nextInt(201);
         month = 1+random.nextInt(12);
         value = random.nextInt(999999);
-        m_o = new Month_overview();
+        m_o = new MonthOverview();
     }
 
     @After
