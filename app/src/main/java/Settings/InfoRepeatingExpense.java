@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,10 @@ public class InfoRepeatingExpense extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_info_repeating_expense);
+
+        //Back Button aktivieren
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         description = (EditText) findViewById(R.id.editText_info_description_expense);
         value = (EditText) findViewById(R.id.editText_info_value_expense);
@@ -67,6 +72,23 @@ public class InfoRepeatingExpense extends AppCompatActivity {
             }
         });
 
+    }
+
+    /**
+     * back button to Main Activity
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home){
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(myIntent, 0);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
