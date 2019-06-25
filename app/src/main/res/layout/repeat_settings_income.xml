@@ -11,7 +11,7 @@
         android:id="@+id/textView_current_Income_description2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Beschreibung"
@@ -24,7 +24,7 @@
         android:id="@+id/textView_current_Income_value2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Betrag"
@@ -37,7 +37,7 @@
         android:id="@+id/textView_current_Income_repeat2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="292dp"
+        android:layout_marginStart="320dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Wh."
@@ -50,7 +50,7 @@
         android:id="@+id/textView_current_Income_cat2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
+        android:layout_marginStart="260dp"
         android:layout_marginTop="72dp"
         android:fontFamily="@font/droid"
         android:text="Art"
@@ -72,22 +72,25 @@
         android:popupBackground="#282828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <ListView
         android:id="@+id/listView_repeating_income"
-        android:layout_width="343dp"
-        android:layout_height="wrap_content"
+        android:layout_width="342dp"
+        android:layout_height="330dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/listview_border_green"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </ListView>
 
