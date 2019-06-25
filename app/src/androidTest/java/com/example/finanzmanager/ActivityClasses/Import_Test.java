@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.example.finanzmanager.R;
@@ -20,163 +20,163 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
-/**
- * Bei diesem Test wird eine einmalige Einnahme hinzugefügt.
- * Beschriftung der Ausgabe: geld
- * Ausgaben pro Monat: 50
- * Wiederkehrend: nein
- */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddIncomeTest {
+public class Import_Test {
 
     @Rule
-    public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+
+    @Rule
+    public GrantPermissionRule mGrantPermissionRule =
+            GrantPermissionRule.grant(
+                    "android.permission.READ_EXTERNAL_STORAGE");
 
     @Test
-    public void addIncomeTest() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.emailSignInButton), withText("anmelden"),
-                        childAtPosition(
-                                allOf(withId(R.id.emailPasswordButtons),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                0),
-                        isDisplayed()));
-        appCompatButton.perform(click());
-
-        ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.plus),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.drawer_layout),
-                                        0),
-                                2),
-                        isDisplayed()));
-        floatingActionButton.perform(click());
-
+    public void import_Test() {
         ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_award),
+                allOf(withContentDescription("Open navigation drawer"),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                9),
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withClassName(is("android.support.design.widget.AppBarLayout")),
+                                                0)),
+                                1),
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
+        ViewInteraction navigationMenuItemView = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.design_navigation_view),
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0)),
+                        5),
+                        isDisplayed()));
+        navigationMenuItemView.perform(click());
+
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText_description_income),
+                allOf(withId(R.id.editText), withText("FiMa_data.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                0),
+                                4),
                         isDisplayed()));
         appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editText_description_income),
+                allOf(withId(R.id.editText), withText("FiMa_data.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                0),
+                                4),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("geld"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("FiM"));
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editText_description_income), withText("geld"),
+                allOf(withId(R.id.editText), withText("FiM"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                0),
+                                4),
                         isDisplayed()));
-        appCompatEditText3.perform(pressImeActionButton());
+        appCompatEditText3.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editText_value_income),
+                allOf(withId(R.id.editText), withText("FiM"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                4),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("50"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editText_value_income), withText("50"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText5.perform(pressImeActionButton());
-
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.Button_date_income),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                5),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
+        appCompatEditText4.perform(pressImeActionButton());
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton2.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageButton3 = onView(
-                allOf(withId(R.id.Button_check_income),
+                allOf(withId(R.id.button_import), withText("Importieren"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                6),
+                                2),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatButton2.perform(click());
 
-        ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.dropDown_month),
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(R.id.button_import), withText("Importieren"),
                         childAtPosition(
-                                allOf(withId(R.id.constraintLayout),
-                                        childAtPosition(
-                                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                                12)),
-                                3),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
                         isDisplayed()));
-        appCompatSpinner.perform(click());
+        appCompatButton3.perform(click());
 
-        DataInteraction appCompatCheckedTextView = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(5);
-        appCompatCheckedTextView.perform(click());
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.editText), withText("FiM"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatEditText5.perform(click());
+
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.editText), withText("FiM"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatEditText6.perform(replaceText("FiMa_Data.csv"));
+
+        ViewInteraction appCompatEditText7 = onView(
+                allOf(withId(R.id.editText), withText("FiMa_Data.csv"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatEditText7.perform(closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText8 = onView(
+                allOf(withId(R.id.editText), withText("FiMa_Data.csv"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatEditText8.perform(pressImeActionButton());
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(R.id.button_import), withText("Importieren"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

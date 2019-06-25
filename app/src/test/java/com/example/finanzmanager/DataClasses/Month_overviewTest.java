@@ -43,10 +43,10 @@ public class Month_overviewTest {
 
     @Test
     public void size() {
-        // Immer 12 Monate bei Instanzierung
-        assertEquals(12, m_o.size());
+        // Immer 192(15 Jahre x 12 Monate) Monate bei Instanzierung
+        assertEquals(192, m_o.size());
         m_o.newMonth(year, month);
-        assertEquals(13, m_o.size());
+        assertEquals(193, m_o.size());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class Month_overviewTest {
         int month2;
         if(month>=12) month2 = month-1;
         else month2 = month+1;
-        assertNull(m_o.getMonth(year+1, month2));
+        assertNull(m_o.getMonth(2050, month2));
     }
 
     @Test
@@ -100,11 +100,14 @@ public class Month_overviewTest {
 
     @Test
     public void fromMonth(){
-        assertEquals(12, m_o.fromMonth(2019, 1).size());
+        // 84 = 7 Jahre x 12 Monate
+        assertEquals(84, m_o.fromMonth(2019, 1).size());
         m_o.newMonth(1900, 1);
-        assertEquals(13, m_o.fromMonth(1900, 1).size());
+        // 193 = (15 Jahre x 12 Monate) + 1 added
+        assertEquals(193, m_o.fromMonth(1900, 1).size());
         m_o.newMonth(1900 + 1, 12);
-        assertEquals(14, m_o.fromMonth(1900, 1).size());
+        // noch einer geadded
+        assertEquals(194, m_o.fromMonth(1900, 1).size());
         m_o.newMonth(2100, 1);
         assertEquals(1, m_o.fromMonth(2100, 1).size());
         m_o.newMonth(2100, 12);
@@ -113,8 +116,8 @@ public class Month_overviewTest {
 
     @Test
     public void yearExists(){
-        assertFalse(m_o.yearExists(year));
-        m_o.newYear(year);
-        assertTrue(m_o.yearExists(year));
+        assertFalse(m_o.yearExists(1950));
+        m_o.newYear(1950);
+        assertTrue(m_o.yearExists(1950));
     }
 }

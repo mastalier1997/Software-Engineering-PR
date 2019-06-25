@@ -9,7 +9,8 @@ import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
+
 import com.example.finanzmanager.R;
 
 import org.hamcrest.Description;
@@ -35,20 +36,21 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Bei diesem Test wird eine monatliche Ausgabe hinzugefügt.
- * Beschriftung der Ausgabe: monatliches Essen
- * Ausgaben pro Monat: 200
- * Wiederkehrend: ja
+ * Bei diesem Test wird eine neue Kategorie "Zubehör" für Ausgaben erstellt.
+ * Anschließend wird mit dieser eine neue einmalige Ausgabe hinzugefügt.
+ * Beschriftung der Ausgabe: Maus
+ * Ausgaben pro Monat: 10
+ * Wiederkehrend: nein
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddExpenseMonthlyTest {
+public class AddNewExpenseCategory_Test {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addExpenseMonthly() {
+    public void addNewExpenseCategory_Test() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(
@@ -76,27 +78,87 @@ public class AddExpenseMonthlyTest {
                 .atPosition(1);
         appCompatCheckedTextView.perform(click());
 
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_fastFood),
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.Button_createCat_expense), withText("erstellen"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                16),
+                                21),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        appCompatButton2.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText_description_expense),
+                allOf(withId(R.id.textView_newCatName_expense),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                3),
+                                0),
                         isDisplayed()));
         appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.textView_newCatName_expense),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText2.perform(replaceText(""), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.textView_newCatName_expense),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText3.perform(click());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.textView_newCatName_expense),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText4.perform(replaceText("Zubehör"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.textView_newCatName_expense), withText("Zubehör"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText5.perform(pressImeActionButton());
+
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.Button_create_category_expense),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        ViewInteraction appCompatImageButton2 = onView(
+                allOf(withId(R.id.Button_extraCatExp),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                11),
+                        isDisplayed()));
+        appCompatImageButton2.perform(click());
+
+        ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.editText_description_expense),
                         childAtPosition(
                                 childAtPosition(
@@ -104,19 +166,29 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("monatliches Essen "), closeSoftKeyboard());
+        appCompatEditText6.perform(click());
 
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editText_description_expense), withText("monatliches Essen "),
+        ViewInteraction appCompatEditText7 = onView(
+                allOf(withId(R.id.editText_description_expense),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText3.perform(pressImeActionButton());
+        appCompatEditText7.perform(replaceText("Maus"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText4 = onView(
+        ViewInteraction appCompatEditText8 = onView(
+                allOf(withId(R.id.editText_description_expense), withText("Maus"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText8.perform(pressImeActionButton());
+
+        ViewInteraction appCompatEditText9 = onView(
                 allOf(withId(R.id.editText_value_expense),
                         childAtPosition(
                                 childAtPosition(
@@ -124,29 +196,19 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("200"), closeSoftKeyboard());
+        appCompatEditText9.perform(replaceText("10"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("200"),
+        ViewInteraction appCompatEditText10 = onView(
+                allOf(withId(R.id.editText_value_expense), withText("10"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText5.perform(pressImeActionButton());
+        appCompatEditText10.perform(pressImeActionButton());
 
-        ViewInteraction appCompatCheckBox = onView(
-                allOf(withId(R.id.checkBox_repeat_expense), withText("Wiederkehrend"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatCheckBox.perform(click());
-
-        ViewInteraction appCompatImageButton2 = onView(
+        ViewInteraction appCompatImageButton3 = onView(
                 allOf(withId(R.id.Button_date_expense),
                         childAtPosition(
                                 childAtPosition(
@@ -154,18 +216,18 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatImageButton2.perform(click());
+        appCompatImageButton3.perform(click());
 
-        ViewInteraction appCompatButton = onView(
+        ViewInteraction appCompatButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));
-        appCompatButton.perform(scrollTo(), click());
+        appCompatButton3.perform(scrollTo(), click());
 
-        ViewInteraction appCompatImageButton3 = onView(
+        ViewInteraction appCompatImageButton4 = onView(
                 allOf(withId(R.id.Button_check_expense),
                         childAtPosition(
                                 childAtPosition(
@@ -173,7 +235,7 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 6),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatImageButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(
