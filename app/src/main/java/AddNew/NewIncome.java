@@ -117,6 +117,8 @@ public class NewIncome extends AppCompatActivity {
                         year = mYear;
                     }
                 }, year, month, day);
+                //Limit des Kalenders setzen 2010 - 2025
+
                 Calendar minYear = Calendar.getInstance();
                 minYear.set(Calendar.DAY_OF_MONTH, 1);
                 minYear.set(Calendar.MONTH, 0);

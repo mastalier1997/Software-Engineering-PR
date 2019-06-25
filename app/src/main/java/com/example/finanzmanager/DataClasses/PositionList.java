@@ -403,6 +403,7 @@ public class PositionList {
      */
     public String getExpenseDate(int i) { return expenseList.get(i).getInfoDate(); }
 
+    @Deprecated
     public double getValueExpense(int i){ return  expenseList.get(i).getValue();}
 
     /**

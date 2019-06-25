@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class MonthOverview {
 
     private ArrayList<Month> overview;
-    private int sumIncome;
+    //private int sumIncome; //never used
 
     public MonthOverview() {
         overview = new ArrayList<>();
