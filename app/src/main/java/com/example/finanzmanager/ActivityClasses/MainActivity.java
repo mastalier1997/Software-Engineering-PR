@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
@@ -30,7 +28,7 @@ import android.widget.TextView;
 
 import com.example.finanzmanager.DataClasses.Date;
 import com.example.finanzmanager.DataClasses.Month;
-import com.example.finanzmanager.DataClasses.Month_overview;
+import com.example.finanzmanager.DataClasses.MonthOverview;
 import com.example.finanzmanager.DataClasses.PositionList;
 import com.example.finanzmanager.R;
 import com.google.android.gms.ads.AdRequest;
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //alle Variablen, welche am Smartphone gespeicher werden
     public static PositionList account;
-    public static Month_overview months;
+    public static MonthOverview months = new MonthOverview();
     static public List<Integer> years;
     public static Integer currentYear;
     public static Integer currentMonth;
@@ -523,10 +521,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String months_json = savePreference.getString("months", "");
         if (!months_json.equals("")) {
-            Month_overview months_saved = gson.fromJson(months_json, Month_overview.class);
+            MonthOverview months_saved = gson.fromJson(months_json, MonthOverview.class);
             months = months_saved;
+            months.addAllMonths();
         } else {
-            months = new Month_overview();
+            months = new MonthOverview();
         }
 
 

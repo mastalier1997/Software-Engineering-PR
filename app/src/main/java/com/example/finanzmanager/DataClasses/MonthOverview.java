@@ -3,17 +3,18 @@ package com.example.finanzmanager.DataClasses;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Month_overview {
+public class MonthOverview {
 
     private ArrayList<Month> overview;
     private int sumIncome;
 
-    public Month_overview() {
+    public MonthOverview() {
         overview = new ArrayList<>();
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 1; i<=12; i++) {
-            Month insert = new Month (year, i);
-            overview.add(insert);
+        for (int year = 2010; year <= 2025; year++){
+            for (int i = 1; i <= 12; i++) {
+                Month insert = new Month(year, i);
+                overview.add(insert);
+            }
         }
     }
 
@@ -129,6 +130,17 @@ public class Month_overview {
         for (int i = 1; i <= 12; i++) {
            Month insert = new Month (year, i);
            overview.add(insert);
+        }
+    }
+
+    public void addAllMonths() {
+        for (int year = 2010; year <= 2025; year++){
+            for (int i = 1; i <= 12; i++) {
+                Month insert = new Month(year, i);
+                if(!this.yearExists(year)) {
+                    overview.add(insert);
+                }
+            }
         }
     }
 }

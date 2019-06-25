@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.finanzmanager.DataClasses.Month;
-import com.example.finanzmanager.DataClasses.Month_overview;
+import com.example.finanzmanager.DataClasses.MonthOverview;
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.ActivityClasses.MainActivity;
 import com.razerdp.widget.animatedpieview.AnimatedPieView;
@@ -37,7 +37,7 @@ public class Graph extends AppCompatActivity {
     private  int selectedYear;
     private static SharedPreferences.Editor saveEditor;
     private MainActivity mainActivity;
-    public static Month_overview months;
+    public static MonthOverview months;
 
 
     @Override
