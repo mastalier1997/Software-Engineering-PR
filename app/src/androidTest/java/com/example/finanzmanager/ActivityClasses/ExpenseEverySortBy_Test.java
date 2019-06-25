@@ -34,24 +34,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ExpenseEverySortBy {
+public class ExpenseEverySortBy_Test {
 
     @Rule
-    public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void expenseEverySortBy() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.emailSignInButton), withText("anmelden"),
-                        childAtPosition(
-                                allOf(withId(R.id.emailPasswordButtons),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                0),
-                        isDisplayed()));
-        appCompatButton.perform(click());
-
+    public void expenseEverySortBy_Test() {
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),
                         childAtPosition(
@@ -79,7 +68,7 @@ public class ExpenseEverySortBy {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                9),
                         isDisplayed()));
         appCompatSpinner.perform(click());
 
@@ -96,7 +85,7 @@ public class ExpenseEverySortBy {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                9),
                         isDisplayed()));
         appCompatSpinner2.perform(click());
 
@@ -113,7 +102,7 @@ public class ExpenseEverySortBy {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                9),
                         isDisplayed()));
         appCompatSpinner3.perform(click());
 
@@ -123,91 +112,6 @@ public class ExpenseEverySortBy {
                         0))
                 .atPosition(3);
         appCompatCheckedTextView3.perform(click());
-
-        ViewInteraction appCompatSpinner4 = onView(
-                allOf(withId(R.id.spinner_category_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatSpinner4.perform(click());
-
-        DataInteraction appCompatCheckedTextView4 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(1);
-        appCompatCheckedTextView4.perform(click());
-
-        ViewInteraction appCompatSpinner5 = onView(
-                allOf(withId(R.id.spinner_category_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatSpinner5.perform(click());
-
-        DataInteraction appCompatCheckedTextView5 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(2);
-        appCompatCheckedTextView5.perform(click());
-
-        ViewInteraction appCompatSpinner6 = onView(
-                allOf(withId(R.id.spinner_category_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatSpinner6.perform(click());
-
-        DataInteraction appCompatCheckedTextView6 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(4);
-        appCompatCheckedTextView6.perform(click());
-
-        ViewInteraction appCompatSpinner7 = onView(
-                allOf(withId(R.id.spinner_category_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatSpinner7.perform(click());
-
-        DataInteraction appCompatCheckedTextView7 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(6);
-        appCompatCheckedTextView7.perform(click());
-
-        ViewInteraction appCompatSpinner8 = onView(
-                allOf(withId(R.id.spinner_category_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatSpinner8.perform(click());
-
-        DataInteraction appCompatCheckedTextView8 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(7);
-        appCompatCheckedTextView8.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

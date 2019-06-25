@@ -1,5 +1,6 @@
 package com.example.finanzmanager.ActivityClasses;
 
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -28,6 +29,7 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -35,9 +37,9 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Bei diesem Test wird eine einmalige Einnahme hinzugefügt.
- * Beschriftung der Ausgabe: Beschreibung
- * Ausgaben pro Monat: 50
+ * Bei diesem Test werden 3 einmalige Einnahmen hinzugefügt.
+ * Beschriftung der Ausgabe: Bonus, Aktie A, Arbeit
+ * Ausgaben pro Monat: 0, 999999, 15000.96
  * Wiederkehrend: nein
  */
 @LargeTest
@@ -49,7 +51,6 @@ public class AddIncome_Test {
 
     @Test
     public void addIncome_Test() {
-
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.plus),
                         childAtPosition(
@@ -70,7 +71,7 @@ public class AddIncome_Test {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        ViewInteraction appCompatEditText5 = onView(
+        ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editText_description_income),
                         childAtPosition(
                                 childAtPosition(
@@ -78,9 +79,9 @@ public class AddIncome_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText5.perform(click());
+        appCompatEditText.perform(click());
 
-        ViewInteraction appCompatEditText6 = onView(
+        ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.editText_description_income),
                         childAtPosition(
                                 childAtPosition(
@@ -88,19 +89,19 @@ public class AddIncome_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText6.perform(replaceText("Beschreibung"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("Bonus"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.editText_description_income), withText("Beschreibung"),
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.editText_description_income), withText("Bonus"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText7.perform(pressImeActionButton());
+        appCompatEditText3.perform(pressImeActionButton());
 
-        ViewInteraction appCompatEditText8 = onView(
+        ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.editText_value_income),
                         childAtPosition(
                                 childAtPosition(
@@ -108,17 +109,17 @@ public class AddIncome_Test {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText8.perform(replaceText("50"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText("0.00"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.editText_value_income), withText("50"),
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.editText_value_income), withText("0.00"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText9.perform(pressImeActionButton());
+        appCompatEditText5.perform(pressImeActionButton());
 
         ViewInteraction appCompatImageButton2 = onView(
                 allOf(withId(R.id.Button_date_income),
@@ -130,6 +131,16 @@ public class AddIncome_Test {
                         isDisplayed()));
         appCompatImageButton2.perform(click());
 
+        ViewInteraction appCompatImageButton3 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Nächster Monat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                2)));
+        appCompatImageButton3.perform(scrollTo(), click());
+
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
                         childAtPosition(
@@ -139,7 +150,7 @@ public class AddIncome_Test {
                                 3)));
         appCompatButton2.perform(scrollTo(), click());
 
-        ViewInteraction appCompatImageButton3 = onView(
+        ViewInteraction appCompatImageButton4 = onView(
                 allOf(withId(R.id.Button_check_income),
                         childAtPosition(
                                 childAtPosition(
@@ -147,25 +158,312 @@ public class AddIncome_Test {
                                         0),
                                 7),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatImageButton4.perform(click());
 
-        ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.dropDown_month),
+        ViewInteraction floatingActionButton2 = onView(
+                allOf(withId(R.id.plus),
                         childAtPosition(
-                                allOf(withId(R.id.constraintLayout),
-                                        childAtPosition(
-                                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                                12)),
-                                3),
+                                childAtPosition(
+                                        withId(R.id.drawer_layout),
+                                        0),
+                                2),
                         isDisplayed()));
-        appCompatSpinner.perform(click());
+        floatingActionButton2.perform(click());
 
-        DataInteraction appCompatCheckedTextView = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(5);
-        appCompatCheckedTextView.perform(click());
+        ViewInteraction appCompatImageButton5 = onView(
+                allOf(withId(R.id.Button_investment),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                10),
+                        isDisplayed()));
+        appCompatImageButton5.perform(click());
+
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.editText_description_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText6.perform(click());
+
+        ViewInteraction appCompatEditText7 = onView(
+                allOf(withId(R.id.editText_description_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText7.perform(replaceText("Aktie A"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText8 = onView(
+                allOf(withId(R.id.editText_description_income), withText("Aktie A"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText8.perform(pressImeActionButton());
+
+        ViewInteraction appCompatEditText9 = onView(
+                allOf(withId(R.id.editText_value_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText9.perform(replaceText("999999"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText10 = onView(
+                allOf(withId(R.id.editText_value_income), withText("999999"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText10.perform(pressImeActionButton());
+
+        ViewInteraction appCompatImageButton6 = onView(
+                allOf(withId(R.id.Button_date_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                6),
+                        isDisplayed()));
+        appCompatImageButton6.perform(click());
+
+        ViewInteraction appCompatImageButton7 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton7.perform(scrollTo(), click());
+
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        appCompatButton3.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton8 = onView(
+                allOf(withId(R.id.Button_check_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                7),
+                        isDisplayed()));
+        appCompatImageButton8.perform(click());
+
+        ViewInteraction floatingActionButton3 = onView(
+                allOf(withId(R.id.plus),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.drawer_layout),
+                                        0),
+                                2),
+                        isDisplayed()));
+        floatingActionButton3.perform(click());
+
+        ViewInteraction appCompatImageButton9 = onView(
+                allOf(withId(R.id.Button_salary),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                11),
+                        isDisplayed()));
+        appCompatImageButton9.perform(click());
+
+        ViewInteraction appCompatImageButton10 = onView(
+                allOf(withId(R.id.Button_salary),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                11),
+                        isDisplayed()));
+        appCompatImageButton10.perform(click());
+
+        ViewInteraction appCompatEditText11 = onView(
+                allOf(withId(R.id.editText_description_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText11.perform(click());
+
+        ViewInteraction appCompatEditText12 = onView(
+                allOf(withId(R.id.editText_description_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText12.perform(replaceText("Arbeit"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText13 = onView(
+                allOf(withId(R.id.editText_description_income), withText("Arbeit"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText13.perform(pressImeActionButton());
+
+        ViewInteraction appCompatEditText14 = onView(
+                allOf(withId(R.id.editText_value_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText14.perform(replaceText("15000.96"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText15 = onView(
+                allOf(withId(R.id.editText_value_income), withText("15000.96"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText15.perform(pressImeActionButton());
+
+        ViewInteraction appCompatImageButton11 = onView(
+                allOf(withId(R.id.Button_date_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                6),
+                        isDisplayed()));
+        appCompatImageButton11.perform(click());
+
+        ViewInteraction appCompatTextView = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatTextView")), withText("2019"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatTextView.perform(click());
+
+        DataInteraction appCompatTextView2 = onData(anything())
+                .inAdapterView(allOf(withClassName(is("android.widget.YearPickerView")),
+                        childAtPosition(
+                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                1)))
+                .atPosition(0);
+        appCompatTextView2.perform(scrollTo(), click());
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        appCompatButton4.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton12 = onView(
+                allOf(withId(R.id.Button_date_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                6),
+                        isDisplayed()));
+        appCompatImageButton12.perform(click());
+
+        ViewInteraction appCompatImageButton13 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton13.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton14 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton14.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton15 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton15.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton16 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton16.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton17 = onView(
+                allOf(withClassName(is("android.support.v7.widget.AppCompatImageButton")), withContentDescription("Vormonat"),
+                        childAtPosition(
+                                allOf(withClassName(is("android.widget.DayPickerView")),
+                                        childAtPosition(
+                                                withClassName(is("com.android.internal.widget.DialogViewAnimator")),
+                                                0)),
+                                1)));
+        appCompatImageButton17.perform(scrollTo(), click());
+
+        ViewInteraction appCompatButton5 = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        appCompatButton5.perform(scrollTo(), click());
+
+        ViewInteraction appCompatImageButton18 = onView(
+                allOf(withId(R.id.Button_check_income),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                7),
+                        isDisplayed()));
+        appCompatImageButton18.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

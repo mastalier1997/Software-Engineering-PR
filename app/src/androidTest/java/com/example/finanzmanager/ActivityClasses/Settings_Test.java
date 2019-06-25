@@ -20,8 +20,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
@@ -34,52 +36,42 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class IncomeEverySortByTest {
+public class Settings_Test {
 
     @Rule
-    public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void incomeEverySortByTest() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.emailSignInButton), withText("anmelden"),
+    public void settings_Test() {
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
+        ViewInteraction appCompatTextView = onView(
+                allOf(withId(R.id.title), withText("Settings"),
                         childAtPosition(
-                                allOf(withId(R.id.emailPasswordButtons),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
+                                childAtPosition(
+                                        withId(R.id.content),
+                                        0),
                                 0),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatTextView.perform(click());
 
         ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Open navigation drawer"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withClassName(is("android.support.design.widget.AppBarLayout")),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
-
-        ViewInteraction navigationMenuItemView = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.design_navigation_view),
-                                childAtPosition(
-                                        withId(R.id.nav_view),
-                                        0)),
-                        1),
-                        isDisplayed()));
-        navigationMenuItemView.perform(click());
-
-        ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.spinner_sortBy_income),
+                allOf(withId(R.id.button_repeat_settings),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                3),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        ViewInteraction appCompatSpinner = onView(
+                allOf(withId(R.id.dropDown_InOut_repeat),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
                         isDisplayed()));
         appCompatSpinner.perform(click());
 
@@ -90,39 +82,60 @@ public class IncomeEverySortByTest {
                 .atPosition(1);
         appCompatCheckedTextView.perform(click());
 
-        ViewInteraction appCompatSpinner2 = onView(
-                allOf(withId(R.id.spinner_sortBy_income),
+        ViewInteraction appCompatImageButton2 = onView(
+                allOf(withContentDescription("Nach oben"),
+                        childAtPosition(
+                                allOf(withId(R.id.action_bar),
+                                        childAtPosition(
+                                                withId(R.id.action_bar_container),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton2.perform(click());
+
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
+        ViewInteraction appCompatTextView2 = onView(
+                allOf(withId(R.id.title), withText("Settings"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatTextView2.perform(click());
+
+        ViewInteraction appCompatImageButton3 = onView(
+                allOf(withId(R.id.button_delete_Data),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                2),
                         isDisplayed()));
-        appCompatSpinner2.perform(click());
+        appCompatImageButton3.perform(click());
 
-        DataInteraction appCompatCheckedTextView2 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(2);
-        appCompatCheckedTextView2.perform(click());
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatSpinner3 = onView(
-                allOf(withId(R.id.spinner_sortBy_income),
+        ViewInteraction appCompatTextView3 = onView(
+                allOf(withId(R.id.title), withText("Settings"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatTextView3.perform(click());
+
+        ViewInteraction appCompatImageButton4 = onView(
+                allOf(withId(R.id.imageButton_logOut),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                8),
+                                5),
                         isDisplayed()));
-        appCompatSpinner3.perform(click());
-
-        DataInteraction appCompatCheckedTextView3 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(3);
-        appCompatCheckedTextView3.perform(click());
+        appCompatImageButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

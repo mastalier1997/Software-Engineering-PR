@@ -36,7 +36,7 @@ import static org.hamcrest.Matchers.is;
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class EmailPasswordActivity_Test {
+public class EmailPassword_Test {
 
     @Rule
     public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);

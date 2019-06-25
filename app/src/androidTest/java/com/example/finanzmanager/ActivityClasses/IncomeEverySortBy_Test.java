@@ -23,49 +23,52 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
-/**
- * Bei diesem Test wird eine einmalige Ausgabe hinzugefügt.
- * Beschriftung der Ausgabe: tanken fuer auto 1
- * Ausgaben pro Monat: 40
- * Wiederkehrend: nein
- */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddExpenseTest {
+public class IncomeEverySortBy_Test {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addExpenseTest() {
-        ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.plus),
+    public void incomeEverySortBy_Test() {
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Open navigation drawer"),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.drawer_layout),
-                                        0),
-                                2),
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withClassName(is("android.support.design.widget.AppBarLayout")),
+                                                0)),
+                                1),
                         isDisplayed()));
-        floatingActionButton.perform(click());
+        appCompatImageButton.perform(click());
+
+        ViewInteraction navigationMenuItemView = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.design_navigation_view),
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0)),
+                        1),
+                        isDisplayed()));
+        navigationMenuItemView.perform(click());
 
         ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.dropDown_InOut),
+                allOf(withId(R.id.spinner_sortBy_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                9),
                         isDisplayed()));
         appCompatSpinner.perform(click());
 
@@ -76,75 +79,56 @@ public class AddExpenseTest {
                 .atPosition(1);
         appCompatCheckedTextView.perform(click());
 
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_gas),
+        ViewInteraction appCompatSpinner2 = onView(
+                allOf(withId(R.id.spinner_sortBy_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                15),
+                                9),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        appCompatSpinner2.perform(click());
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText_description_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        appCompatEditText.perform(click());
+        DataInteraction appCompatCheckedTextView2 = onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(2);
+        appCompatCheckedTextView2.perform(click());
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editText_description_expense),
+        ViewInteraction appCompatSpinner3 = onView(
+                allOf(withId(R.id.spinner_sortBy_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                3),
+                                9),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("tanken fuer auto 1"), closeSoftKeyboard());
+        appCompatSpinner3.perform(click());
 
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editText_description_expense), withText("tanken fuer auto 1"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        appCompatEditText3.perform(pressImeActionButton());
+        DataInteraction appCompatCheckedTextView3 = onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(2);
+        appCompatCheckedTextView3.perform(click());
 
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editText_value_expense),
+        ViewInteraction appCompatSpinner4 = onView(
+                allOf(withId(R.id.spinner_sortBy_income),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                4),
+                                9),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("40"), closeSoftKeyboard());
+        appCompatSpinner4.perform(click());
 
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("40"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                4),
-                        isDisplayed()));
-        appCompatEditText5.perform(pressImeActionButton());
-
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.Button_check_expense),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
+        DataInteraction appCompatCheckedTextView4 = onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(3);
+        appCompatCheckedTextView4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

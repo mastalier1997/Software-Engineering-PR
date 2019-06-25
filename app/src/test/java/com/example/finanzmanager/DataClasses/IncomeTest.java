@@ -44,8 +44,10 @@ public class IncomeTest {
 
     @Test
     public void getId(){
-        assertEquals(0, income.getId());
         Income i2 = new Income(date, value, recurring, category, description);
-        assertEquals(1, i2.getId());
+        Income i3 = new Income(date, value, recurring, category, description);
+        assertNotEquals(income, i2);
+        assertNotEquals(income, i3);
+        assertNotEquals(i2, i3);
     }
 }

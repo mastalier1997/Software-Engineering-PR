@@ -8,6 +8,7 @@ import android.view.ViewParent;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.example.finanzmanager.R;
@@ -24,107 +25,118 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/**
- * Bei diesem Test wird eine monatliche Einnahme hinzugefügt.
- * Beschriftung der Einnahme: keine
- * Einnahme pro Monat: 5000
- * Wiederkehrend: ja
- */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddIncomeMonthlyTest {
+public class Export_Test {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    @Test
-    public void addIncomeMonthlyTest() {
-        ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.plus),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.drawer_layout),
-                                        0),
-                                2),
-                        isDisplayed()));
-        floatingActionButton.perform(click());
+    @Rule
+    public GrantPermissionRule mGrantPermissionRule =
+            GrantPermissionRule.grant(
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
 
+    @Test
+    public void export_Test() {
         ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.Button_dividend),
+                allOf(withContentDescription("Open navigation drawer"),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                12),
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withClassName(is("android.support.design.widget.AppBarLayout")),
+                                                0)),
+                                1),
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText_value_income),
+        ViewInteraction navigationMenuItemView = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.design_navigation_view),
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0)),
+                        4),
+                        isDisplayed()));
+        navigationMenuItemView.perform(click());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.button_export), withText("Exportieren"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                4),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("5000"), closeSoftKeyboard());
+        appCompatButton2.perform(click());
+
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(R.id.button_export), withText("Exportieren"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatButton3.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editText_value_income), withText("5000"),
+                allOf(withId(R.id.editText2), withText("FiMa_data.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                0),
                         isDisplayed()));
-        appCompatEditText2.perform(pressImeActionButton());
+        appCompatEditText2.perform(click());
 
-        ViewInteraction appCompatCheckBox = onView(
-                allOf(withId(R.id.checkBox_repeat_income), withText("Wiederkehrend"),
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.editText2), withText("FiMa_data.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                2),
+                                0),
                         isDisplayed()));
-        appCompatCheckBox.perform(click());
+        appCompatEditText3.perform(replaceText("NewFile123.csv"));
 
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.Button_date_income),
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.editText2), withText("NewFile123.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                5),
+                                0),
                         isDisplayed()));
-        appCompatImageButton2.perform(click());
+        appCompatEditText4.perform(closeSoftKeyboard());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageButton3 = onView(
-                allOf(withId(R.id.Button_check_income),
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.editText2), withText("NewFile123.csv"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                6),
+                                0),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatEditText5.perform(pressImeActionButton());
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(R.id.button_export), withText("Exportieren"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

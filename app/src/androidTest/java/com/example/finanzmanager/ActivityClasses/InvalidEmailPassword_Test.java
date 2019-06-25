@@ -21,6 +21,9 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -29,18 +32,51 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Bei diesem Test wird sich in die App erfolgreich eingeloggt.
- * Test Account: ronald_moritz@yahoo.com; Passwort: hallo1
+ * Bei diesem Test schlägt das Einloggen in die App wegen
+ * falscher Account-Daten fehl.
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class EmailPasswordActivityTest {
+public class InvalidEmailPassword_Test {
 
     @Rule
     public ActivityTestRule<EmailPasswordActivity> mActivityTestRule = new ActivityTestRule<>(EmailPasswordActivity.class);
 
     @Test
-    public void emailPasswordActivityTest() {
+    public void invalidEmailPassword_Test() {
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.fieldEmail),
+                        childAtPosition(
+                                allOf(withId(R.id.emailPasswordFields),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.RelativeLayout")),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        appCompatEditText.perform(replaceText("hal"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.fieldPassword),
+                        childAtPosition(
+                                allOf(withId(R.id.emailPasswordFields),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.RelativeLayout")),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatEditText2.perform(replaceText("seas"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.fieldPassword), withText("seas"),
+                        childAtPosition(
+                                allOf(withId(R.id.emailPasswordFields),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.RelativeLayout")),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatEditText3.perform(pressImeActionButton());
+
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.emailSignInButton), withText("anmelden"),
                         childAtPosition(
