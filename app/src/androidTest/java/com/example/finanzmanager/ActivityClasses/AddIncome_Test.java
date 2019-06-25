@@ -34,6 +34,12 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Bei diesem Test wird eine einmalige Einnahme hinzugefügt.
+ * Beschriftung der Ausgabe: Beschreibung
+ * Ausgaben pro Monat: 50
+ * Wiederkehrend: nein
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AddIncome_Test {

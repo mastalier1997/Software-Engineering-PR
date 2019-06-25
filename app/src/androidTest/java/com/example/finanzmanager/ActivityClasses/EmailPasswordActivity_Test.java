@@ -30,6 +30,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Bei diesem Test wird sich in die App erfolgreich eingeloggt.
+ * Test Account: ronald_moritz@yahoo.com; Passwort: hallo1
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class EmailPasswordActivity_Test {
