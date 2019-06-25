@@ -1,6 +1,7 @@
 package AddNew;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finanzmanager.R;
 import com.example.finanzmanager.ActivityClasses.MainActivity;
@@ -186,20 +188,34 @@ public class NewIncome extends AppCompatActivity {
                             Boolean repeats = false;
                             if (repeat.isChecked()) repeats = true;
 
-                            //alles in einem Bundle gespeichert
-                            Bundle extras = new Bundle();
-                            extras.putDouble("value", addNumber);
-                            extras.putInt("day", day);
-                            extras.putInt("month", month);
-                            extras.putInt("year", year);
-                            extras.putString("category", category);
-                            extras.putString("description", description);
-                            extras.putBoolean("repeats", repeats);
-                            extras.putString("type", "income");
+                            boolean allowed = true;
 
-                            Intent intent = new Intent(NewIncome.this, MainActivity.class);
-                            intent.putExtras(extras);
-                            startActivity(intent);
+                            if (repeats && MainActivity.account.repeatingIncomeContains(description, addNumber)) {
+                                //Toast Message
+                                Context context = getApplicationContext();
+                                CharSequence text = "Ungültige Eingabe: Die Beschreibung und der Wert sind bereits in einer anderen Position gespeichert";
+                                int duration = Toast.LENGTH_LONG;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                                allowed = false;
+                            }
+
+                            if (allowed) {
+                                //alles in einem Bundle gespeichert
+                                Bundle extras = new Bundle();
+                                extras.putDouble("value", addNumber);
+                                extras.putInt("day", day);
+                                extras.putInt("month", month);
+                                extras.putInt("year", year);
+                                extras.putString("category", category);
+                                extras.putString("description", description);
+                                extras.putBoolean("repeats", repeats);
+                                extras.putString("type", "income");
+
+                                Intent intent = new Intent(NewIncome.this, MainActivity.class);
+                                intent.putExtras(extras);
+                                startActivity(intent);
+                            }
 
                     }
 

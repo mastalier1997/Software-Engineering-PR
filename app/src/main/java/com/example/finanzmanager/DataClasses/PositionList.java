@@ -87,6 +87,20 @@ public class PositionList {
         return found;
     }
 
+    public boolean repeatingIncomeContains(String description, double value) {
+        for (Income i : repeatingIncomeList) {
+            if (i.getDescription().equals(description) && (int) i.getValue() == (int) value) return true;
+        }
+        return false;
+    }
+
+    public boolean repeatingExpenseContains(String description, double value) {
+        for (Expense e : repeatingExpenseList) {
+            if (e.getDescription().equals(description) && (int) e.getValue() == (int) value) return true;
+        }
+        return false;
+    }
+
     public ArrayList<String> getIncomeFromYear(int year) {
         ArrayList<String> found = new ArrayList<>();
         for(int i = 0; i <=12; i++) {
