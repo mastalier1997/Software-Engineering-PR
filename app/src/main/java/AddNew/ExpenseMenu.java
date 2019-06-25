@@ -78,7 +78,7 @@ public class ExpenseMenu extends AppCompatActivity {
         createCategorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ExpenseMenu.this, create_category_expense.class);
+                Intent intent = new Intent(ExpenseMenu.this, CreateCategoryExpense.class);
                 startActivity(intent);
             }
         });
