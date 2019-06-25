@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828 "
-    tools:context="addNew.create_category_expense">
+    tools:context="AddNew.CreateCategoryExpense">
 
     <TextView
         android:id="@+id/infoName2"

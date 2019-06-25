@@ -18,42 +18,42 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
-        <activity android:name="navigationBar.graph_detailed"
+        <activity android:name="NavigationBar.GraphDetailed"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.create_category_expense"
+        <activity android:name="AddNew.CreateCategoryExpense"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.create_category_income"
+        <activity android:name="AddNew.CreateCategoryIncome"
             android:screenOrientation="portrait"/>
-        <activity android:name="navigationBar.income_overview"
+        <activity android:name="NavigationBar.IncomeOverview"
             android:screenOrientation="portrait"/>
-        <activity android:name="navigationBar.expense_overview"
+        <activity android:name="NavigationBar.ExpenseOverview"
             android:screenOrientation="portrait"/>
-        <activity android:name="navigationBar.imports"
+        <activity android:name="NavigationBar.Imports"
             android:screenOrientation="portrait"/>
-        <activity android:name="navigationBar.exports"
+        <activity android:name="NavigationBar.Exports"
             android:screenOrientation="portrait"/>
-        <activity android:name="navigationBar.graph"
+        <activity android:name="NavigationBar.Graph"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.expense_menu"
+        <activity android:name="AddNew.ExpenseMenu"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.income_menu"
+        <activity android:name="AddNew.IncomeMenu"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.new_income"
+        <activity android:name="AddNew.NewIncome"
             android:screenOrientation="portrait"/>
-        <activity android:name="addNew.new_expense"
+        <activity android:name="AddNew.NewExpense"
             android:screenOrientation="portrait"/>
-        <activity android:name="settings.settings"
+        <activity android:name="Settings.settings"
             android:screenOrientation="portrait"/>
-        <activity android:name="settings.repeat_settings_income"
+        <activity android:name="Settings.RepeatSettingsIncome"
             android:screenOrientation="portrait"/>
-        <activity android:name="settings.repeat_settings_expense"
+        <activity android:name="Settings.RepeatSettingsExpense"
             android:screenOrientation="portrait"/>
-        <activity android:name="settings.info_repeating_income"
+        <activity android:name="Settings.InfoRepeatingIncome"
             android:screenOrientation="portrait"/>
-        <activity android:name="settings.info_repeating_expense"
+        <activity android:name="Settings.InfoRepeatingExpense"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.example.finanzmanager.activity_classes.EmailPasswordActivity"
+            android:name="com.example.finanzmanager.ActivityClasses.EmailPasswordActivity"
             android:label="Finanzmanager"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_classes.MainActivity"
+            android:name=".ActivityClasses.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">

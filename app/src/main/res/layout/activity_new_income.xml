@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828"
-    tools:context="addNew.new_income">
+    tools:context="AddNew.NewIncome">
 
     <TextView
         android:id="@+id/hinweisBetrag2"
