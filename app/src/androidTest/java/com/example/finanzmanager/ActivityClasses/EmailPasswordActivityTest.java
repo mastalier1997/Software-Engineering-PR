@@ -30,6 +30,7 @@ import static org.hamcrest.Matchers.is;
 
 /**
  * Bei diesem Test wird sich in die App erfolgreich eingeloggt.
+ * Test Account: ronald_moritz@yahoo.com; Passwort: hallo1
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
