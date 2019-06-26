@@ -133,6 +133,9 @@ public class MonthOverview {
         }
     }
 
+    /**
+     * this method is only used internally, it just makes sure, that older versions of shared preference files still work by filling all months from the MonthOverview
+     */
     public void addAllMonths() {
         for (int year = 2010; year <= 2025; year++){
             for (int i = 1; i <= 12; i++) {

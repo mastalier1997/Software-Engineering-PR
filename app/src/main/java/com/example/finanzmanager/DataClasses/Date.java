@@ -17,6 +17,9 @@ public class Date {
         this.year = year;
     }
 
+    /**
+     * @return a String representation of a Date
+     */
     public String getString() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(day);

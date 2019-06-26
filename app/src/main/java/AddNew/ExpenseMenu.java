@@ -217,8 +217,8 @@ public class ExpenseMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void checkSharedPreferences() {
 
+    private void checkSharedPreferences() {
         String newSavedName = expense_pref.getString("extraName", "");
         if (!newSavedName.equals("")) {
             extraName = newSavedName;

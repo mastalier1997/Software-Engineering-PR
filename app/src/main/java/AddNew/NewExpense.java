@@ -269,6 +269,9 @@ public class NewExpense extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * this methods limits the number of digits of the decimal value
+     */
     private class DecimalDigitsInputFilter implements InputFilter {
 
         Pattern mPattern;
