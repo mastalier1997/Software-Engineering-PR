@@ -17,7 +17,7 @@ import com.example.finanzmanager.ActivityClasses.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class settings extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class settings extends AppCompatActivity {
         repeat_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(settings.this, RepeatSettingsIncome.class);
+                Intent intent= new Intent(Settings.this, RepeatSettingsIncome.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent= new Intent(settings.this, EmailPasswordActivity.class);
+                Intent intent= new Intent(Settings.this, EmailPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,19 +57,8 @@ public class settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MainActivity.deleteData();
-                Intent intent = new Intent(settings.this, MainActivity.class);
+                Intent intent = new Intent(Settings.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
-
-
-        Button mbutton = findViewById(R.id.colorPicker);
-        int mDefColor = ContextCompat.getColor(settings.this,R.color.colorAccent);
-        mbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               //setTheme(R.style.BlueTheme);
-                getTheme().applyStyle(R.style.BlueTheme,true);
             }
         });
     }

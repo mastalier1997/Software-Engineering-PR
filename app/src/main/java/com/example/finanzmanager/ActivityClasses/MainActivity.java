@@ -49,7 +49,7 @@ import NavigationBar.Exports;
 import NavigationBar.Graph;
 import NavigationBar.Imports;
 import NavigationBar.IncomeOverview;
-import Settings.settings;
+import Settings.Settings;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Log.e("Test", "der Settings Listener wurde aufgerufen");
-            Intent intent = new Intent(MainActivity.this, settings.class);
+            Intent intent = new Intent(MainActivity.this, Settings.class);
             startActivity(intent);
         }
 
