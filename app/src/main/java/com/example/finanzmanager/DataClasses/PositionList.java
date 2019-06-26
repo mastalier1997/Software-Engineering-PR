@@ -146,7 +146,7 @@ public class PositionList {
     public ArrayList<String> getExpenseFromYear(int year) {
         ArrayList<String> found = new ArrayList<>();
         for(int i = 0; i <=12; i++) {
-            found.addAll(this.getIncomeFromDate(i, year));
+            found.addAll(this.getExpenseFromDate(i, year));
         }
         return found;
     }
