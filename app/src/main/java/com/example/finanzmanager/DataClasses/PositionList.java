@@ -219,9 +219,7 @@ public class PositionList {
         for(int i = 0; i<incomeList.size(); i++) {
             Income test = incomeList.get(i);
             if (test.getDescription().equals(description) && test.getValue() == value && test.getDate().getYear() >= year) {
-                //Log.e("Schleifentest:", "Vor der IF");
                 if ((test.getDate().getYear() == year && test.getDate().getMonth() >= month) || test.getDate().getYear() > year) {
-                    //Log.e("Schleifentest:", "Nach der IF");
                     incomeList.remove(i);
                     i--; //notwendig da das i+1 element auf die Stelle i rückt und somit im nächsten Schleifendurchgang übersprungen wird
                     MainActivity.months.updateMonthIncome(test.getDate().getYear(), test.getDate().getMonth(), -value);
@@ -601,7 +599,6 @@ public class PositionList {
 
         int counter = 0;
         for (Integer y : years) {
-          //Log.e("year", Integer.toString(y.intValue()) + " -- " + Integer.toString(search));
             if(y.intValue() == search) return counter;
             counter++;
         }

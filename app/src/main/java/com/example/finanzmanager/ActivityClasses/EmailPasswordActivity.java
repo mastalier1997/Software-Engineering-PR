@@ -80,7 +80,6 @@ public class EmailPasswordActivity extends BaseActivity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
-            Log.e("test", "wrong signin");
             Username = currentUser.getEmail();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -188,7 +187,6 @@ public class EmailPasswordActivity extends BaseActivity implements
                                     "Verification email sent to " + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(EmailPasswordActivity.this,
                                     "Failed to send verification email.",
                                     Toast.LENGTH_SHORT).show();
