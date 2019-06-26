@@ -73,6 +73,8 @@ public class DateTest {
         StringBuffer sb = new StringBuffer();
         sb.append(day);
         sb.append(".");
+        if(month<10)
+            sb.append("0");
         sb.append(month);
         sb.append(".");
         sb.append(year);

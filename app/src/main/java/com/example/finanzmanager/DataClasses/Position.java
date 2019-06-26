@@ -62,11 +62,11 @@ public class Position {
             info.append(" ");
 
         info.append(String.format(String.format("%8s", Double.toString(value))));
-        if(desc.length() > 18) {
-            desc = desc.substring(0, 15) + "...";
+        if(desc.length() > 17) {
+            desc = desc.substring(0, 14) + "...";
         }
         info.append(" ");
-        info.append(String.format(String.format("%-18s", desc)));
+        info.append(String.format(String.format("%-17s", desc)));
         if(cat.length() > 6) {
             cat = cat.substring(0, 5) + ".";
         }

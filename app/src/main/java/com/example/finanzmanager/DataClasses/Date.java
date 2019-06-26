@@ -24,6 +24,8 @@ public class Date {
         StringBuffer buffer = new StringBuffer();
         buffer.append(day);
         buffer.append(".");
+        if(month<10)
+            buffer.append("0");
         buffer.append(month);
         buffer.append(".");
         buffer.append(year);
