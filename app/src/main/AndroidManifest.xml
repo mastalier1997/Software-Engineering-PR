@@ -42,7 +42,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name="AddNew.NewExpense"
             android:screenOrientation="portrait"/>
-        <activity android:name="Settings.settings"
+        <activity android:name="Settings.Settings"
             android:screenOrientation="portrait"/>
         <activity android:name="Settings.RepeatSettingsIncome"
             android:screenOrientation="portrait"/>
