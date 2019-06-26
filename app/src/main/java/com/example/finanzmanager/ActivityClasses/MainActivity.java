@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Einlese der Daten bei jedem Start der App bzw. Neuaufruf der Startseite
         checkSharedPreferences();
 
-        Log.e("year", Integer.toString(currentMonth) + "." + Integer.toString(currentYear));
         updateListView();
 
 
@@ -400,7 +399,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Log.e("Test", "der Settings Listener wurde aufgerufen");
             Intent intent = new Intent(MainActivity.this, Settings.class);
             startActivity(intent);
         }

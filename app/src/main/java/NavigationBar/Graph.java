@@ -46,8 +46,6 @@ public class Graph extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_graph);
-        Log.e("Jahr und Monat", Integer.toString(MainActivity.currentYear) + Integer.toString(MainActivity.currentMonth) );
-        Log.e("test", "test");
         //Back Button aktivieren
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,7 +62,6 @@ public class Graph extends AppCompatActivity {
         }
 
         //Auswahl des Jahres und Monats
-        Log.e("test", "test");
         Spinner spinnerMonth = findViewById(R.id.spinnerMonthGraph);
         Spinner spinnerYear = findViewById(R.id.spinnerYearGraph);
         try {
@@ -81,7 +78,6 @@ public class Graph extends AppCompatActivity {
 
         }
 
-        Log.e("test", "test");
         ArrayList<String> month = new ArrayList<>();
         month.add("Jannuar"); month.add("Februar"); month.add("März");month.add("April"); month.add("Mai");
         month.add("Juni");month.add("Juli"); month.add("August"); month.add("September"); month.add("Oktober");
@@ -93,13 +89,11 @@ public class Graph extends AppCompatActivity {
 
         List<Integer> year = MainActivity.yearsNew;
 
-        Log.e("test", "test");
         ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, year);
         adapter1.setDropDownViewResource(R.layout.spinner);
         spinnerYear.setAdapter(adapter1);
         spinnerYear.setSelection(this.numOfYear(year, MainActivity.currentYear));
 
-        Log.e("test", "test");
         spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -120,7 +114,6 @@ public class Graph extends AppCompatActivity {
             }
         });
 
-        Log.e("test", "test");
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -183,16 +176,6 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
-
-        Log.e("test", "test");
-       /* Button detailViewButton = (Button) findViewById(R.id.detailedView);
-        detailViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Graph.this, GraphDetailed.class);
-                startActivity(intent);
-            }
-        });*/
     }
 
     /**
@@ -200,7 +183,6 @@ public class Graph extends AppCompatActivity {
      */
     public void drawPie(double income, double expense){
 
-        Log.e("test", "drawing");
         AnimatedPieView mAnimatedPieView = findViewById(R.id.animatedPieView_graph);
         AnimatedPieViewConfig config = new AnimatedPieViewConfig();
 
