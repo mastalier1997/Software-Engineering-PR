@@ -42,26 +42,50 @@ public class   PositionSample implements Comparable{
         this.positionType = positionType;
     }
 
+    /**
+     *
+     * @return Date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * set the Date
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @return the value
+     */
     public double getValue() {
         return value;
     }
 
+    /**
+     * set the value
+     * @param value
+     */
     public void setValue(double value) {
         this.value = value;
     }
 
+    /**
+     *
+     * @return true if a Position is recurring
+     */
     public boolean getReocurring() {
         return reocurring;
     }
 
+    /**
+     * sets the recurring value
+     * @param reocurring
+     */
     public void setReocurring(boolean reocurring) {
             this.reocurring = reocurring;
     }
@@ -78,6 +102,10 @@ public class   PositionSample implements Comparable{
                 '}';
     }
 
+    /**
+     *
+     * @returns a String array of the exports
+     */
     public String[] readyToExport(){
         String[] s = new String[8];
         s[0] = String.valueOf(positionType);

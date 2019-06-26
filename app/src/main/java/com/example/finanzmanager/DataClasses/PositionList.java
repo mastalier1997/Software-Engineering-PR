@@ -41,6 +41,12 @@ public class PositionList {
         categoriesExpense.add("Reisen");
     }
 
+    /**
+     *
+     * @param quarter
+     * @param year
+     * @return all Incomes from the given year and quarter
+     */
     public ArrayList<String> getIncomeFromQuarter(int quarter, int year) {
         int [] months = new int[3];
         switch(quarter) {
@@ -64,6 +70,12 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @param quarter
+     * @param year
+     * @return all Expenses from the given year and quarter
+     */
     public ArrayList<String> getExpenseFromQuarter(int quarter, int year) {
         int [] months = new int[3];
         switch(quarter) {
@@ -87,6 +99,12 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @param description
+     * @param value
+     * @return true if the repeatingIncomeList already contains an income with the given description and value
+     */
     public boolean repeatingIncomeContains(String description, double value) {
         for (Income i : repeatingIncomeList) {
             if (i.getDescription().equals(description) && (int) i.getValue() == (int) value) return true;
@@ -94,6 +112,12 @@ public class PositionList {
         return false;
     }
 
+    /**
+     *
+     * @param description
+     * @param value
+     * @return true if the repeatingExpenseList already contains an income with the given description and value
+     */
     public boolean repeatingExpenseContains(String description, double value) {
         for (Expense e : repeatingExpenseList) {
             if (e.getDescription().equals(description) && (int) e.getValue() == (int) value) return true;
@@ -101,6 +125,11 @@ public class PositionList {
         return false;
     }
 
+    /**
+     *
+     * @param year
+     * @return all Incomes from the given year
+     */
     public ArrayList<String> getIncomeFromYear(int year) {
         ArrayList<String> found = new ArrayList<>();
         for(int i = 0; i <=12; i++) {
@@ -109,6 +138,11 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @param year
+     * @return all Expenses from the given year
+     */
     public ArrayList<String> getExpenseFromYear(int year) {
         ArrayList<String> found = new ArrayList<>();
         for(int i = 0; i <=12; i++) {
@@ -117,6 +151,11 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @param category
+     * @return all Incomes from the given category
+     */
     public ArrayList<String> getIncomeFromCategory(String category) {
         ArrayList<String> found = new ArrayList<>();
         for (int i = 0; i<incomeList.size(); i++) {
@@ -128,6 +167,11 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @param category
+     * @return all Expenses from the given category
+     */
     public ArrayList<String> getExpenseFromCategory(String category) {
         ArrayList<String> found = new ArrayList<>();
         for (int i = 0; i<expenseList.size(); i++) {
@@ -139,13 +183,26 @@ public class PositionList {
         return found;
     }
 
+    /**
+     *
+     * @return all Income Categories
+     */
     public ArrayList<String> getIncomeCategories() { return categoriesIncome;
     }
 
+    /**
+     *
+     * @return all Expense Categories
+     */
     public ArrayList<String> getExpenseCategories() {
         return categoriesExpense;
     }
 
+    /**
+     * deletes a repeating Income and all its appearances in the normal Income List
+     * @param description
+     * @param value
+     */
     public void deleteRepeatingIncome(String description, double value) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH);
@@ -173,6 +230,11 @@ public class PositionList {
         }
     }
 
+    /**
+     * delets a repeating Expense and all its appearances in the normal Expense List
+     * @param description
+     * @param value
+     */
     public void deleteRepeatingExpense(String description, double value) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH);
@@ -527,6 +589,12 @@ public class PositionList {
         }
     }
 
+    /**
+     *
+     * @param years
+     * @param search
+     * @return the number of years
+     */
     public int numOfYear(List<Integer> years, Integer search) {
         if(search < 1900)
             return 0;
