@@ -20,6 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -38,12 +40,14 @@ import static org.hamcrest.Matchers.is;
 /**
  * Bei diesem Test werden 3 monatliche Ausgaben hinzugefügt.
  * Beschriftung der Ausgabe: Linz, (nichts), (nichts)
- * Ausgaben pro Monat: 899999, 50, 1.50
+ * Ausgaben pro Monat: random, random, random
  * Wiederkehrend: ja
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AddExpenseMonthlyTest {
+    Random random = new Random();
+    int d = random.nextInt(999999);
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -105,10 +109,10 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("Linz"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("Linz1"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editText_description_expense), withText("Linz"),
+                allOf(withId(R.id.editText_description_expense), withText("Linz1"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -125,10 +129,10 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("899999"), closeSoftKeyboard());
+        appCompatEditText5.perform(replaceText(Integer.toString(d)), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("899999"),
+                allOf(withId(R.id.editText_value_expense), withText(Integer.toString(d)),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -239,10 +243,11 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText7.perform(replaceText("50"), closeSoftKeyboard());
+        d = random.nextInt(999999);
+        appCompatEditText7.perform(replaceText(Integer.toString(d)), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("50"),
+                allOf(withId(R.id.editText_value_expense), withText(Integer.toString(d)),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -353,10 +358,11 @@ public class AddExpenseMonthlyTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText9.perform(replaceText("1.50"), closeSoftKeyboard());
+        d = random.nextInt(999999);
+        appCompatEditText9.perform(replaceText(Integer.toString(d)), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText10 = onView(
-                allOf(withId(R.id.editText_value_expense), withText("1.50"),
+                allOf(withId(R.id.editText_value_expense), withText(Integer.toString(d)),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
