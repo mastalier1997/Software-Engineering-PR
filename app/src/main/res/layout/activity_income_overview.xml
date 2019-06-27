@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828"
-    tools:context="NavigationBar.IncomeOverview">
+    tools:context="com.example.finanzmanager.NavigationBar.IncomeOverview">
 
     <ListView
         android:id="@+id/listView_all_incomes_quarters"
