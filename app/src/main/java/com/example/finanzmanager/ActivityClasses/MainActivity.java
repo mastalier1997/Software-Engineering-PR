@@ -43,13 +43,13 @@ import java.util.Collections;
 import java.lang.Double;
 import java.util.List;
 
-import AddNew.IncomeMenu;
-import NavigationBar.ExpenseOverview;
-import NavigationBar.Exports;
-import NavigationBar.Graph;
-import NavigationBar.Imports;
-import NavigationBar.IncomeOverview;
-import Settings.Settings;
+import com.example.finanzmanager.AddNew.IncomeMenu;
+import com.example.finanzmanager.NavigationBar.ExpenseOverview;
+import com.example.finanzmanager.NavigationBar.Exports;
+import com.example.finanzmanager.NavigationBar.Graph;
+import com.example.finanzmanager.NavigationBar.Imports;
+import com.example.finanzmanager.NavigationBar.IncomeOverview;
+import com.example.finanzmanager.Settings.Settings;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
