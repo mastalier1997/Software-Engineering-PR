@@ -289,16 +289,6 @@ public class AddIncomeTest {
                         isDisplayed()));
         appCompatImageButton9.perform(click());
 
-        ViewInteraction appCompatImageButton10 = onView(
-                allOf(withId(R.id.Button_salary),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                11),
-                        isDisplayed()));
-        appCompatImageButton10.perform(click());
-
         ViewInteraction appCompatEditText11 = onView(
                 allOf(withId(R.id.editText_description_income),
                         childAtPosition(

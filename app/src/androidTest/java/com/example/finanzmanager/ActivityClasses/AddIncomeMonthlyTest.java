@@ -20,6 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -38,12 +40,14 @@ import static org.hamcrest.Matchers.is;
 /**
  * Bei diesem Test werden 2 monatliche Einnahmen hinzugefügt.
  * Beschriftung der Ausgabe: Arbeit, Aktie
- * Ausgaben pro Monat: 2000, 10500.90
+ * Ausgaben pro Monat: random, random
  * Wiederkehrend: ja
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AddIncomeMonthlyTest {
+    Random random = new Random();
+    int d = random.nextInt(999999);
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -108,10 +112,10 @@ public class AddIncomeMonthlyTest {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("2000"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText(Integer.toString(d)), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editText_value_income), withText("2000"),
+                allOf(withId(R.id.editText_value_income), withText(Integer.toString(d)),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -235,10 +239,11 @@ public class AddIncomeMonthlyTest {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText9.perform(replaceText("10500.90"), closeSoftKeyboard());
+        d = random.nextInt(999999);
+        appCompatEditText9.perform(replaceText(Integer.toString(d)), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText10 = onView(
-                allOf(withId(R.id.editText_value_income), withText("10500.90"),
+                allOf(withId(R.id.editText_value_income), withText(Integer.toString(d)),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

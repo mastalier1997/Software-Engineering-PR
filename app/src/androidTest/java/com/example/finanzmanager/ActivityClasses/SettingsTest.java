@@ -42,11 +42,11 @@ public class SettingsTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void settings_Test() {
+    public void settingsTest() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.title), withText("com/example/finanzmanager/Settings"),
+                allOf(withId(R.id.title), withText("Settings"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.content),
@@ -96,7 +96,7 @@ public class SettingsTest {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         ViewInteraction appCompatTextView2 = onView(
-                allOf(withId(R.id.title), withText("com/example/finanzmanager/Settings"),
+                allOf(withId(R.id.title), withText("Settings"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.content),
@@ -118,7 +118,7 @@ public class SettingsTest {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         ViewInteraction appCompatTextView3 = onView(
-                allOf(withId(R.id.title), withText("com/example/finanzmanager/Settings"),
+                allOf(withId(R.id.title), withText("Settings"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.content),
