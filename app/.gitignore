@@ -1,1 +1,4 @@
 /build
+
+# Firebase config (download from the Firebase console, do not commit)
+google-services.json
